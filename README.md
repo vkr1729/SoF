@@ -3,6 +3,9 @@
 
 A complete, offline-first, gamified web application and official exam simulator tailored for **Class 2 students (~7 years old)** appearing for the Science Olympiad Foundation (SOF) exams.
 
+> 🎮 **Live App**: [https://vkr1729.github.io/SoF/](https://vkr1729.github.io/SoF/)  
+> 📦 **GitHub Repository**: [https://github.com/vkr1729/SoF](https://github.com/vkr1729/SoF)
+
 ---
 
 ## 🌟 Highlights & Features
