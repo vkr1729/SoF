@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock 5: SOF Official Modernized (TCS iON) - Class 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sof-blue: #02569b;
+      --sof-light-blue: #e1f5fe;
+      --sof-dark-blue: #013660;
+      --sof-accent: #f57c00;
+      --ans-green: #2e7d32;
+      --not-ans-red: #c62828;
+      --review-purple: #6a1b9a;
+      --unvisited-gray: #e0e0e0;
+      --bg-gray: #f4f6f9;
+      --text: #212121;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', 'Nunito', sans-serif; }
+    body { background-color: var(--bg-gray); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Official TCS iON Blue Header */
+    .sof-header {
+      background: var(--sof-blue); color: #ffffff; padding: 10px 24px;
+      display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+    .sof-branding { display: flex; align-items: center; gap: 14px; }
+    .sof-logo-badge {
+      background: #ffffff; color: var(--sof-blue); font-weight: 900; font-size: 17px;
+      padding: 4px 10px; border-radius: 4px; letter-spacing: 1px;
+    }
+    .exam-title-text { font-size: 16px; font-weight: 600; }
+
+    .timer-display {
+      background: #ffffff; color: var(--not-ans-red); font-weight: 700; font-size: 18px;
+      padding: 6px 16px; border-radius: 6px; display: flex; align-items: center; gap: 8px;
+      border: 2px solid #ffcdd2;
+    }
+
+    /* Sub Tabs for Mockup Exploration */
+    .mockup-tabs-bar {
+      background: #ffffff; border-bottom: 2px solid #cfd8dc; padding: 6px 20px;
+      display: flex; gap: 8px; justify-content: center;
+    }
+    .m-tab-btn {
+      padding: 6px 14px; border: 1px solid #b0bec5; border-radius: 4px; background: #eceff1;
+      font-weight: 600; font-size: 13px; cursor: pointer;
+    }
+    .m-tab-btn.active { background: var(--sof-blue); color: #fff; border-color: var(--sof-blue); }
+
+    /* Split Test Screen Layout */
+    .exam-stage {
+      flex: 1; display: flex; max-width: 1350px; margin: 0 auto; width: 100%; padding: 14px; gap: 14px;
+    }
+    .test-area {
+      flex: 3; background: #ffffff; border: 1px solid #cfd8dc; border-radius: 6px;
+      display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .palette-sidebar {
+      flex: 1; min-width: 320px; max-width: 380px; background: #ffffff;
+      border: 1px solid #cfd8dc; border-radius: 6px; display: flex; flex-direction: column;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    /* Question Header */
+    .q-header {
+      padding: 12px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .q-number-tag { font-weight: 700; font-size: 16px; color: var(--sof-dark-blue); }
+    .marking-tag { font-size: 12px; color: #555; background: #e2e8f0; padding: 2px 8px; border-radius: 4px; }
+
+    /* Question Body */
+    .q-body { flex: 1; padding: 24px; overflow-y: auto; }
+    .q-text { font-size: 18px; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+
+    .option-list { display: flex; flex-direction: column; gap: 12px; }
+    .option-item {
+      display: flex; align-items: center; gap: 14px; padding: 14px 18px; border: 1px solid #e2e8f0;
+      border-radius: 6px; cursor: pointer; transition: background 0.15s;
+    }
+    .option-item:hover { background: var(--sof-light-blue); }
+    .option-item input[type="radio"] { width: 18px; height: 18px; cursor: pointer; }
+
+    /* Bottom Action Bar */
+    .exam-actions-bar {
+      padding: 12px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .btn-sof {
+      padding: 9px 18px; border-radius: 4px; font-weight: 600; font-size: 14px;
+      cursor: pointer; border: 1px solid transparent;
+    }
+    .btn-save-next { background: #2e7d32; color: #ffffff; }
+    .btn-review { background: #6a1b9a; color: #ffffff; }
+    .btn-clear { background: #ffffff; border-color: #9e9e9e; color: #424242; }
+    .btn-submit { background: var(--sof-accent); color: #ffffff; font-weight: 700; }
+
+    /* Candidate Profile & Question Palette */
+    .candidate-info-box {
+      padding: 14px 18px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 14px;
+      background: #fafafa;
+    }
+    .candidate-avatar {
+      width: 52px; height: 52px; border-radius: 6px; background: #bbdefb;
+      display: flex; align-items: center; justify-content: center; font-size: 26px; border: 1px solid #90caf9;
+    }
+    .candidate-name { font-weight: 700; font-size: 15px; }
+    .candidate-roll { font-size: 12px; color: #757575; }
+
+    .palette-legend {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 16px;
+      background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-size: 11px;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-badge {
+      width: 22px; height: 22px; border-radius: 4px; display: flex; align-items: center;
+      justify-content: center; font-weight: 700; font-size: 11px; color: #fff;
+    }
+
+    .palette-grid {
+      padding: 14px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+      overflow-y: auto; max-height: 380px;
+    }
+    .palette-num-btn {
+      width: 100%; aspect-ratio: 1; border-radius: 4px; border: 1px solid #bdbdbd;
+      background: #f5f5f5; font-weight: 700; font-size: 14px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: all 0.1s;
+    }
+    .palette-num-btn.answered { background: var(--ans-green); color: #fff; border-color: #1b5e20; }
+    .palette-num-btn.not-answered { background: var(--not-ans-red); color: #fff; border-color: #b71c1c; }
+    .palette-num-btn.marked-review { background: var(--review-purple); color: #fff; border-color: #4a148c; }
+    .palette-num-btn.current { outline: 3px solid #ff9800; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="sof-header">
+    <div class="sof-branding">
+      <div class="sof-logo-badge">SOF</div>
+      <div>
+        <div class="exam-title-text">SOF INTERNATIONAL MATHEMATICS OLYMPIAD (IMO)</div>
+        <div style="font-size: 12px; opacity: 0.85;">Class 2 Official Online Exam Portal Simulator</div>
+      </div>
+    </div>
+    <div class="timer-display">
+      <span>⏱️ Time Left:</span>
+      <span id="countdown">59:45</span>
+    </div>
+  </header>
+
+  <!-- Mockup Navigation Preview Tabs -->
+  <nav class="mockup-tabs-bar">
+    <button class="m-tab-btn active" onclick="switchSofTab('exam')">⏱️ Official Exam View</button>
+    <button class="m-tab-btn" onclick="switchSofTab('practice')">📝 Practice Mode</button>
+    <button class="m-tab-btn" onclick="switchSofTab('mistakes')">📓 Wrong Question Notebook</button>
+    <button class="m-tab-btn" onclick="switchSofTab('analytics')">📊 Syllabus Analytics</button>
+    <button class="m-tab-btn" onclick="switchSofTab('trophies')">🏆 Rewards & Badges</button>
+  </nav>
+
+  <!-- TAB 1: EXAM PORTAL VIEW -->
+  <div id="sof-pane-exam" class="exam-stage">
+    <!-- Main Left Test Stage -->
+    <main class="test-area">
+      <div class="q-header">
+        <div>
+          <span class="q-number-tag">Question No. 1</span>
+          <span style="font-size: 13px; color: #64748b; margin-left: 8px;">| Section: Mathematical Reasoning</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="btn-sof" style="padding: 4px 10px; font-size: 12px; background: #e0f2fe; color: #0284c7;" onclick="speakSofQuestion()">
+            🔊 Read Aloud
+          </button>
+          <span class="marking-tag">Marks: +1, Negative: 0</span>
+        </div>
+      </div>
+
+      <div class="q-body">
+        <p id="sof-q-text" class="q-text">
+          What is the difference between the greatest 2-digit number and the smallest 2-digit number?
+        </p>
+
+        <div class="option-list">
+          <label class="option-item">
+            <input type="radio" name="sof_opt" value="A">
+            <span>(A) 88</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="sof_opt" value="B">
+            <span>(B) 89</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="sof_opt" value="C">
+            <span>(C) 90</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="sof_opt" value="D">
+            <span>(D) 99</span>
+          </label>
+        </div>
+
+        <!-- Kid Explanation Accordion -->
+        <div style="margin-top: 24px; padding: 14px; background: #f1f5f9; border-left: 4px solid #0284c7; border-radius: 4px; font-size: 14px;">
+          <strong>💡 Kid-Friendly Tip:</strong> Greatest 2-digit number is 99. Smallest 2-digit number is 10. (99 - 10 = 89).
+        </div>
+      </div>
+
+      <div class="exam-actions-bar">
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-sof btn-clear" onclick="clearOption()">Clear Response</button>
+          <button class="btn-sof btn-review" onclick="markReview()">Mark for Review & Next</button>
+        </div>
+        <div>
+          <button class="btn-sof btn-save-next" onclick="saveAndNext()">Save & Next ➜</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Side Palette & Profile -->
+    <aside class="palette-sidebar">
+      <div class="candidate-info-box">
+        <div class="candidate-avatar">🧒</div>
+        <div>
+          <div class="candidate-name">Reyansh Reddy</div>
+          <div class="candidate-roll">Roll No: 2026-SOF-CL2-1049</div>
+        </div>
+      </div>
+
+      <!-- Color Legend -->
+      <div class="palette-legend">
+        <div class="legend-item">
+          <div class="legend-badge" style="background: var(--ans-green);">1</div>
+          <span>Answered</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-badge" style="background: var(--not-ans-red);">2</div>
+          <span>Not Answered</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-badge" style="background: var(--review-purple);">3</div>
+          <span>Marked Review</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-badge" style="background: #e0e0e0; color: #333;">4</div>
+          <span>Not Visited</span>
+        </div>
+      </div>
+
+      <!-- Palette Grid (Questions 1 to 35) -->
+      <div class="palette-grid">
+        <button class="palette-num-btn current answered" id="p-1">1</button>
+        <button class="palette-num-btn not-answered" id="p-2">2</button>
+        <button class="palette-num-btn marked-review" id="p-3">3</button>
+        <button class="palette-num-btn">4</button>
+        <button class="palette-num-btn">5</button>
+        <button class="palette-num-btn">6</button>
+        <button class="palette-num-btn">7</button>
+        <button class="palette-num-btn">8</button>
+        <button class="palette-num-btn">9</button>
+        <button class="palette-num-btn">10</button>
+        <button class="palette-num-btn">11</button>
+        <button class="palette-num-btn">12</button>
+        <button class="palette-num-btn">13</button>
+        <button class="palette-num-btn">14</button>
+        <button class="palette-num-btn">15</button>
+        <button class="palette-num-btn">16</button>
+        <button class="palette-num-btn">17</button>
+        <button class="palette-num-btn">18</button>
+        <button class="palette-num-btn">19</button>
+        <button class="palette-num-btn">20</button>
+        <button class="palette-num-btn">21</button>
+        <button class="palette-num-btn">22</button>
+        <button class="palette-num-btn">23</button>
+        <button class="palette-num-btn">24</button>
+        <button class="palette-num-btn">25</button>
+        <button class="palette-num-btn">26</button>
+        <button class="palette-num-btn">27</button>
+        <button class="palette-num-btn">28</button>
+        <button class="palette-num-btn">29</button>
+        <button class="palette-num-btn">30</button>
+        <button class="palette-num-btn">31</button>
+        <button class="palette-num-btn">32</button>
+        <button class="palette-num-btn">33</button>
+        <button class="palette-num-btn">34</button>
+        <button class="palette-num-btn">35</button>
+      </div>
+
+      <div style="padding: 14px; border-top: 1px solid #e2e8f0; text-align: center;">
+        <button class="btn-sof btn-submit" style="width: 100%; padding: 10px;" onclick="submitExamDemo()">
+          SUBMIT TEST
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- OTHER TABS -->
+  <div id="sof-pane-practice" style="display: none; max-width: 900px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 8px;">
+    <h2>Practice Mode (10 Questions Set)</h2>
+    <p style="color: #666; margin: 10px 0 20px;">Kid-friendly practice sets with immediate answer checking and encouragement.</p>
+    <button class="btn-sof btn-save-next" onclick="switchSofTab('exam')">Launch Practice Set ➜</button>
+  </div>
+
+  <div id="sof-pane-mistakes" style="display: none; max-width: 900px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 8px;">
+    <h2>Notebook of Incorrect Questions</h2>
+    <p style="color: #666; margin: 10px 0 20px;">Review every question missed during practice or exam simulator tests.</p>
+    <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 14px; border-radius: 6px;">
+      <strong>IMO • Time & Calendar:</strong> Minute hand at 6, hour hand at 4 is Half Past 4 (4:30).
+    </div>
+  </div>
+
+  <div id="sof-pane-analytics" style="display: none; max-width: 900px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 8px;">
+    <h2>Syllabus Mastery Diagnostics</h2>
+    <p style="color: #666; margin: 10px 0 20px;">Identifies weak chapters and provides targeted 1-click revision workouts.</p>
+    <div style="background: #fef3c7; border: 1px solid #fde68a; padding: 16px; border-radius: 6px;">
+      ⚡ <strong>Weak Area Detected:</strong> Subtraction with borrowing (60%). Click here to practice 5 targeted questions!
+    </div>
+  </div>
+
+  <div id="sof-pane-trophies" style="display: none; max-width: 900px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 8px;">
+    <h2>Student Trophies & Streaks</h2>
+    <p style="color: #666; margin: 10px 0 20px;">Minecraft-themed achievements and study streak tracking.</p>
+    <div style="display: flex; gap: 16px;">
+      <div style="background: #f1f5f9; padding: 16px; border-radius: 6px; text-align: center;">🏆 <strong>Exam Ready</strong></div>
+      <div style="background: #f1f5f9; padding: 16px; border-radius: 6px; text-align: center;">🔥 <strong>3-Day Streak</strong></div>
+    </div>
+  </div>
+
+  <script>
+    function switchSofTab(tabId) {
+      document.querySelectorAll('.m-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.m-tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const panes = ['exam', 'practice', 'mistakes', 'analytics', 'trophies'];
+      panes.forEach(p => {
+        const el = document.getElementById('sof-pane-' + p);
+        if (el) el.style.display = (p === tabId) ? (p === 'exam' ? 'flex' : 'block') : 'none';
+      });
+    }
+
+    function saveAndNext() {
+      const p1 = document.getElementById('p-1');
+      p1.className = 'palette-num-btn answered';
+      const p2 = document.getElementById('p-2');
+      p2.classList.add('current');
+      alert("Response saved! Moving to Question 2.");
+    }
+
+    function markReview() {
+      const p1 = document.getElementById('p-1');
+      p1.className = 'palette-num-btn marked-review';
+      alert("Question 1 marked for review!");
+    }
+
+    function clearOption() {
+      document.querySelectorAll('input[name="sof_opt"]').forEach(r => r.checked = false);
+    }
+
+    function submitExamDemo() {
+      alert("Official Exam Submission Demo: 35 Questions evaluated. Score: 32 / 40. Well done!");
+    }
+
+    function speakSofQuestion() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const text = document.getElementById('sof-q-text').innerText;
+        const u = new SpeechSynthesisUtterance(text);
+        u.rate = 0.9;
+        window.speechSynthesis.speak(u);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock 2: Kahoot / Blooket Arcade - SOF Olympiad Class 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #46178f; /* Kahoot deep purple */
+      --bg-light: #5b21b6;
+      --card-bg: #ffffff;
+      --red: #e21b3c;
+      --blue: #1368ce;
+      --yellow: #ffa602;
+      --green: #26890c;
+      --text-dark: #121212;
+      --text-light: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Fredoka', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: var(--bg); color: var(--text-light); min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Top Navigation */
+    .arcade-header {
+      background: rgba(0, 0, 0, 0.25); padding: 14px 28px; display: flex;
+      align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
+    .brand-title {
+      font-family: 'Titan One', cursive; font-size: 26px; color: #ffeb3b;
+      letter-spacing: 1px; text-shadow: 2px 2px 0px #000;
+    }
+    .arcade-stats { display: flex; gap: 14px; align-items: center; }
+    .arcade-pill {
+      background: rgba(255,255,255,0.15); padding: 6px 16px; border-radius: 99px;
+      font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px;
+    }
+    .arcade-pill.combo { background: #ff9800; color: #000; font-family: 'Titan One', cursive; }
+
+    /* Tab Bar */
+    .arcade-tabs {
+      display: flex; justify-content: center; gap: 8px; background: rgba(0, 0, 0, 0.35);
+      padding: 10px 16px; overflow-x: auto;
+    }
+    .arcade-tab-btn {
+      background: transparent; border: 2px solid transparent; color: rgba(255, 255, 255, 0.7);
+      padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer;
+      display: flex; align-items: center; gap: 8px; transition: all 0.15s ease;
+    }
+    .arcade-tab-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .arcade-tab-btn.active {
+      background: #ffffff; color: var(--bg); font-family: 'Titan One', cursive;
+      transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* Container */
+    .arcade-container { flex: 1; max-width: 1050px; margin: 0 auto; padding: 24px 20px; width: 100%; }
+
+    .archetype-banner {
+      background: rgba(255, 255, 255, 0.12); border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px; padding: 12px 18px; margin-bottom: 24px; display: flex;
+      justify-content: space-between; align-items: center;
+    }
+
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; animation: zoomIn 0.2s ease-out; }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+
+    /* Kahoot 4-Color Question Layout */
+    .question-banner {
+      background: #ffffff; color: var(--text-dark); border-radius: 20px;
+      padding: 28px; text-align: center; margin-bottom: 20px; box-shadow: 0 6px 0 rgba(0,0,0,0.2);
+    }
+    .question-timer-bar {
+      height: 12px; background: #e0e0e0; border-radius: 99px; margin-bottom: 18px; overflow: hidden;
+    }
+    .question-timer-fill {
+      height: 100%; background: #00e676; width: 75%; border-radius: 99px;
+      animation: countdown 30s linear forwards;
+    }
+    @keyframes countdown { from { width: 100%; } to { width: 0%; } }
+
+    .kahoot-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;
+    }
+    .kahoot-btn {
+      height: 130px; border-radius: 16px; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: flex-start; padding: 0 24px; gap: 20px;
+      color: #ffffff; font-weight: 700; font-size: 21px; box-shadow: 0 6px 0 rgba(0,0,0,0.25);
+      transition: transform 0.1s, filter 0.15s;
+    }
+    .kahoot-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(0,0,0,0.25); }
+    .btn-red { background-color: var(--red); }
+    .btn-blue { background-color: var(--blue); }
+    .btn-yellow { background-color: var(--yellow); color: #000; }
+    .btn-green { background-color: var(--green); }
+    .shape-icon { font-size: 32px; filter: drop-shadow(1px 2px 0px rgba(0,0,0,0.3)); }
+
+    /* Scoreboard & Cards */
+    .arcade-card {
+      background: rgba(255, 255, 255, 0.96); color: var(--text-dark); border-radius: 20px;
+      padding: 26px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); margin-bottom: 20px;
+    }
+    .badge-pill {
+      display: inline-block; padding: 4px 12px; border-radius: 99px; font-weight: 800; font-size: 13px;
+      background: #e2e8f0; color: #334155; margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Arcade Nav -->
+  <header class="arcade-header">
+    <div class="brand-title">🎮 SOF ARCADIA</div>
+    <div class="arcade-stats">
+      <div class="arcade-pill combo">🔥 STREAK x3</div>
+      <div class="arcade-pill">💎 450 XP</div>
+      <div class="arcade-pill">💚 Creeper Buddy</div>
+    </div>
+  </header>
+
+  <!-- Horizontal Game Tabs -->
+  <nav class="arcade-tabs">
+    <button class="arcade-tab-btn active" onclick="switchArcadeTab('arena')">⚡ Game Arena</button>
+    <button class="arcade-tab-btn" onclick="switchArcadeTab('exam')">⏱️ Official SOF Mode</button>
+    <button class="arcade-tab-btn" onclick="switchArcadeTab('vault')">📓 Mistake Vault</button>
+    <button class="arcade-tab-btn" onclick="switchArcadeTab('powerups')">🎯 Weak-Spot Booster</button>
+    <button class="arcade-tab-btn" onclick="switchArcadeTab('trophies')">🏆 Trophy Arena</button>
+  </nav>
+
+  <div class="arcade-container">
+    <div class="archetype-banner">
+      <div>
+        <strong style="color: #ffeb3b; font-size: 16px;">PROTOTYPE 2: KAHOOT / BLOOKET ARCADE ARCHETYPE</strong>
+        <p style="font-size: 13px; opacity: 0.85; margin-top: 2px;">
+          High-energy 4-color choice tiles (Red, Blue, Yellow, Green), streak multipliers, game-show adrenaline, and fast-paced sound effects.
+        </p>
+      </div>
+      <button style="background: #ffeb3b; color: #000; border: none; padding: 8px 16px; border-radius: 12px; font-weight: 800; cursor: pointer;" onclick="speakQuestion()">🔊 Voice</button>
+    </div>
+
+    <!-- TAB 1: KAHOOT ARENA -->
+    <section id="arcade-pane-arena" class="tab-pane active">
+      <div class="question-banner">
+        <div class="question-timer-bar">
+          <div class="question-timer-fill"></div>
+        </div>
+        <div style="font-size: 14px; font-weight: 800; color: #6b7280; text-transform: uppercase; margin-bottom: 6px;">
+          IMO Mathematics • Set 1 • Question 3 of 10
+        </div>
+        <h1 id="arcade-q-text" style="font-size: 26px; font-weight: 700; color: #1e1b4b; line-height: 1.3;">
+          What is the place value of digit 7 in the number 745?
+        </h1>
+        <div style="margin-top: 14px; font-size: 15px; color: #10b981; font-weight: 700;">
+          ⚡ Speed Bonus: Answer quickly for +50 extra XP!
+        </div>
+      </div>
+
+      <!-- 4-Color Answer Blocks -->
+      <div class="kahoot-grid">
+        <button class="kahoot-btn btn-red" onclick="handleArcadeAnswer(this, false, '7')">
+          <span class="shape-icon">▲</span>
+          <span>7 (Ones)</span>
+        </button>
+        <button class="kahoot-btn btn-blue" onclick="handleArcadeAnswer(this, false, '70')">
+          <span class="shape-icon">◆</span>
+          <span>70 (Tens)</span>
+        </button>
+        <button class="kahoot-btn btn-yellow" onclick="handleArcadeAnswer(this, true, '700')">
+          <span class="shape-icon">●</span>
+          <span>700 (Hundreds)</span>
+        </button>
+        <button class="kahoot-btn btn-green" onclick="handleArcadeAnswer(this, false, '740')">
+          <span class="shape-icon">■</span>
+          <span>740</span>
+        </button>
+      </div>
+
+      <div id="arcade-result-card" class="arcade-card" style="display: none; margin-top: 24px; text-align: center;">
+        <h2 id="arcade-result-title" style="font-family: 'Titan One'; font-size: 28px;"></h2>
+        <p id="arcade-result-msg" style="font-size: 16px; margin: 10px 0 18px; color: #475569;"></p>
+        <button style="background: var(--bg); color: #fff; border: none; padding: 12px 28px; border-radius: 14px; font-weight: 800; font-size: 16px; cursor: pointer;" onclick="nextArcadeQ()">
+          Next Challenge ➜
+        </button>
+      </div>
+    </section>
+
+    <!-- TAB 2: SOF EXAM MODE -->
+    <section id="arcade-pane-exam" class="tab-pane">
+      <div class="arcade-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 14px; margin-bottom: 16px;">
+          <div>
+            <h2 style="font-size: 22px; font-weight: 800;">Official SOF Mock Simulation</h2>
+            <span class="badge-pill" style="background: #dbeafe; color: #1e40af;">Class 2 NSO Science Mock</span>
+          </div>
+          <div style="background: #fee2e2; color: #b91c1c; font-family: 'Titan One'; font-size: 22px; padding: 6px 16px; border-radius: 12px;">
+            ⏱️ 59:15
+          </div>
+        </div>
+        <p style="font-size: 15px; color: #475569; margin-bottom: 18px;">
+          Authentic test environment with Question Palette (1-35) and strict timed scoring.
+        </p>
+        <div style="display: flex; gap: 10px;">
+          <button style="background: var(--green); color: #fff; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; cursor: pointer;">Start 35-Q Full Mock</button>
+          <button style="background: var(--blue); color: #fff; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; cursor: pointer;">Start 10-Q Quick Mock</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: MISTAKE VAULT -->
+    <section id="arcade-pane-vault" class="tab-pane">
+      <div class="arcade-card">
+        <h2 style="font-family: 'Titan One'; font-size: 24px; color: var(--bg);">📓 Mistake Vault</h2>
+        <p style="color: #64748b; margin-bottom: 18px;">Review mistakes and convert them into mastery emeralds!</p>
+        <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 12px;">
+          <span class="badge-pill" style="background: #fee2e2; color: #991b1b;">IMO • Subtraction</span>
+          <h4 style="font-size: 16px; margin: 4px 0 8px;">What is the difference between 92 and 38?</h4>
+          <p style="font-size: 13px; color: #dc2626;">❌ You chose: 64</p>
+          <p style="font-size: 13px; color: #16a34a; font-weight: 700;">✅ Correct: 54 (92 - 38 = 54)</p>
+          <button style="margin-top: 10px; background: var(--green); color: #fff; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700; cursor: pointer;">Re-attempt ➜</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: POWERUPS & SMART NUDGE -->
+    <section id="arcade-pane-powerups" class="tab-pane">
+      <div class="arcade-card">
+        <h2 style="font-family: 'Titan One'; font-size: 24px; color: var(--bg);">🎯 Target Weak Areas</h2>
+        <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 16px; padding: 18px; margin-top: 14px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 18px; color: #78350f;">⚡ Creeper's Power Workout: Shapes & Solids!</h3>
+            <p style="font-size: 14px; color: #92400e;">Accuracy in 3D geometry is 50%. Blast through 5 quick questions now!</p>
+          </div>
+          <button style="background: #f59e0b; color: #000; font-family: 'Titan One'; border: none; padding: 12px 20px; border-radius: 12px; cursor: pointer;">POWER UP!</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: TROPHIES -->
+    <section id="arcade-pane-trophies" class="tab-pane">
+      <div class="arcade-card">
+        <h2 style="font-family: 'Titan One'; font-size: 24px; color: var(--bg);">🏆 Arcade Trophies</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 16px;">
+          <div style="background: #f1f5f9; padding: 16px; border-radius: 14px; text-align: center;">
+            <div style="font-size: 40px;">🔥</div>
+            <h4 style="font-weight: 800;">3-Day Flame</h4>
+            <p style="font-size: 12px; color: #64748b;">Consecutive practice streak</p>
+          </div>
+          <div style="background: #f1f5f9; padding: 16px; border-radius: 14px; text-align: center;">
+            <div style="font-size: 40px;">💎</div>
+            <h4 style="font-weight: 800;">Diamond Master</h4>
+            <p style="font-size: 12px; color: #64748b;">Earned 500+ XP</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function switchArcadeTab(tabId) {
+      document.querySelectorAll('.arcade-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.arcade-tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      const targetPane = document.getElementById('arcade-pane-' + tabId);
+      if (targetPane) targetPane.classList.add('active');
+    }
+
+    function handleArcadeAnswer(btn, isCorrect, value) {
+      const resultCard = document.getElementById('arcade-result-card');
+      const title = document.getElementById('arcade-result-title');
+      const msg = document.getElementById('arcade-result-msg');
+      resultCard.style.display = 'block';
+
+      if (isCorrect) {
+        title.style.color = '#16a34a';
+        title.textContent = '🎉 CORRECT! +100 XP';
+        msg.textContent = 'In 745, the digit 7 is in the hundreds place, so 7 x 100 = 700!';
+        playArcadeTone(523.25, 0.1); setTimeout(() => playArcadeTone(659.25, 0.15), 100);
+      } else {
+        title.style.color = '#dc2626';
+        title.textContent = '💥 OOPS! STREAK SAVED';
+        msg.textContent = 'Digit 7 is in the hundreds place, which means 700. Added to your Mistake Vault!';
+        playArcadeTone(220, 0.25);
+      }
+      resultCard.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function nextArcadeQ() {
+      alert("Advancing to next question in IMO Set 1...");
+    }
+
+    function speakQuestion() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const text = document.getElementById('arcade-q-text').innerText;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function playArcadeTone(freq, dur) {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+        osc.start(); osc.stop(ctx.currentTime + dur);
+      } catch(e) {}
+    }
+  </script>
+</body>
+</html>

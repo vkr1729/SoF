@@ -1,0 +1,279 @@
+/* Main CSS: Design Tokens, Layout, and Core Components */
+:root {
+  --primary: #58cc02;
+  --primary-dark: #46a302;
+  --blue: #1cb0f6;
+  --blue-dark: #1899d6;
+  --yellow: #ffc800;
+  --yellow-dark: #e5a400;
+  --orange: #ff9600;
+  --red: #ff4b4b;
+  --red-dark: #d33131;
+  --purple: #a855f7;
+  --purple-dark: #7e22ce;
+  
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --font-main: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* App Header */
+.app-header {
+  background: #ffffff;
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.brand-icon {
+  font-size: 28px;
+  filter: drop-shadow(1px 2px 0px rgba(0,0,0,0.15));
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-badge {
+  background: #e0f2fe;
+  color: #0284c7;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+/* Nav Tabs */
+.nav-tabs-bar {
+  background: #ffffff;
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.nav-tab-btn {
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.nav-tab-btn:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+}
+
+.nav-tab-btn.active {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-color: #7dd3fc;
+}
+
+/* Main Container */
+.main-stage {
+  flex: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  width: 100%;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+  animation: tabFadeIn 0.2s ease-out;
+}
+
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tactile Buttons */
+.btn-tactile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  border-bottom: 4px solid;
+  transition: transform 0.1s, border-bottom-width 0.1s;
+  text-decoration: none;
+}
+
+.btn-tactile:active {
+  transform: translateY(3px);
+  border-bottom-width: 1px !important;
+}
+
+.btn-green {
+  background: var(--primary);
+  color: #ffffff;
+  border-bottom-color: var(--primary-dark);
+}
+
+.btn-blue {
+  background: var(--blue);
+  color: #ffffff;
+  border-bottom-color: var(--blue-dark);
+}
+
+.btn-yellow {
+  background: var(--yellow);
+  color: #5c3c00;
+  border-bottom-color: var(--yellow-dark);
+}
+
+.btn-red {
+  background: var(--red);
+  color: #ffffff;
+  border-bottom-color: var(--red-dark);
+}
+
+.btn-purple {
+  background: var(--purple);
+  color: #ffffff;
+  border-bottom-color: var(--purple-dark);
+}
+
+.btn-secondary {
+  background: #f1f5f9;
+  color: #334155;
+  border-bottom-color: #cbd5e1;
+}
+
+/* Cards & Containers */
+.card-box {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 0 var(--border);
+  margin-bottom: 24px;
+}
+
+/* Grid Layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  backdrop-filter: blur(2px);
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 24px;
+  max-width: 600px;
+  width: 100%;
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 8px 12px;
+  }
+  .brand-title {
+    font-size: 17px;
+  }
+  .nav-tab-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .main-stage {
+    padding: 16px 10px;
+  }
+  .card-box {
+    padding: 18px 14px;
+  }
+}

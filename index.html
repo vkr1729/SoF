@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOF Olympiad Class 2 - Quest & Official Exam Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/minecraft-theme.css">
+  <link rel="stylesheet" href="css/exam-simulator.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section" onclick="window.app.switchTab('quest')">
+        <span class="brand-icon">⛏️</span>
+        <div>
+          <div class="brand-title">
+            SOF Quest & Exam Simulator
+            <span class="brand-badge">Class 2</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">IGKO • IMO • NSO Prep Portal</div>
+        </div>
+      </div>
+
+      <!-- Minecraft Status HUD -->
+      <div class="mc-hud">
+        <div class="mc-stat-pill streak" title="Daily Practice Streak">
+          <span>🔥</span>
+          <span id="hud-streak-val">1 Day</span>
+        </div>
+        <div class="mc-stat-pill emeralds" title="Minecraft Emeralds Earned">
+          <span>💎</span>
+          <span id="hud-emeralds-val">50 💎</span>
+        </div>
+        <div class="mc-stat-pill hearts" title="Hearts Remaining">
+          <span>❤️</span>
+          <span id="hud-hearts-val">5 / 5 ❤️</span>
+        </div>
+        <div class="mc-stat-pill companion" title="Click to Change Mascot Companion" onclick="window.app.switchTab('trophies')">
+          <span id="hud-companion-val">⛏️ Steve</span>
+        </div>
+
+        <!-- Utility Buttons -->
+        <button class="btn-tactile btn-secondary" style="padding: 6px 12px; font-size: 13px;" onclick="window.audioManager.toggleSpeech(); alert('Voice read-aloud: ' + (window.audioManager.speechEnabled ? 'ON' : 'OFF'));">
+          🔊
+        </button>
+        <button class="btn-tactile btn-blue" style="padding: 6px 12px; font-size: 13px;" onclick="window.app.openParentModal()">
+          👨‍👩‍👦 Guide
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs Bar -->
+    <nav class="nav-tabs-bar">
+      <button class="nav-tab-btn active" id="nav-btn-quest" onclick="window.app.switchTab('quest')">
+        <span>🗺️</span>
+        <span>Adventure Missions</span>
+      </button>
+      <button class="nav-tab-btn" id="nav-btn-quiz" onclick="window.app.switchTab('quiz')">
+        <span>📝</span>
+        <span>Practice Arena</span>
+      </button>
+      <button class="nav-tab-btn" id="nav-btn-exam" onclick="window.app.switchTab('exam')">
+        <span>⏱️</span>
+        <span>SOF Exam Simulator</span>
+      </button>
+      <button class="nav-tab-btn" id="nav-btn-mistakes" onclick="window.app.switchTab('mistakes')">
+        <span>📓</span>
+        <span>Mistake Bank</span>
+      </button>
+      <button class="nav-tab-btn" id="nav-btn-weakareas" onclick="window.app.switchTab('weakareas')">
+        <span>🎯</span>
+        <span>Smart Nudge</span>
+      </button>
+      <button class="nav-tab-btn" id="nav-btn-trophies" onclick="window.app.switchTab('trophies')">
+        <span>🏆</span>
+        <span>Trophy Room</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Application Stage -->
+  <main class="main-stage">
+    
+    <!-- Minecraft XP Bar Widget -->
+    <div class="xp-level-container">
+      <div class="xp-header">
+        <div class="xp-title">
+          <span>⚔️</span>
+          <span id="hud-level-title">LEVEL 1: DIAMOND SCHOLAR</span>
+        </div>
+        <div class="xp-ratio" id="hud-xp-ratio">0 / 100 XP</div>
+      </div>
+      <div class="xp-bar-track">
+        <div class="xp-bar-fill" id="hud-xp-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 1: ADVENTURE MISSIONS (SUBJECT & SETS) -->
+    <!-- ========================================== -->
+    <section id="pane-quest" class="tab-pane active">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h1 style="font-size: 26px; font-weight: 900; color: #1e293b;">Choose Your Olympiad Biome</h1>
+        <p style="color: var(--text-muted); font-size: 15px;">Each subject has 10 unmixed sets of 10 questions. Master them all to unlock trophies!</p>
+      </div>
+
+      <!-- Subject Biome Selector -->
+      <div class="grid-3" style="margin-bottom: 32px;">
+        <div class="biome-card active-subject" id="biome-imo" onclick="window.app.selectSubject('IMO')">
+          <div class="biome-icon">📐</div>
+          <div class="biome-title" style="color: #0284c7;">IMO Mathematics</div>
+          <div class="biome-subtitle">100 Questions • 10 Sets</div>
+          <button class="btn-tactile btn-blue" style="width: 100%; font-size: 13px; padding: 8px;">Explore Math</button>
+        </div>
+
+        <div class="biome-card" id="biome-nso" onclick="window.app.selectSubject('NSO')">
+          <div class="biome-icon">🔬</div>
+          <div class="biome-title" style="color: #16a34a;">NSO Science</div>
+          <div class="biome-subtitle">100 Questions • 10 Sets</div>
+          <button class="btn-tactile btn-green" style="width: 100%; font-size: 13px; padding: 8px;">Explore Science</button>
+        </div>
+
+        <div class="biome-card" id="biome-igko" onclick="window.app.selectSubject('IGKO')">
+          <div class="biome-icon">🌍</div>
+          <div class="biome-title" style="color: #d97706;">IGKO General Knowledge</div>
+          <div class="biome-subtitle">100 Questions • 10 Sets</div>
+          <button class="btn-tactile btn-yellow" style="width: 100%; font-size: 13px; padding: 8px;">Explore GK</button>
+        </div>
+      </div>
+
+      <!-- Mission Sets Grid -->
+      <div class="card-box">
+        <h2 id="active-subject-title" style="font-size: 20px; font-weight: 900; margin-bottom: 6px; color: #1e293b;">
+          IMO Mathematics Missions (10 Sets x 10 Questions)
+        </h2>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">Click on any set to start playing in Practice Quest Mode:</p>
+        <div class="set-nodes-grid" id="sets-node-container"></div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: PRACTICE QUIZ ARENA                -->
+    <!-- ========================================== -->
+    <section id="pane-quiz" class="tab-pane">
+      <div id="practice-card-container">
+        <!-- Will be dynamically populated by QuizEngine -->
+        <div style="text-align: center; padding: 48px; background: #fff; border-radius: 20px; border: 2px solid var(--border);">
+          <div style="font-size: 48px; margin-bottom: 12px;">🗺️</div>
+          <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">No Quiz Currently Running</h3>
+          <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 20px;">
+            Head over to the Adventure Missions tab and choose a question set to begin!
+          </p>
+          <button class="btn-tactile btn-blue" onclick="window.app.switchTab('quest')">
+            Pick a Mission Set ➜
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: SOF EXAM SIMULATOR (TCS iON)        -->
+    <!-- ========================================== -->
+    <section id="pane-exam" class="tab-pane">
+      <div style="margin-bottom: 24px;">
+        <h1 style="font-size: 26px; font-weight: 900; color: #02569b;">SOF Official Exam Simulator</h1>
+        <p style="color: var(--text-muted); font-size: 15px;">
+          Replicates the real Science Olympiad Foundation (TCS iON) computer exam screen to build test-day familiarity.
+        </p>
+      </div>
+
+      <!-- Quick Launch Exam Bar -->
+      <div class="card-box" style="margin-bottom: 24px; background: #f0fdf4; border-color: #bbf7d0;">
+        <h3 style="font-size: 18px; font-weight: 900; color: #166534; margin-bottom: 12px;">Choose Exam Configuration</h3>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+          <select id="exam-subject-select" style="padding: 10px 14px; border-radius: 10px; border: 2px solid #cbd5e1; font-weight: 700; font-size: 15px;">
+            <option value="IMO">IMO (Mathematics Olympiad)</option>
+            <option value="NSO">NSO (Science Olympiad)</option>
+            <option value="IGKO">IGKO (General Knowledge Olympiad)</option>
+          </select>
+          <button class="btn-tactile btn-green" onclick="window.quizEngine.startOfficialExam(document.getElementById('exam-subject-select').value, false)">
+            Launch Full 35-Q Mock (60 Mins) 🚀
+          </button>
+          <button class="btn-tactile btn-blue" onclick="window.quizEngine.startOfficialExam(document.getElementById('exam-subject-select').value, true)">
+            Launch Quick 10-Q Mock (15 Mins) ⏱️
+          </button>
+        </div>
+      </div>
+
+      <div id="exam-sim-container">
+        <div style="text-align: center; padding: 48px; background: #fff; border-radius: 16px; border: 1px solid #cfd8dc;">
+          <div style="font-size: 56px; margin-bottom: 12px;">⏱️</div>
+          <h3 style="font-size: 20px; font-weight: 800; color: #02569b; margin-bottom: 8px;">Exam Room Standing By</h3>
+          <p style="color: #64748b; font-size: 15px;">Select your subject above and click Launch to start the timed exam simulator.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: MISTAKE BANK (WRONG QUESTION NOTEBOOK)-->
+    <!-- ========================================== -->
+    <section id="pane-mistakes" class="tab-pane">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;">
+        <div>
+          <h1 style="font-size: 26px; font-weight: 900; color: #1e293b;">Notebook of Growth (Mistake Bank)</h1>
+          <p style="color: var(--text-muted); font-size: 15px;">
+            "Mistakes are diamonds in disguise!" Retry each question to turn it into a shiny master diamond.
+          </p>
+        </div>
+        <span class="brand-badge" id="mistakes-count-badge" style="background: #fee2e2; color: #b91c1c; font-size: 14px; padding: 6px 14px;">
+          0 Questions
+        </span>
+      </div>
+
+      <!-- Subject Filters -->
+      <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+        <button class="btn-tactile btn-secondary" style="font-size: 13px; padding: 6px 14px;" onclick="window.mistakeBank.setFilter('ALL')">All Subjects</button>
+        <button class="btn-tactile btn-secondary" style="font-size: 13px; padding: 6px 14px;" onclick="window.mistakeBank.setFilter('IMO')">IMO (Math)</button>
+        <button class="btn-tactile btn-secondary" style="font-size: 13px; padding: 6px 14px;" onclick="window.mistakeBank.setFilter('NSO')">NSO (Science)</button>
+        <button class="btn-tactile btn-secondary" style="font-size: 13px; padding: 6px 14px;" onclick="window.mistakeBank.setFilter('IGKO')">IGKO (GK)</button>
+      </div>
+
+      <div id="mistakes-list"></div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 5: SMART NUDGE & WEAK AREAS           -->
+    <!-- ========================================== -->
+    <section id="pane-weakareas" class="tab-pane">
+      <div style="margin-bottom: 24px;">
+        <h1 style="font-size: 26px; font-weight: 900; color: #1e293b;">Syllabus Mastery & Smart Nudges</h1>
+        <p style="color: var(--text-muted); font-size: 15px;">
+          Our diagnostic engine tracks accuracy across every chapter and generates 1-click 5-question power workouts.
+        </p>
+      </div>
+
+      <div id="smart-nudge-banner" style="margin-bottom: 28px;"></div>
+
+      <h2 style="font-size: 20px; font-weight: 900; margin-bottom: 14px;">Chapter Mastery Breakdown</h2>
+      <div class="grid-3" id="topics-mastery-grid"></div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 6: TROPHY ROOM & COMPANIONS           -->
+    <!-- ========================================== -->
+    <section id="pane-trophies" class="tab-pane">
+      <div style="margin-bottom: 24px;">
+        <h1 style="font-size: 26px; font-weight: 900; color: #1e293b;">Minecraft Companions & Trophy Room</h1>
+        <p style="color: var(--text-muted); font-size: 15px;">
+          Switch your active study buddy and see all the badges you've unlocked!
+        </p>
+      </div>
+
+      <h2 style="font-size: 20px; font-weight: 900; margin-bottom: 14px;">Select Active Mascot Buddy</h2>
+      <div style="display: flex; gap: 14px; margin-bottom: 32px; flex-wrap: wrap;" id="mascot-select-container"></div>
+
+      <h2 style="font-size: 20px; font-weight: 900; margin-bottom: 14px;">Unlocked Badges & Achievements</h2>
+      <div class="grid-2" id="badges-grid-container"></div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- PARENT & CAREGIVER MODAL GUIDE             -->
+  <!-- ========================================== -->
+  <div class="modal-overlay" id="parent-guide-modal" onclick="if(event.target === this) window.app.closeParentModal()">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 14px; margin-bottom: 18px;">
+        <h2 style="font-size: 22px; font-weight: 900; color: #1e293b;">👨‍👩‍👦 Parent & Caregiver Quick Guide</h2>
+        <button class="btn-tactile btn-secondary" style="padding: 4px 10px; font-size: 14px;" onclick="window.app.closeParentModal()">✕</button>
+      </div>
+
+      <div style="line-height: 1.6; font-size: 15px; color: #334155;">
+        <p style="margin-bottom: 12px;">
+          <strong>Welcome!</strong> This platform is designed specifically for your child in <strong>Class 2</strong> preparing for the Science Olympiad Foundation (SOF) exams in <strong>IGKO</strong>, <strong>IMO</strong>, and <strong>NSO</strong>.
+        </p>
+
+        <h4 style="font-weight: 900; color: #0284c7; margin: 16px 0 6px;">1. Daily Practice (10 Questions at a time)</h4>
+        <p style="margin-bottom: 12px;">
+          Go to the <strong>Adventure Missions</strong> tab, select a subject, and click on any Set. Each set has 10 unmixed questions. Click the <strong>🔊 Read</strong> button on any question if your child needs audio assistance.
+        </p>
+
+        <h4 style="font-weight: 900; color: #0284c7; margin: 16px 0 6px;">2. Overcoming Mistakes</h4>
+        <p style="margin-bottom: 12px;">
+          Any question answered incorrectly is automatically stored in the <strong>Mistake Bank</strong>. Sit with your child once or twice a week to hit <em>"Retry & Master"</em>.
+        </p>
+
+        <h4 style="font-weight: 900; color: #0284c7; margin: 16px 0 6px;">3. Weekend Mock Exams</h4>
+        <p style="margin-bottom: 12px;">
+          In the <strong>SOF Exam Simulator</strong> tab, launch the <em>Quick 10-Q Mock</em> or the <em>Full 35-Q Mock</em> to simulate real exam-room conditions with the official TCS iON layout.
+        </p>
+
+        <h4 style="font-weight: 900; color: #0284c7; margin: 16px 0 6px;">4. Resetting Data</h4>
+        <p style="margin-bottom: 16px;">
+          If you want your child to practice again from a completely clean slate, click the button below.
+        </p>
+
+        <button class="btn-tactile btn-red" style="width: 100%; font-size: 14px;" onclick="window.app.confirmParentReset()">
+          Reset All Progress for Fresh Start 🔄
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Data Scripts -->
+  <script src="data/igko-questions.js"></script>
+  <script src="data/imo-questions.js"></script>
+  <script src="data/nso-questions.js"></script>
+  <script src="data/badges.js"></script>
+
+  <!-- Application Engine Scripts -->
+  <script src="js/audio-manager.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/mistake-bank.js"></script>
+  <script src="js/weak-areas.js"></script>
+  <script src="js/quiz-engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock 1: Duolingo Quest Style - SOF Olympiad Class 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f9fa;
+      --card-bg: #ffffff;
+      --primary: #58cc02;
+      --primary-dark: #46a302;
+      --blue: #1cb0f6;
+      --blue-dark: #1899d6;
+      --yellow: #ffc800;
+      --yellow-dark: #e5a400;
+      --orange: #ff9600;
+      --red: #ff4b4b;
+      --red-dark: #d33131;
+      --text: #3c3c3c;
+      --text-muted: #777777;
+      --border: #e5e5e5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+    
+    /* Top Header Bar */
+    .top-nav {
+      background: #ffffff; border-bottom: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 24px; position: sticky; top: 0; z-index: 100;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 900; color: var(--primary); }
+    .nav-stats { display: flex; align-items: center; gap: 16px; }
+    .stat-pill {
+      display: flex; align-items: center; gap: 6px; padding: 6px 14px;
+      border-radius: 99px; background: #f0f4f7; font-weight: 800; font-size: 15px;
+    }
+    .stat-pill.streak { color: var(--orange); }
+    .stat-pill.emeralds { color: var(--primary); }
+    .stat-pill.hearts { color: var(--red); }
+
+    /* Layout: Left Sidebar + Main Content */
+    .app-container { display: flex; flex: 1; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .sidebar {
+      width: 240px; padding: 24px 16px; display: flex; flex-direction: column; gap: 8px;
+      border-right: 2px solid var(--border); background: #ffffff;
+    }
+    .tab-btn {
+      display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 16px;
+      border: 2px solid transparent; background: transparent; font-size: 16px; font-weight: 800;
+      color: var(--text-muted); cursor: pointer; text-align: left; transition: all 0.15s ease;
+    }
+    .tab-btn:hover { background: #f7f9fa; }
+    .tab-btn.active {
+      background: #ddf4ff; color: var(--blue-dark); border-color: #84d8ff;
+    }
+
+    .main-content { flex: 1; padding: 28px 32px; overflow-y: auto; }
+
+    /* Archetype Banner */
+    .archetype-banner {
+      background: #e8f5e9; border: 2px dashed #81c784; border-radius: 16px;
+      padding: 12px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .archetype-title { font-weight: 900; color: #2e7d32; font-size: 15px; }
+
+    /* Tactile Buttons */
+    .btn-tactile {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 24px; border-radius: 16px; font-weight: 800; font-size: 16px;
+      text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer;
+      border: none; border-bottom: 4px solid; transition: transform 0.1s, border-bottom-width 0.1s;
+    }
+    .btn-tactile:active { transform: translateY(3px); border-bottom-width: 1px !important; }
+    .btn-green { background: var(--primary); color: #fff; border-bottom-color: var(--primary-dark); }
+    .btn-blue { background: var(--blue); color: #fff; border-bottom-color: var(--blue-dark); }
+    .btn-yellow { background: var(--yellow); color: #4e3400; border-bottom-color: var(--yellow-dark); }
+
+    /* Tabs Content Panes */
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Quest Road / Path */
+    .quest-path { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 20px 0; }
+    .quest-node {
+      width: 80px; height: 80px; border-radius: 50%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; font-size: 28px; cursor: pointer;
+      box-shadow: 0 6px 0 rgba(0,0,0,0.15); transition: transform 0.15s; position: relative;
+    }
+    .quest-node:hover { transform: scale(1.08); }
+    .quest-node.completed { background: var(--yellow); border: 4px solid var(--yellow-dark); }
+    .quest-node.active { background: var(--primary); border: 4px solid var(--primary-dark); animation: bounce 1.8s infinite; }
+    .quest-node.locked { background: #e5e5e5; border: 4px solid #cccccc; cursor: not-allowed; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    /* Quiz Card UI */
+    .quiz-card {
+      background: var(--card-bg); border: 2px solid var(--border); border-radius: 24px;
+      padding: 32px; box-shadow: 0 4px 0 var(--border); max-width: 700px; margin: 0 auto;
+    }
+    .progress-bar-container {
+      background: #e5e5e5; border-radius: 99px; height: 16px; margin-bottom: 24px; overflow: hidden;
+    }
+    .progress-bar-fill {
+      background: var(--primary); height: 100%; border-radius: 99px; width: 40%;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mascot-speech-bubble {
+      display: flex; gap: 16px; align-items: center; margin-bottom: 28px;
+    }
+    .mascot-avatar {
+      width: 72px; height: 72px; border-radius: 18px; background: #e0f2fe;
+      display: flex; align-items: center; justify-content: center; font-size: 36px;
+      border: 3px solid #7dd3fc; flex-shrink: 0;
+    }
+    .speech-bubble {
+      background: #f0fdf4; border: 2px solid #86efac; border-radius: 20px;
+      padding: 16px 20px; font-size: 19px; font-weight: 800; color: #166534; position: relative;
+    }
+    .speech-bubble::before {
+      content: ''; position: absolute; left: -10px; top: 22px; width: 0; height: 0;
+      border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-right: 10px solid #86efac;
+    }
+
+    .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+    .opt-card {
+      border: 2px solid var(--border); border-radius: 18px; padding: 18px 20px;
+      background: #ffffff; font-weight: 800; font-size: 17px; cursor: pointer;
+      box-shadow: 0 4px 0 var(--border); transition: all 0.15s ease; display: flex; align-items: center; gap: 12px;
+    }
+    .opt-card:hover { border-color: var(--blue); background: #f0f9ff; }
+    .opt-card.selected { border-color: var(--blue-dark); background: #e0f2fe; box-shadow: 0 2px 0 var(--blue-dark); }
+    .opt-card.correct { border-color: var(--primary-dark); background: #dcfce7; color: #15803d; }
+    .opt-card.wrong { border-color: var(--red-dark); background: #fee2e2; color: #b91c1c; }
+    .opt-key {
+      width: 32px; height: 32px; border-radius: 8px; border: 2px solid #ddd;
+      display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900;
+    }
+
+    /* Mistake Bank & Weak Area Cards */
+    .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .item-card {
+      background: #ffffff; border: 2px solid var(--border); border-radius: 20px;
+      padding: 22px; box-shadow: 0 4px 0 var(--border);
+    }
+    .badge-tag {
+      display: inline-block; padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 800;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .tag-red { background: #fee2e2; color: #b91c1c; }
+    .tag-yellow { background: #fef3c7; color: #b45309; }
+    .tag-green { background: #dcfce7; color: #15803d; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav Bar -->
+  <header class="top-nav">
+    <div class="brand">
+      <span>⛏️</span>
+      <span>SOF Quest (Class 2)</span>
+    </div>
+    <div class="nav-stats">
+      <div class="stat-pill streak" title="Day Streak">
+        <span>🔥</span>
+        <span id="streak-val">3 Days</span>
+      </div>
+      <div class="stat-pill emeralds" title="Minecraft Emeralds">
+        <span>💎</span>
+        <span id="emerald-val">120 XP</span>
+      </div>
+      <div class="stat-pill hearts" title="Hearts Left">
+        <span>❤️</span>
+        <span>5 / 5</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Left Navigation Sidebar -->
+    <aside class="sidebar">
+      <button class="tab-btn active" onclick="switchTab('quest')">
+        <span>🗺️</span>
+        <span>Adventure Path</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('quiz')">
+        <span>📝</span>
+        <span>Practice Quiz</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('exam')">
+        <span>⏱️</span>
+        <span>SOF Exam Portal</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('mistakes')">
+        <span>📓</span>
+        <span>Mistake Bank</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('weakareas')">
+        <span>🎯</span>
+        <span>Smart Nudge</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('trophies')">
+        <span>🏆</span>
+        <span>Trophy Room</span>
+      </button>
+    </aside>
+
+    <!-- Main Dynamic Content Area -->
+    <main class="main-content">
+      <div class="archetype-banner">
+        <div>
+          <span class="archetype-title">PROTOTYPE 1: DUOLINGO QUEST ARCHETYPE</span>
+          <p style="font-size: 13px; color: #555; margin-top: 2px;">
+            Features tactile pill buttons, 3D bottom borders, friendly mascot speech bubbles, and linear road progression.
+          </p>
+        </div>
+        <button class="btn-tactile btn-blue" style="padding: 8px 14px; font-size: 13px;" onclick="readAloudDemo()">🔊 Read Demo</button>
+      </div>
+
+      <!-- TAB 1: QUEST / ADVENTURE MAP -->
+      <section id="pane-quest" class="tab-pane active">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h1 style="font-size: 28px; font-weight: 900;">Choose Your Olympiad Mission</h1>
+          <p style="color: var(--text-muted); font-size: 16px;">Master all 10 sets to unlock the Diamond Shield!</p>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 32px;">
+          <button class="btn-tactile btn-green">IGKO (GK)</button>
+          <button class="btn-tactile btn-blue">IMO (Maths)</button>
+          <button class="btn-tactile btn-yellow">NSO (Science)</button>
+        </div>
+
+        <div class="quest-path">
+          <div class="quest-node completed" title="Set 1: Plants & Animals" onclick="switchTab('quiz')">
+            <span>🌿</span>
+            <span style="position: absolute; bottom: -20px; font-size: 12px; font-weight: 800; white-space: nowrap;">Set 1: Done</span>
+          </div>
+          <div style="width: 4px; height: 28px; background: #ddd;"></div>
+          <div class="quest-node active" title="Set 2: India & World" onclick="switchTab('quiz')">
+            <span>🇮🇳</span>
+            <span style="position: absolute; bottom: -20px; font-size: 12px; font-weight: 800; white-space: nowrap; color: var(--primary-dark);">Set 2: Ready!</span>
+          </div>
+          <div style="width: 4px; height: 28px; background: #ddd;"></div>
+          <div class="quest-node locked" title="Set 3: Locked">
+            <span>🔒</span>
+            <span style="position: absolute; bottom: -20px; font-size: 12px; font-weight: 800; white-space: nowrap; color: #999;">Set 3</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: PRACTICE QUIZ ARENA -->
+      <section id="pane-quiz" class="tab-pane">
+        <div class="quiz-card">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 40%;"></div>
+          </div>
+
+          <div class="mascot-speech-bubble">
+            <div class="mascot-avatar">⛏️</div>
+            <div class="speech-bubble">
+              Steve says: "Question 4 of 10! You're mining straight for diamonds!"
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <h2 style="font-size: 21px; font-weight: 800; line-height: 1.4;">
+              In which country would you find the Great Pyramid and the Great Sphinx of Giza?
+            </h2>
+            <button class="btn-tactile btn-blue" style="padding: 6px 12px; font-size: 13px;" onclick="speakText('In which country would you find the Great Pyramid and the Great Sphinx of Giza?')">🔊</button>
+          </div>
+
+          <!-- Question SVG Graphic -->
+          <div style="text-align: center; margin: 20px 0;">
+            <svg width="220" height="90" viewBox="0 0 220 90">
+              <rect width="220" height="90" fill="#fef9c3" rx="12"/>
+              <polygon points="40,80 80,20 120,80" fill="#d97706"/>
+              <polygon points="100,80 140,30 180,80" fill="#f59e0b"/>
+              <circle cx="190" cy="25" r="14" fill="#fbbf24"/>
+            </svg>
+          </div>
+
+          <div class="options-grid">
+            <div class="opt-card" onclick="selectOption(this, false)">
+              <div class="opt-key">A</div>
+              <span>Iran</span>
+            </div>
+            <div class="opt-card" onclick="selectOption(this, false)">
+              <div class="opt-key">B</div>
+              <span>Iraq</span>
+            </div>
+            <div class="opt-card" onclick="selectOption(this, false)">
+              <div class="opt-key">C</div>
+              <span>Saudi Arabia</span>
+            </div>
+            <div class="opt-card" onclick="selectOption(this, true)">
+              <div class="opt-key">D</div>
+              <span>Egypt</span>
+            </div>
+          </div>
+
+          <div id="quiz-feedback" style="margin-top: 24px; display: none; padding: 16px; border-radius: 16px;"></div>
+
+          <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+            <button class="btn-tactile btn-green" id="next-btn" style="display: none;" onclick="nextQuestion()">Next Question ➜</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: SOF EXAM SIMULATOR PREVIEW -->
+      <section id="pane-exam" class="tab-pane">
+        <div class="quiz-card" style="max-width: 850px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 16px; margin-bottom: 20px;">
+            <div>
+              <h2 style="font-size: 22px; font-weight: 900;">SOF Official Exam Simulation (TCS iON Layout)</h2>
+              <p style="color: var(--text-muted); font-size: 14px;">Class 2 | International General Knowledge Olympiad</p>
+            </div>
+            <div style="background: #fee2e2; border: 2px solid var(--red); padding: 8px 16px; border-radius: 12px; font-weight: 900; color: var(--red-dark); font-size: 18px;">
+              ⏱️ 58:42
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 24px;">
+            <div style="flex: 2;">
+              <div style="font-weight: 800; color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">QUESTION 1 OF 35:</div>
+              <p style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">How many teeth does an adult human being have?</p>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label class="opt-card"><input type="radio" name="exam_q1"> (A) 20</label>
+                <label class="opt-card"><input type="radio" name="exam_q1"> (B) 28</label>
+                <label class="opt-card"><input type="radio" name="exam_q1"> (C) 32</label>
+                <label class="opt-card"><input type="radio" name="exam_q1"> (D) 44</label>
+              </div>
+              <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <button class="btn-tactile btn-blue" style="font-size: 14px; padding: 10px 18px;">Save & Next</button>
+                <button class="btn-tactile btn-yellow" style="font-size: 14px; padding: 10px 18px;">Mark for Review</button>
+              </div>
+            </div>
+
+            <!-- Exam Palette -->
+            <div style="flex: 1; border-left: 2px solid var(--border); padding-left: 20px;">
+              <h4 style="font-size: 14px; font-weight: 900; margin-bottom: 12px;">QUESTION PALETTE</h4>
+              <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px;">
+                <div style="background: #22c55e; color: #fff; padding: 8px; text-align: center; border-radius: 6px; font-weight: 800; font-size: 12px;">1</div>
+                <div style="background: #ef4444; color: #fff; padding: 8px; text-align: center; border-radius: 6px; font-weight: 800; font-size: 12px;">2</div>
+                <div style="background: #a855f7; color: #fff; padding: 8px; text-align: center; border-radius: 6px; font-weight: 800; font-size: 12px;">3</div>
+                <div style="background: #e5e5e5; color: #333; padding: 8px; text-align: center; border-radius: 6px; font-weight: 800; font-size: 12px;">4</div>
+                <div style="background: #e5e5e5; color: #333; padding: 8px; text-align: center; border-radius: 6px; font-weight: 800; font-size: 12px;">5</div>
+              </div>
+              <div style="font-size: 11px; margin-top: 16px; color: #666; line-height: 1.6;">
+                🟢 Answered | 🔴 Not Answered<br>🟣 Marked for Review | ⚪ Unvisited
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: MISTAKE BANK -->
+      <section id="pane-mistakes" class="tab-pane">
+        <div style="margin-bottom: 24px;">
+          <h2 style="font-size: 26px; font-weight: 900;">Notebook of Growth (Mistake Bank)</h2>
+          <p style="color: var(--text-muted); font-size: 15px;">Every mistake is a diamond waiting to be mined! Retry questions to master them.</p>
+        </div>
+
+        <div class="grid-cards">
+          <div class="item-card">
+            <span class="badge-tag tag-red">IGKO • Earth & Environment</span>
+            <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 8px;">What is a body of water where river and ocean water mix?</h3>
+            <p style="font-size: 13px; color: var(--red); margin-bottom: 4px;">❌ Your answer: Lagoon</p>
+            <p style="font-size: 13px; color: var(--primary-dark); margin-bottom: 12px;">✅ Correct answer: Estuary</p>
+            <button class="btn-tactile btn-green" style="width: 100%; font-size: 13px; padding: 10px;">Retry & Master 💎</button>
+          </div>
+
+          <div class="item-card">
+            <span class="badge-tag tag-red">IMO • Clock & Time</span>
+            <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 8px;">What time is shown when the minute hand is at 6 and hour hand is between 2 and 3?</h3>
+            <p style="font-size: 13px; color: var(--red); margin-bottom: 4px;">❌ Your answer: 2:06</p>
+            <p style="font-size: 13px; color: var(--primary-dark); margin-bottom: 12px;">✅ Correct answer: Half past 2 (2:30)</p>
+            <button class="btn-tactile btn-green" style="width: 100%; font-size: 13px; padding: 10px;">Retry & Master 💎</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: WEAK AREAS & SMART NUDGE -->
+      <section id="pane-weakareas" class="tab-pane">
+        <div style="margin-bottom: 24px;">
+          <h2 style="font-size: 26px; font-weight: 900;">Topic Mastery & Smart Nudges</h2>
+          <p style="color: var(--text-muted); font-size: 15px;">Targeted workouts focused directly on areas that need an extra boost.</p>
+        </div>
+
+        <!-- Mascot Nudge Callout -->
+        <div style="background: #fffbeb; border: 2px solid #fde68a; border-radius: 20px; padding: 20px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div style="font-size: 40px;">⚡</div>
+            <div>
+              <h3 style="font-size: 18px; font-weight: 900; color: #92400e;">Steve's Recommended Power Workout!</h3>
+              <p style="font-size: 14px; color: #b45309;">Your accuracy in <strong>Clocks & Time (IMO)</strong> is 60%. Let's do 5 quick questions to turn it green!</p>
+            </div>
+          </div>
+          <button class="btn-tactile btn-yellow" style="font-size: 14px; padding: 12px 20px;">Start 5-Q Workout</button>
+        </div>
+
+        <div class="grid-cards">
+          <div class="item-card">
+            <span class="badge-tag tag-yellow">IMO • 60% Accuracy</span>
+            <h3 style="font-size: 17px; font-weight: 800;">Clocks & Calendar</h3>
+            <p style="font-size: 13px; color: #777; margin: 8px 0 16px;">Missed 2 questions in reading analog clock hands.</p>
+            <button class="btn-tactile btn-blue" style="width: 100%; font-size: 13px; padding: 8px;">Practice Clocks</button>
+          </div>
+          <div class="item-card">
+            <span class="badge-tag tag-green">NSO • 90% Accuracy</span>
+            <h3 style="font-size: 17px; font-weight: 800;">Plants & Trees</h3>
+            <p style="font-size: 13px; color: #777; margin: 8px 0 16px;">Super job! Mastered roots, stems, and climbers.</p>
+            <button class="btn-tactile btn-green" style="width: 100%; font-size: 13px; padding: 8px;">Review Set</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: TROPHY ROOM & MASCOT PICKER -->
+      <section id="pane-trophies" class="tab-pane">
+        <div style="margin-bottom: 24px;">
+          <h2 style="font-size: 26px; font-weight: 900;">Minecraft Companion & Trophy Room</h2>
+          <p style="color: var(--text-muted); font-size: 15px;">Choose your active study buddy and admire your unlocked badges!</p>
+        </div>
+
+        <h3 style="font-size: 18px; font-weight: 900; margin-bottom: 12px;">Pick Your Mascot Companion</h3>
+        <div style="display: flex; gap: 14px; margin-bottom: 32px; flex-wrap: wrap;">
+          <div class="item-card" style="border-color: var(--primary); background: #f0fdf4; cursor: pointer; text-align: center; flex: 1; min-width: 140px;">
+            <div style="font-size: 36px; margin-bottom: 8px;">⛏️</div>
+            <div style="font-weight: 900; font-size: 15px;">Steve</div>
+            <div style="font-size: 12px; color: var(--primary-dark); font-weight: 800;">Active Buddy</div>
+          </div>
+          <div class="item-card" style="cursor: pointer; text-align: center; flex: 1; min-width: 140px;">
+            <div style="font-size: 36px; margin-bottom: 8px;">🏹</div>
+            <div style="font-weight: 900; font-size: 15px;">Alex</div>
+            <div style="font-size: 12px; color: #888;">Select</div>
+          </div>
+          <div class="item-card" style="cursor: pointer; text-align: center; flex: 1; min-width: 140px;">
+            <div style="font-size: 36px; margin-bottom: 8px;">💚</div>
+            <div style="font-weight: 900; font-size: 15px;">Sparky Creeper</div>
+            <div style="font-size: 12px; color: #888;">Select</div>
+          </div>
+          <div class="item-card" style="cursor: pointer; text-align: center; flex: 1; min-width: 140px;">
+            <div style="font-size: 36px; margin-bottom: 8px;">🌸</div>
+            <div style="font-weight: 900; font-size: 15px;">Bubbles Axolotl</div>
+            <div style="font-size: 12px; color: #888;">Select</div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 18px; font-weight: 900; margin-bottom: 12px;">Achievements & Badges</h3>
+        <div class="grid-cards">
+          <div class="item-card" style="display: flex; gap: 16px; align-items: center;">
+            <div style="font-size: 40px;">⛏️</div>
+            <div>
+              <h4 style="font-weight: 900; font-size: 16px;">Math Miner</h4>
+              <p style="font-size: 13px; color: #666;">Solved 30 IMO Math questions</p>
+              <span class="badge-tag tag-green" style="margin-top: 6px;">Unlocked 💎</span>
+            </div>
+          </div>
+          <div class="item-card" style="display: flex; gap: 16px; align-items: center;">
+            <div style="font-size: 40px;">🔥</div>
+            <div>
+              <h4 style="font-weight: 900; font-size: 16px;">Nether Flame</h4>
+              <p style="font-size: 13px; color: #666;">3-Day practice streak</p>
+              <span class="badge-tag tag-green" style="margin-top: 6px;">Unlocked 💎</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      const targetPane = document.getElementById('pane-' + tabId);
+      if (targetPane) targetPane.classList.add('active');
+    }
+
+    function selectOption(elem, isCorrect) {
+      document.querySelectorAll('.opt-card').forEach(c => c.classList.remove('selected', 'correct', 'wrong'));
+      elem.classList.add('selected');
+      const fb = document.getElementById('quiz-feedback');
+      const nextBtn = document.getElementById('next-btn');
+      fb.style.display = 'block';
+      nextBtn.style.display = 'inline-flex';
+
+      if (isCorrect) {
+        elem.classList.add('correct');
+        fb.style.background = '#dcfce7';
+        fb.style.color = '#166534';
+        fb.innerHTML = '<strong>🎉 Steve says:</strong> Brilliant! Egypt is home to the Great Pyramids and the Sphinx. +10 Emeralds 💎';
+        playTone(600, 0.1); setTimeout(() => playTone(800, 0.2), 100);
+      } else {
+        elem.classList.add('wrong');
+        fb.style.background = '#fee2e2';
+        fb.style.color = '#991b1b';
+        fb.innerHTML = '<strong>💡 Steve says:</strong> Nice try! The Pyramids of Giza are in Egypt. Added to your Mistake Bank so we can conquer it!';
+        playTone(300, 0.2);
+      }
+    }
+
+    function nextQuestion() {
+      alert("Great job! Loading next question in Set 2...");
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.9; // kid friendly pace
+        utterance.pitch = 1.1;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert("Speech synthesis not supported in this browser.");
+      }
+    }
+
+    function readAloudDemo() {
+      speakText("Welcome to S O F Quest Class 2! Let us learn and have fun together!");
+    }
+
+    function playTone(freq, duration) {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch(e) {}
+    }
+  </script>
+</body>
+</html>
