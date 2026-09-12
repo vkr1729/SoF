@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Offline-first Class 2 Olympiad practice (IGKO, IMO, NSO) with Minecraft quests and the official SOF exam simulator.">
+  <meta name="theme-color" content="#58cc02">
   <title>SOF Olympiad Class 2 - Quest & Official Exam Simulator</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="SOF Quest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
@@ -40,15 +48,15 @@
           <span>❤️</span>
           <span id="hud-hearts-val">5 / 5 ❤️</span>
         </div>
-        <div class="mc-stat-pill companion" title="Click to Change Mascot Companion" onclick="window.app.switchTab('trophies')">
+        <div class="mc-stat-pill companion" title="Click to Change Mascot Companion" onclick="window.app.switchTab('trophies')" role="button" tabindex="0" aria-label="Open Trophy Room">
           <span id="hud-companion-val">⛏️ Steve</span>
         </div>
 
         <!-- Utility Buttons -->
-        <button class="btn-tactile btn-secondary" style="padding: 6px 12px; font-size: 13px;" onclick="window.audioManager.toggleSpeech(); alert('Voice read-aloud: ' + (window.audioManager.speechEnabled ? 'ON' : 'OFF'));">
+        <button class="btn-tactile btn-secondary touch-44" style="padding: 6px 12px; font-size: 13px;" onclick="window.audioManager.toggleSpeech(); alert('Voice read-aloud: ' + (window.audioManager.speechEnabled ? 'ON' : 'OFF'));" aria-label="Toggle read aloud">
           🔊
         </button>
-        <button class="btn-tactile btn-blue" style="padding: 6px 12px; font-size: 13px;" onclick="window.app.openParentModal()">
+        <button class="btn-tactile btn-blue touch-44" style="padding: 6px 12px; font-size: 13px;" onclick="window.app.openParentModal()">
           👨‍👩‍👦 Guide
         </button>
       </div>
@@ -313,6 +321,7 @@
   <script src="data/badges.js"></script>
 
   <!-- Application Engine Scripts -->
+  <script src="js/util.js"></script>
   <script src="js/audio-manager.js"></script>
   <script src="js/confetti.js"></script>
   <script src="js/storage.js"></script>

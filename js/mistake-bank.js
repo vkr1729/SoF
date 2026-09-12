@@ -4,6 +4,17 @@
 class MistakeBankController {
   constructor() {
     this.currentFilter = 'ALL';
+    // One delegated listener for all Read-Aloud buttons: bank text never
+    // lands inside an onclick string, closing the quote-breakout hole.
+    if (!window.__sofMistakeSpeakBound) {
+      window.__sofMistakeSpeakBound = true;
+      document.addEventListener('click', (ev) => {
+        const btn = ev.target && ev.target.closest ? ev.target.closest('[data-read-mid]') : null;
+        if (!btn) return;
+        const item = (window.storageManager.getMistakes() || []).find(m => m.id === btn.getAttribute('data-read-mid'));
+        if (item) window.audioManager.speak(item.question);
+      });
+    }
   }
 
   setFilter(subject) {
@@ -34,6 +45,7 @@ class MistakeBankController {
 
     container.innerHTML = mistakes.map(item => {
       const isMastered = item.mastered;
+      const esc = window.SOFUtils.escapeHtml;
       const optLetters = ['A', 'B', 'C', 'D'];
       const chosenText = item.options[item.chosenAnswer] || "None";
       const correctText = item.options[item.correctAnswer] || "";
@@ -42,8 +54,8 @@ class MistakeBankController {
         <div class="card-box" style="border-left: 6px solid ${isMastered ? '#22c55e' : '#ef4444'};" id="mistake-card-${item.id}">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <div style="display: flex; gap: 8px; align-items: center;">
-              <span class="brand-badge" style="background: ${this.getSubjectColor(item.subject)}; color: #fff;">${item.subject}</span>
-              <span style="font-weight: 800; font-size: 13px; color: #64748b;">${item.topic}</span>
+              <span class="brand-badge" style="background: ${this.getSubjectColor(item.subject)}; color: #fff;">${esc(item.subject)}</span>
+              <span style="font-weight: 800; font-size: 13px; color: #64748b;">${esc(item.topic)}</span>
             </div>
             ${isMastered ? 
               `<span style="background: #dcfce7; color: #15803d; font-weight: 800; padding: 4px 10px; border-radius: 99px; font-size: 12px;">💎 Mastered</span>` : 
@@ -52,27 +64,27 @@ class MistakeBankController {
           </div>
 
           <h3 style="font-size: 17px; font-weight: 800; color: #1e293b; line-height: 1.4; margin-bottom: 16px;">
-            ${item.question}
+            ${esc(item.question)}
           </h3>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 16px;">
             <div style="background: #fee2e2; border: 1px solid #fca5a5; padding: 10px 14px; border-radius: 10px; font-size: 14px;">
               <span style="color: #991b1b; font-weight: 800;">❌ Your Choice:</span>
-              <div style="color: #7f1d1d; font-weight: 700; margin-top: 2px;">${chosenText}</div>
+              <div style="color: #7f1d1d; font-weight: 700; margin-top: 2px;">${esc(chosenText)}</div>
             </div>
             <div style="background: #dcfce7; border: 1px solid #86efac; padding: 10px 14px; border-radius: 10px; font-size: 14px;">
               <span style="color: #166534; font-weight: 800;">✅ Correct Answer:</span>
-              <div style="color: #14532d; font-weight: 700; margin-top: 2px;">${correctText}</div>
+              <div style="color: #14532d; font-weight: 700; margin-top: 2px;">${esc(correctText)}</div>
             </div>
           </div>
 
           <div style="background: #f8fafc; border-left: 4px solid #0284c7; padding: 12px 16px; border-radius: 8px; font-size: 14px; margin-bottom: 18px;">
             <strong style="color: #0369a1;">💡 Kid-Friendly Explanation:</strong>
-            <p style="color: #334155; margin-top: 4px; line-height: 1.4;">${item.explanation}</p>
+            <p style="color: #334155; margin-top: 4px; line-height: 1.4;">${esc(item.explanation)}</p>
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-            <button class="btn-tactile btn-blue" style="font-size: 13px; padding: 8px 14px;" onclick="window.audioManager.speak('${this.escapeQuotes(item.question)}')">
+            <button class="btn-tactile btn-blue touch-44" style="font-size: 13px; padding: 8px 14px;" data-read-mid="${item.id}" aria-label="Read question aloud">
               🔊 Read Aloud
             </button>
             <div style="display: flex; gap: 8px;">
@@ -90,8 +102,8 @@ class MistakeBankController {
             <p style="font-weight: 800; color: #1e293b; margin-bottom: 10px;">Select the right answer now:</p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               ${item.options.map((opt, oIdx) => `
-                <button class="btn-tactile btn-secondary" style="text-align: left; justify-content: flex-start; font-size: 14px; padding: 10px;" onclick="window.mistakeBank.submitRetry('${item.id}', ${oIdx})">
-                  <strong>(${optLetters[oIdx]})</strong> ${opt}
+                <button class="btn-tactile btn-secondary touch-44" style="text-align: left; justify-content: flex-start; font-size: 14px; padding: 10px;" onclick="window.mistakeBank.submitRetry('${item.id}', ${oIdx})">
+                  <strong>(${optLetters[oIdx]})</strong> ${esc(opt)}
                 </button>
               `).join('')}
             </div>
@@ -132,14 +144,7 @@ class MistakeBankController {
   }
 
   getSubjectColor(subj) {
-    if (subj === 'IGKO') return '#f59e0b';
-    if (subj === 'IMO') return '#0284c7';
-    if (subj === 'NSO') return '#16a34a';
-    return '#64748b';
-  }
-
-  escapeQuotes(str) {
-    return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    return window.SOFUtils.getSubjectColor(subj);
   }
 }
 

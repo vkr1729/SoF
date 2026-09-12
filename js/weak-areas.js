@@ -27,7 +27,7 @@ class WeakAreasController {
                 ${mascotName}'s Targeted Power Workout Recommendation
               </div>
               <h3 style="font-size: 19px; font-weight: 900; color: #78350f; margin: 2px 0 4px;">
-                Focus Topic: ${topWeak.topic} (${topWeak.subject})
+                Focus Topic: ${window.SOFUtils.escapeHtml(topWeak.topic)} (${window.SOFUtils.escapeHtml(topWeak.subject)})
               </h3>
               <p style="font-size: 14px; color: #92400e;">
                 Current accuracy is <strong>${topWeak.accuracy}%</strong> (${topWeak.correct}/${topWeak.attempted} correct). 
@@ -89,11 +89,11 @@ class WeakAreasController {
             <span class="brand-badge" style="background: ${this.getSubjectColor(t.subject)}; color: #fff;">${t.subject}</span>
             <span style="font-size: 12px; font-weight: 800; color: ${statusColor};">${tagText}</span>
           </div>
-          <h4 style="font-size: 16px; font-weight: 800; color: #1e293b; margin-bottom: 6px;">${t.topic}</h4>
+          <h4 style="font-size: 16px; font-weight: 800; color: #1e293b; margin-bottom: 6px;">${window.SOFUtils.escapeHtml(t.topic)}</h4>
           <p style="font-size: 13px; color: #64748b; margin-bottom: 14px;">
             ${stat.attempted > 0 ? `${stat.correct} of ${stat.attempted} answered correctly` : 'Ready for practice'}
           </p>
-          <button class="btn-tactile btn-blue" style="width: 100%; font-size: 13px; padding: 8px 12px;" onclick="window.weakAreas.startPowerWorkout('${t.subject}', '${t.topic}')">
+          <button class="btn-tactile btn-blue touch-44" style="width: 100%; font-size: 13px; padding: 8px 12px;" onclick="window.weakAreas.startPowerWorkout('${t.subject}', '${t.topic}')">
             Practice Topic (5 Qs)
           </button>
         </div>
@@ -107,42 +107,46 @@ class WeakAreasController {
     else if (subject === 'IMO' && window.IMO_QUESTIONS) sourceBank = window.IMO_QUESTIONS;
     else if (subject === 'NSO' && window.NSO_QUESTIONS) sourceBank = window.NSO_QUESTIONS;
 
-    // Filter questions by topic
-    let topicQuestions = sourceBank.filter(q => q.topic.toLowerCase().includes(topic.toLowerCase()) || topic.toLowerCase().includes(q.topic.toLowerCase()));
+    // Normalized topic matching (case/space-insensitive, exact first).
+    const norm = window.SOFUtils.normalizeTopic;
+    const want = norm(topic);
+    let topicQuestions = sourceBank.filter(q => norm(q.topic) === want);
+    if (topicQuestions.length === 0) {
+      topicQuestions = sourceBank.filter(q =>
+        norm(q.topic).includes(want) || want.includes(norm(q.topic)));
+    }
+    // Honest fallback: say so in the title instead of silently launching
+    // an unrelated set.
+    let title = `⚡ Power Workout: ${topic}`;
     if (topicQuestions.length < 5) {
       topicQuestions = sourceBank.filter(q => q.subject === subject).slice(0, 5);
+      title = `⚡ Power Workout: ${topic} (general ${subject} mix — exact topic not found)`;
     }
     const workoutQuestions = topicQuestions.slice(0, 5);
 
     // Launch into quiz engine
-    window.quizEngine.startCustomWorkout(`⚡ Power Workout: ${topic}`, workoutQuestions);
+    window.quizEngine.startCustomWorkout(title, workoutQuestions);
     window.app.switchTab('quiz');
   }
 
+  // Derived from the real banks so the mastery grid can never drift from
+  // the topics questions actually carry.
   getAllKnownTopics() {
-    return [
-      { subject: "IMO", topic: "Number Sense" },
-      { subject: "IMO", topic: "Addition" },
-      { subject: "IMO", topic: "Subtraction" },
-      { subject: "IMO", topic: "Time & Calendar" },
-      { subject: "IMO", topic: "Shapes & Geometry" },
-      { subject: "IMO", topic: "Money" },
-      { subject: "NSO", topic: "Plants" },
-      { subject: "NSO", topic: "Animals" },
-      { subject: "NSO", topic: "Human Body" },
-      { subject: "NSO", topic: "Air, Water & Weather" },
-      { subject: "IGKO", topic: "Plants & Animals" },
-      { subject: "IGKO", topic: "India & The World" },
-      { subject: "IGKO", topic: "Science & Technology" },
-      { subject: "IGKO", topic: "Current Affairs" }
+    const banks = [
+      ...(window.IGKO_QUESTIONS || []),
+      ...(window.IMO_QUESTIONS || []),
+      ...(window.NSO_QUESTIONS || [])
     ];
+    const seen = new Map();
+    for (const q of banks) {
+      const key = `${q.subject}:${q.topic}`;
+      if (!seen.has(key)) seen.set(key, { subject: q.subject, topic: q.topic });
+    }
+    return [...seen.values()];
   }
 
   getSubjectColor(subj) {
-    if (subj === 'IGKO') return '#f59e0b';
-    if (subj === 'IMO') return '#0284c7';
-    if (subj === 'NSO') return '#16a34a';
-    return '#64748b';
+    return window.SOFUtils.getSubjectColor(subj);
   }
 }
 

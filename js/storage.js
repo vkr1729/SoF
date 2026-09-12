@@ -9,6 +9,19 @@ class StorageManager {
     this.checkDailyStreak();
   }
 
+  // True when localStorage is usable (private-mode Safari and disabled
+  // cookies throw on access — the app then runs on memory for the session).
+  static isPersistent() {
+    try {
+      const probe = '__sof_probe__';
+      localStorage.setItem(probe, '1');
+      localStorage.removeItem(probe);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   getDefaultData() {
     return {
       profile: {
@@ -18,7 +31,7 @@ class StorageManager {
         emeralds: 50,
         xp: 0,
         streak: 1,
-        lastActiveDate: new Date().toISOString().split('T')[0]
+        lastActiveDate: window.SOFUtils.localDay()
       },
       completedSets: [], // e.g. ["IGKO-1", "IMO-2"]
       mistakes: [],      // array of wrong questions
@@ -28,15 +41,34 @@ class StorageManager {
     };
   }
 
+  // Deep-merge saved state over defaults so a corrupt or partial payload
+  // (e.g. profile present but topicStats missing) can never break lookups.
+  mergeDefaults(parsed) {
+    const def = this.getDefaultData();
+    if (!parsed || typeof parsed !== 'object') return def;
+    return {
+      ...def,
+      ...parsed,
+      profile: { ...def.profile, ...(parsed.profile || {}) },
+      topicStats: parsed.topicStats || {},
+      mistakes: Array.isArray(parsed.mistakes) ? parsed.mistakes : [],
+      completedSets: Array.isArray(parsed.completedSets) ? parsed.completedSets : [],
+      examHistory: Array.isArray(parsed.examHistory) ? parsed.examHistory : [],
+      unlockedBadges: Array.isArray(parsed.unlockedBadges) ? parsed.unlockedBadges : def.unlockedBadges
+    };
+  }
+
   load() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        const parsed = JSON.parse(raw);
-        return { ...this.getDefaultData(), ...parsed };
+        return this.mergeDefaults(JSON.parse(raw));
       }
     } catch (e) {
+      // Corrupt JSON, disabled storage, or quota state — fall through to
+      // defaults. window.SOF_STORAGE_OK tells the UI persistence is off.
       console.error("Failed to load state from localStorage:", e);
+      window.SOF_STORAGE_OK = false;
     }
     const def = this.getDefaultData();
     this.save(def);
@@ -47,29 +79,35 @@ class StorageManager {
     try {
       const payload = dataToSave || this.data;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      window.SOF_STORAGE_OK = true;
     } catch (e) {
+      // QuotaExceededError or disabled storage: keep the session running on
+      // memory and flag it instead of crashing the practice flow.
+      window.SOF_STORAGE_OK = false;
       console.error("Failed to persist state:", e);
     }
   }
 
-  // Daily Streak Engine
+  // Daily Streak Engine (device-local days, so IST bedtimes behave).
   checkDailyStreak() {
-    const today = new Date().toISOString().split('T')[0];
+    const today = window.SOFUtils.localDay();
     const lastDate = this.data.profile.lastActiveDate;
 
     if (lastDate !== today) {
-      const d1 = new Date(today);
-      const d2 = new Date(lastDate);
-      const diffDays = Math.floor((d1 - d2) / (1000 * 60 * 60 * 24));
+      const d1 = new Date(today + 'T00:00:00');
+      const d2 = new Date(lastDate + 'T00:00:00');
+      const diffDays = Math.round((d1 - d2) / (1000 * 60 * 60 * 24));
 
       if (diffDays === 1) {
         // Practiced yesterday, increment streak!
         this.data.profile.streak += 1;
-      } else if (diffDays > 1) {
-        // Missed a day, reset streak to 1
+      } else if (diffDays !== 0) {
+        // Missed a day (or unreadable date), reset streak to 1
         this.data.profile.streak = 1;
       }
       this.data.profile.lastActiveDate = today;
+      // Fresh hearts every day.
+      this.data.profile.hearts = 5;
       this.save();
     }
   }
@@ -155,10 +193,11 @@ class StorageManager {
       if (item.attempted >= 2) { // Need at least 2 attempts to calculate accuracy
         const acc = item.correct / item.attempted;
         if (acc < threshold) {
-          const parts = key.split(':');
+          // Split on the FIRST colon only — topic names may contain ':'.
+          const sep = key.indexOf(':');
           weak.push({
-            subject: parts[0],
-            topic: parts[1],
+            subject: sep >= 0 ? key.slice(0, sep) : key,
+            topic: sep >= 0 ? key.slice(sep + 1) : '',
             attempted: item.attempted,
             correct: item.correct,
             accuracy: Math.round(acc * 100)
@@ -177,6 +216,19 @@ class StorageManager {
 
   addEmeralds(amount) {
     this.data.profile.emeralds += amount;
+    this.save();
+  }
+
+  // Hearts economy (0..5). Wrong practice answers cost one, correct answers
+  // restore one, a new day refills to 5.
+  addHearts(delta) {
+    const cur = Number.isFinite(this.data.profile.hearts) ? this.data.profile.hearts : 5;
+    this.data.profile.hearts = Math.max(0, Math.min(5, cur + delta));
+    this.save();
+  }
+
+  setHearts(value) {
+    this.data.profile.hearts = Math.max(0, Math.min(5, value));
     this.save();
   }
 
@@ -242,7 +294,7 @@ class StorageManager {
   importJson(str) {
     try {
       const parsed = JSON.parse(str);
-      this.data = { ...this.getDefaultData(), ...parsed };
+      this.data = this.mergeDefaults(parsed);
       this.save();
       return true;
     } catch (e) {

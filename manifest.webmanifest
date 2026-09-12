@@ -1,0 +1,30 @@
+{
+  "name": "SOF Quest — Class 2 Olympiad Practice (IGKO, IMO, NSO)",
+  "short_name": "SOF Quest",
+  "description": "Offline-first daily Olympiad practice and SOF exam simulator for Class 2.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f8fafc",
+  "theme_color": "#58cc02",
+  "categories": ["education", "kids"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

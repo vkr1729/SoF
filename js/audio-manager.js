@@ -7,6 +7,65 @@ class AudioManager {
     this.soundEnabled = true;
     this.speechEnabled = true;
     this.synth = window.speechSynthesis || null;
+    // Set on the first real user gesture (see AppController.init). Mobile
+    // browsers block audio/speech before interaction; auto read-aloud waits.
+    this.hasInteracted = false;
+  }
+
+  // Call from the first pointerdown/keydown: unlocks Web Audio and marks
+  // speech as gesture-approved.
+  unlock() {
+    this.hasInteracted = true;
+    this.initContext();
+    this.warmupVoices();
+  }
+
+  // iOS Safari loads voices asynchronously — getVoices() is empty until
+  // voiceschanged fires, and calling it inside a gesture helps. Cache a
+  // kid-friendly English voice (Indian English first, then US English).
+  warmupVoices() {
+    if (!this.synth) return;
+    try {
+      const pick = () => {
+        const voices = this.synth.getVoices() || [];
+        this.voice = voices.find(v => /^en[-_]IN/i.test(v.lang))
+          || voices.find(v => /^en[-_]US/i.test(v.lang))
+          || voices.find(v => /^en/i.test(v.lang))
+          || null;
+      };
+      pick();
+      if (!this.voice && typeof this.synth.addEventListener === 'function') {
+        this.synth.addEventListener('voiceschanged', pick, { once: true });
+      }
+    } catch (e) {
+      console.warn("Speech voice warmup error:", e);
+    }
+  }
+
+  // Split long text into short chunks: iOS Safari silently pauses
+  // utterances longer than ~15 seconds, cutting explanations mid-sentence.
+  static chunkText(text, maxLen) {
+    const clean = String(text || '');
+    if (clean.length <= maxLen) return [clean];
+    // No lookbehind (unsupported on older Safari): split keeping punctuation.
+    const bits = clean.split(/([.!?])\s+/);
+    const parts = [];
+    for (let i = 0; i < bits.length; i += 2) {
+      parts.push((bits[i] + (bits[i + 1] || '')).trim());
+    }
+    const chunks = [];
+    let cur = '';
+    for (const p of parts) {
+      if (!p) continue;
+      if ((cur + ' ' + p).trim().length > maxLen && cur) {
+        chunks.push(cur.trim());
+        cur = p;
+      } else {
+        cur = (cur + ' ' + p).trim();
+      }
+    }
+    if (cur.trim()) chunks.push(cur.trim());
+    return chunks.length ? chunks : [clean];
   }
 
   initContext() {
@@ -79,24 +138,40 @@ class AudioManager {
     this.playTone(400, 'sine', 0.05, 0.1);
   }
 
-  // Speech Synthesis "Read Aloud"
+  // Speech Synthesis "Read Aloud" — chunked for the iOS long-utterance bug.
   speak(text) {
     if (!this.speechEnabled || !this.synth) return;
     try {
-      this.synth.cancel(); // Stop any currently playing audio
-      const cleanText = text.replace(/<[^>]*>?/gm, ''); // strip HTML tags
-      const utterance = new SpeechSynthesisUtterance(cleanText);
-      utterance.rate = 0.88; // Gentle, clear speed for 7-year-olds
-      utterance.pitch = 1.1; // Slightly friendly upbeat pitch
-      this.synth.speak(utterance);
+      this.stopSpeaking();
+      const cleanText = String(text).replace(/<[^>]*>?/gm, ''); // strip HTML tags
+      const chunks = AudioManager.chunkText(cleanText, 140);
+      this._queue = chunks;
+      this._speakNext();
     } catch (e) {
       console.warn("Speech synthesis error:", e);
     }
   }
 
+  _speakNext() {
+    if (!this._queue || this._queue.length === 0) return;
+    const part = this._queue.shift();
+    const utterance = new SpeechSynthesisUtterance(part);
+    utterance.rate = 0.88; // Gentle, clear speed for 7-year-olds
+    utterance.pitch = 1.1; // Slightly friendly upbeat pitch
+    if (this.voice) utterance.voice = this.voice;
+    utterance.onend = () => this._speakNext();
+    utterance.onerror = () => { this._queue = []; };
+    this.synth.speak(utterance);
+  }
+
   stopSpeaking() {
+    this._queue = [];
     if (this.synth) {
-      this.synth.cancel();
+      try {
+        this.synth.cancel();
+      } catch (e) {
+        console.warn("Speech cancel error:", e);
+      }
     }
   }
 

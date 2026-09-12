@@ -221,6 +221,43 @@
   border-color: #4a148c;
 }
 
+/* Fifth iON state: answered AND marked for review (purple, green corner dot). */
+.ion-palette-btn.answered-marked {
+  background: #6a1b9a;
+  color: #ffffff;
+  border-color: #4a148c;
+  position: relative;
+}
+
+.ion-palette-btn.answered-marked::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2e7d32;
+  border: 2px solid #ffffff;
+}
+
+.answered-marked-box {
+  background: #6a1b9a;
+  position: relative;
+  overflow: hidden;
+}
+
+.answered-marked-box::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 9px;
+  height: 9px;
+  background: #2e7d32;
+  border-top-left-radius: 4px;
+}
+
 /* Question Area */
 .ion-q-num {
   font-size: 16px;
@@ -312,5 +349,33 @@
     max-width: 100%;
     min-width: auto;
     border-top: 2px solid #e2e8f0;
+  }
+}
+
+/* Minimum 44px touch targets for small hands (iPad/child motor skills). */
+.touch-44 {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Coarse pointers (touch iPads/phones): roomier exam controls. */
+@media (pointer: coarse) {
+  .ion-opt-row {
+    padding: 18px 20px;
+  }
+  .ion-opt-row input[type="radio"] {
+    width: 24px;
+    height: 24px;
+  }
+  .ion-palette-btn {
+    font-size: 15px;
+  }
+  .ion-bottom-actions .btn-tactile,
+  .ion-sections-bar .ion-sec-tab {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  .btn-tactile {
+    touch-action: manipulation;
   }
 }

@@ -13,8 +13,8 @@ window.NSO_QUESTIONS = [
     topic: "Plants",
     difficulty: "Easy",
     question: "Which type of plant has a thick, strong, and woody stem called a 'trunk'?",
-    options: ["Herb", "Shrub", "Tree", "Climber"],
-    answer: 2,
+    options: ["Shrub", "Tree", "Climber", "Herb"],
+    answer: 1,
     explanation: "Trees like banyan, neem, and mango have tall, thick, and woody trunks."
   },
   {
@@ -24,8 +24,8 @@ window.NSO_QUESTIONS = [
     topic: "Plants",
     difficulty: "Easy",
     question: "Which plant part is called the 'kitchen of the plant' because it prepares food using sunlight?",
-    options: ["Root", "Stem", "Leaf", "Flower"],
-    answer: 2,
+    options: ["Leaf", "Flower", "Root", "Stem"],
+    answer: 0,
     explanation: "Leaves contain chlorophyll and use sunlight, air, and water to make food for the plant."
   },
   {
@@ -57,8 +57,8 @@ window.NSO_QUESTIONS = [
     topic: "Plants",
     difficulty: "Easy",
     question: "Which part of a plant grows inside a fruit and can grow into a new baby plant?",
-    options: ["Flower", "Seed", "Bark", "Thorn"],
-    answer: 1,
+    options: ["Bark", "Thorn", "Flower", "Seed"],
+    answer: 3,
     explanation: "Seeds are protected inside fruits and germinate into new baby plants when given soil and water."
   },
   {
@@ -68,8 +68,8 @@ window.NSO_QUESTIONS = [
     topic: "Plants",
     difficulty: "Medium",
     question: "Which of the following plants grows in hot deserts and stores water in its fleshy green stem?",
-    options: ["Lotus", "Cactus", "Pine tree", "Rose"],
-    answer: 1,
+    options: ["Cactus", "Pine tree", "Rose", "Lotus"],
+    answer: 0,
     explanation: "Cactus plants have spines instead of leaves and store water in their thick stems to survive dry deserts."
   },
   {
@@ -79,8 +79,8 @@ window.NSO_QUESTIONS = [
     topic: "Plants",
     difficulty: "Medium",
     question: "Which of the following is a shrub with bushy woody stems and beautiful scented flowers with thorns?",
-    options: ["Rose plant", "Grass", "Wheat", "Banana plant"],
-    answer: 0,
+    options: ["Banana plant", "Rose plant", "Grass", "Wheat"],
+    answer: 1,
     explanation: "Rose and hibiscus are medium-sized bushy plants called shrubs."
   },
   {
@@ -90,8 +90,8 @@ window.NSO_QUESTIONS = [
     topic: "Plants",
     difficulty: "Hard",
     question: "Which part of the carrot plant do we eat as food?",
-    options: ["Stem", "Root", "Flower", "Leaf"],
-    answer: 1,
+    options: ["Leaf", "Stem", "Root", "Flower"],
+    answer: 2,
     explanation: "Carrot, radish, and beetroot store nutritious food in their swollen roots underground."
   },
   {
@@ -101,8 +101,8 @@ window.NSO_QUESTIONS = [
     topic: "Plants",
     difficulty: "Medium",
     question: "What three essential things does a seed need to germinate and sprout into a seedling?",
-    options: ["Air, water, and warmth", "Darkness, cold, and ice", "Fire, smoke, and salt", "Milk, sugar, and juice"],
-    answer: 0,
+    options: ["Darkness, cold, and ice", "Fire, smoke, and salt", "Milk, sugar, and juice", "Air, water, and warmth"],
+    answer: 3,
     explanation: "Seeds require fresh air (oxygen), water (moisture), and suitable warmth (sunlight) to sprout."
   },
   {
@@ -112,8 +112,8 @@ window.NSO_QUESTIONS = [
     topic: "Plants",
     difficulty: "Hard",
     question: "Which water plant has wide, floating round leaves and is the National Flower of India?",
-    options: ["Cactus", "Hydrilla", "Lotus", "Water hyacinth"],
-    answer: 2,
+    options: ["Lotus", "Water hyacinth", "Cactus", "Hydrilla"],
+    answer: 0,
     explanation: "Lotus floats on the surface of ponds and lakes with large waxy round leaves."
   },
 
@@ -127,8 +127,8 @@ window.NSO_QUESTIONS = [
     topic: "Animals",
     difficulty: "Easy",
     question: "Animals that eat ONLY plants, leaves, and grass are called:",
-    options: ["Carnivores", "Herbivores", "Omnivores", "Insectivores"],
-    answer: 1,
+    options: ["Insectivores", "Carnivores", "Herbivores", "Omnivores"],
+    answer: 2,
     explanation: "Herbivores (like cows, deer, and rabbits) feed strictly on plant matter."
   },
   {
@@ -138,8 +138,8 @@ window.NSO_QUESTIONS = [
     topic: "Animals",
     difficulty: "Easy",
     question: "Which of the following animals is a CARNIVORE (eats flesh of other animals)?",
-    options: ["Cow", "Lion", "Goat", "Elephant"],
-    answer: 1,
+    options: ["Goat", "Elephant", "Cow", "Lion"],
+    answer: 3,
     explanation: "Lions, tigers, and wolves are carnivores that hunt other animals for meat."
   },
   {
@@ -149,8 +149,8 @@ window.NSO_QUESTIONS = [
     topic: "Animals",
     difficulty: "Medium",
     question: "Which of these animals eats BOTH plants and meat (an Omnivore)?",
-    options: ["Bear", "Deer", "Giraffe", "Zebra"],
-    answer: 0,
+    options: ["Giraffe", "Zebra", "Bear", "Deer"],
+    answer: 2,
     explanation: "Bears and humans are omnivores; they eat berries, honey, fish, and meat."
   },
   {
@@ -160,8 +160,8 @@ window.NSO_QUESTIONS = [
     topic: "Animals",
     difficulty: "Easy",
     question: "What is a horse's shelter or home built by humans called?",
-    options: ["Kennel", "Stable", "Coop", "Shed"],
-    answer: 1,
+    options: ["Coop", "Shed", "Kennel", "Stable"],
+    answer: 3,
     explanation: "Horses are kept and cared for in a stable."
   },
   {
@@ -171,8 +171,8 @@ window.NSO_QUESTIONS = [
     topic: "Animals",
     difficulty: "Medium",
     question: "What is the baby of a frog called before it develops legs?",
-    options: ["Caterpillar", "Tadpole", "Calf", "Cub"],
-    answer: 1,
+    options: ["Tadpole", "Calf", "Cub", "Caterpillar"],
+    answer: 0,
     explanation: "A tadpole hatches from a frog's egg and swims in water using its tail."
   },
   {
@@ -193,8 +193,8 @@ window.NSO_QUESTIONS = [
     topic: "Animals",
     difficulty: "Medium",
     question: "Which animal carries its baby inside a pouch on its belly?",
-    options: ["Kangaroo", "Monkey", "Bear", "Panda"],
-    answer: 0,
+    options: ["Bear", "Panda", "Kangaroo", "Monkey"],
+    answer: 2,
     explanation: "Mother kangaroos carry and feed their baby joey inside an abdominal pouch."
   },
   {
@@ -204,8 +204,8 @@ window.NSO_QUESTIONS = [
     topic: "Animals",
     difficulty: "Hard",
     question: "How do fish breathe dissolved oxygen underwater?",
-    options: ["Through lungs", "Through gills", "Through skin only", "Through their tail"],
-    answer: 1,
+    options: ["Through skin only", "Through their tail", "Through lungs", "Through gills"],
+    answer: 3,
     explanation: "Fish have gills on both sides of their head to extract oxygen from water."
   },
   {
@@ -241,8 +241,8 @@ window.NSO_QUESTIONS = [
     topic: "Human Body",
     difficulty: "Easy",
     question: "How many sense organs do humans have?",
-    options: ["3", "4", "5", "6"],
-    answer: 2,
+    options: ["6", "3", "4", "5"],
+    answer: 3,
     explanation: "We have 5 sense organs: eyes (sight), ears (hearing), nose (smell), tongue (taste), and skin (touch)."
   },
   {
@@ -252,8 +252,8 @@ window.NSO_QUESTIONS = [
     topic: "Human Body",
     difficulty: "Easy",
     question: "Which organ pumps blood continuously to all parts of our body?",
-    options: ["Lungs", "Heart", "Stomach", "Brain"],
-    answer: 1,
+    options: ["Heart", "Stomach", "Brain", "Lungs"],
+    answer: 0,
     explanation: "The heart beats rhythmically to pump oxygen-rich blood throughout our blood vessels."
   },
   {
@@ -274,8 +274,8 @@ window.NSO_QUESTIONS = [
     topic: "Human Body",
     difficulty: "Easy",
     question: "Which pair of organs helps us breathe in oxygen from the air?",
-    options: ["Kidneys", "Lungs", "Stomach", "Ears"],
-    answer: 1,
+    options: ["Lungs", "Stomach", "Ears", "Kidneys"],
+    answer: 0,
     explanation: "Our two lungs expand when we inhale air and contract when we breathe out carbon dioxide."
   },
   {
@@ -296,8 +296,8 @@ window.NSO_QUESTIONS = [
     topic: "Human Body",
     difficulty: "Easy",
     question: "Which sense organ covers and protects our whole outer body and feels hot or cold?",
-    options: ["Skin", "Nose", "Tongue", "Eyes"],
-    answer: 0,
+    options: ["Tongue", "Eyes", "Skin", "Nose"],
+    answer: 2,
     explanation: "The skin is the largest organ of the human body and senses touch, heat, cold, and pressure."
   },
   {
@@ -307,8 +307,8 @@ window.NSO_QUESTIONS = [
     topic: "Human Body",
     difficulty: "Medium",
     question: "The place where two or more bones meet in our body (allowing us to bend our knees and elbows) is called a:",
-    options: ["Muscle", "Joint", "Nerve", "Tendon"],
-    answer: 1,
+    options: ["Nerve", "Tendon", "Muscle", "Joint"],
+    answer: 3,
     explanation: "Joints (such as knees, elbows, and shoulders) allow bones to bend and rotate smoothly."
   },
   {
@@ -318,8 +318,8 @@ window.NSO_QUESTIONS = [
     topic: "Human Body",
     difficulty: "Medium",
     question: "Which organ inside our head controls all our thoughts, movements, and memory?",
-    options: ["Heart", "Brain", "Liver", "Lungs"],
-    answer: 1,
+    options: ["Brain", "Liver", "Lungs", "Heart"],
+    answer: 0,
     explanation: "The brain is protected by our skull and acts as the master control computer of our body."
   },
   {
@@ -340,8 +340,8 @@ window.NSO_QUESTIONS = [
     topic: "Human Body",
     difficulty: "Easy",
     question: "Which sense organ has taste buds that detect sweet, salty, sour, and bitter flavors?",
-    options: ["Nose", "Tongue", "Lips", "Cheeks"],
-    answer: 1,
+    options: ["Cheeks", "Nose", "Tongue", "Lips"],
+    answer: 2,
     explanation: "The tongue is covered with tiny taste buds that differentiate delicious flavors."
   },
 
@@ -355,8 +355,8 @@ window.NSO_QUESTIONS = [
     topic: "Food & Health",
     difficulty: "Easy",
     question: "Foods like rice, potatoes, wheat, and butter give us energy to play and study. They are called:",
-    options: ["Protective foods", "Energy-giving foods", "Body-building foods", "Junk foods"],
-    answer: 1,
+    options: ["Energy-giving foods", "Body-building foods", "Junk foods", "Protective foods"],
+    answer: 0,
     explanation: "Carbohydrates and fats in rice, bread, and potatoes provide instant energy."
   },
   {
@@ -366,8 +366,8 @@ window.NSO_QUESTIONS = [
     topic: "Food & Health",
     difficulty: "Medium",
     question: "Foods like milk, eggs, pulses, and fish help us grow taller and repair muscles. They are called:",
-    options: ["Body-building foods", "Fast foods", "Roughage", "Sweets"],
-    answer: 0,
+    options: ["Sweets", "Body-building foods", "Fast foods", "Roughage"],
+    answer: 1,
     explanation: "Protein-rich foods like milk, eggs, and beans build strong muscles and tissues."
   },
   {
@@ -377,8 +377,8 @@ window.NSO_QUESTIONS = [
     topic: "Food & Health",
     difficulty: "Easy",
     question: "Fresh fruits and green leafy vegetables protect our body from illnesses. They are called:",
-    options: ["Protective foods", "Oily foods", "Unhealthy foods", "Spicy foods"],
-    answer: 0,
+    options: ["Unhealthy foods", "Spicy foods", "Protective foods", "Oily foods"],
+    answer: 2,
     explanation: "Vitamins and minerals in fruits and vegetables protect our immune system against diseases."
   },
   {
@@ -388,8 +388,8 @@ window.NSO_QUESTIONS = [
     topic: "Food & Health",
     difficulty: "Easy",
     question: "Which of the following is considered a complete and healthy food for growing kids?",
-    options: ["Fizzy soda", "Milk", "Potato chips", "Candy bar"],
-    answer: 1,
+    options: ["Potato chips", "Candy bar", "Fizzy soda", "Milk"],
+    answer: 3,
     explanation: "Milk contains calcium, vitamins, and proteins essential for strong bones and teeth."
   },
   {
@@ -399,8 +399,8 @@ window.NSO_QUESTIONS = [
     topic: "Food & Health",
     difficulty: "Medium",
     question: "How many glasses of clean water should we drink every day to stay hydrated?",
-    options: ["1-2 glasses", "6-8 glasses", "20 glasses", "0 glasses"],
-    answer: 1,
+    options: ["0 glasses", "1-2 glasses", "6-8 glasses", "20 glasses"],
+    answer: 2,
     explanation: "Drinking 6 to 8 glasses of water daily aids digestion and keeps our body cool."
   },
   {
@@ -410,8 +410,8 @@ window.NSO_QUESTIONS = [
     topic: "Food & Health",
     difficulty: "Easy",
     question: "What meal do we eat in the morning before going to school?",
-    options: ["Dinner", "Breakfast", "Lunch", "Supper"],
-    answer: 1,
+    options: ["Lunch", "Supper", "Dinner", "Breakfast"],
+    answer: 3,
     explanation: "Breakfast is the first healthy meal of the day, breaking the overnight fast."
   },
   {
@@ -421,8 +421,8 @@ window.NSO_QUESTIONS = [
     topic: "Food & Health",
     difficulty: "Medium",
     question: "Eating too much sugary candy and chocolate can damage our:",
-    options: ["Hair", "Teeth (causing cavities)", "Fingernails", "Toes"],
-    answer: 1,
+    options: ["Teeth (causing cavities)", "Fingernails", "Toes", "Hair"],
+    answer: 0,
     explanation: "Sugar feeds mouth bacteria that produce acid, resulting in painful tooth cavities."
   },
   {
@@ -443,8 +443,8 @@ window.NSO_QUESTIONS = [
     topic: "Food & Health",
     difficulty: "Medium",
     question: "Which of the following foods do we get from honeybees?",
-    options: ["Milk", "Honey", "Butter", "Eggs"],
-    answer: 1,
+    options: ["Eggs", "Milk", "Honey", "Butter"],
+    answer: 2,
     explanation: "Honeybees collect nectar from flowers and transform it into pure sweet honey."
   },
   {
@@ -454,8 +454,8 @@ window.NSO_QUESTIONS = [
     topic: "Food & Health",
     difficulty: "Easy",
     question: "Why should we always wash fruits and vegetables before eating them?",
-    options: ["To change their color", "To wash away dust, dirt, and chemicals", "To make them warm", "To make them sweet"],
-    answer: 1,
+    options: ["To make them warm", "To make them sweet", "To change their color", "To wash away dust, dirt, and chemicals"],
+    answer: 3,
     explanation: "Washing removes dirt, bacteria, and agricultural sprays from fresh produce."
   },
 
@@ -480,8 +480,8 @@ window.NSO_QUESTIONS = [
     topic: "Housing & Clothing",
     difficulty: "Easy",
     question: "From which animal do we get wool to knit warm winter sweaters?",
-    options: ["Cow", "Sheep", "Horse", "Pig"],
-    answer: 1,
+    options: ["Pig", "Cow", "Sheep", "Horse"],
+    answer: 2,
     explanation: "Sheep have a thick fleece of wool that is sheared, cleaned, and spun into yarn."
   },
   {
@@ -491,8 +491,8 @@ window.NSO_QUESTIONS = [
     topic: "Housing & Clothing",
     difficulty: "Medium",
     question: "A dome-shaped house made completely of blocks of hard snow and ice is called an:",
-    options: ["Igloo", "Caravan", "Houseboat", "Tent"],
-    answer: 0,
+    options: ["Caravan", "Houseboat", "Tent", "Igloo"],
+    answer: 3,
     explanation: "Inuit people in polar regions build dome-shaped igloos out of packed snow blocks."
   },
   {
@@ -502,8 +502,8 @@ window.NSO_QUESTIONS = [
     topic: "Housing & Clothing",
     difficulty: "Medium",
     question: "A movable house on wheels that can be pulled by a car or horse is called a:",
-    options: ["Bungalow", "Caravan", "Apartment", "Stilt house"],
-    answer: 1,
+    options: ["Caravan", "Apartment", "Stilt house", "Bungalow"],
+    answer: 0,
     explanation: "Caravans are mobile homes equipped for sleeping and living while traveling."
   },
   {
@@ -546,8 +546,8 @@ window.NSO_QUESTIONS = [
     topic: "Housing & Clothing",
     difficulty: "Medium",
     question: "A floating house built on a boat in places like Kashmir and Kerala is called a:",
-    options: ["Tent", "Houseboat", "Caravan", "Hut"],
-    answer: 1,
+    options: ["Hut", "Tent", "Houseboat", "Caravan"],
+    answer: 2,
     explanation: "Houseboats float on lakes and backwaters, providing comfortable living quarters on water."
   },
   {
@@ -557,8 +557,8 @@ window.NSO_QUESTIONS = [
     topic: "Housing & Clothing",
     difficulty: "Easy",
     question: "A temporary shelter made of canvas cloth and poles used by campers is called a:",
-    options: ["Tent", "Skyscraper", "Igloo", "Palace"],
-    answer: 0,
+    options: ["Skyscraper", "Igloo", "Palace", "Tent"],
+    answer: 3,
     explanation: "Tents are portable fabric shelters that can be folded, packed, and set up anywhere."
   },
   {
@@ -568,8 +568,8 @@ window.NSO_QUESTIONS = [
     topic: "Housing & Clothing",
     difficulty: "Medium",
     question: "Strong permanent houses in cities (Pakka houses) are made of:",
-    options: ["Mud and dry leaves", "Bricks, cement, and steel", "Ice blocks", "Thin paper"],
-    answer: 1,
+    options: ["Bricks, cement, and steel", "Ice blocks", "Thin paper", "Mud and dry leaves"],
+    answer: 0,
     explanation: "Pakka houses are sturdy, durable structures constructed using bricks, iron, and cement."
   },
 
@@ -583,8 +583,8 @@ window.NSO_QUESTIONS = [
     topic: "Air, Water & Weather",
     difficulty: "Easy",
     question: "Can we see air with our bare eyes?",
-    options: ["Yes, air is blue", "No, air is invisible but we can feel it", "Yes, air is green", "Only at night"],
-    answer: 1,
+    options: ["Only at night", "Yes, air is blue", "No, air is invisible but we can feel it", "Yes, air is green"],
+    answer: 2,
     explanation: "Air is colorless, odorless, and invisible, but we can feel it when it blows as wind."
   },
   {
@@ -594,8 +594,8 @@ window.NSO_QUESTIONS = [
     topic: "Air, Water & Weather",
     difficulty: "Easy",
     question: "What is a gentle, pleasant wind called?",
-    options: ["Storm", "Gale", "Breeze", "Tornado"],
-    answer: 2,
+    options: ["Tornado", "Storm", "Gale", "Breeze"],
+    answer: 3,
     explanation: "A gentle, soft wind is called a breeze."
   },
   {
@@ -616,8 +616,8 @@ window.NSO_QUESTIONS = [
     topic: "Air, Water & Weather",
     difficulty: "Easy",
     question: "What is the solid frozen state of water called?",
-    options: ["Steam", "Water vapor", "Ice", "Liquid water"],
-    answer: 2,
+    options: ["Water vapor", "Ice", "Liquid water", "Steam"],
+    answer: 1,
     explanation: "When liquid water cools below 0 degrees Celsius, it freezes solid into ice."
   },
   {
@@ -627,8 +627,8 @@ window.NSO_QUESTIONS = [
     topic: "Air, Water & Weather",
     difficulty: "Medium",
     question: "When water is boiled in a kettle, it changes into a gas called:",
-    options: ["Ice", "Water vapor (Steam)", "Dew", "Frost"],
-    answer: 1,
+    options: ["Frost", "Ice", "Water vapor (Steam)", "Dew"],
+    answer: 2,
     explanation: "Heating liquid water turns it into gaseous steam or water vapor."
   },
   {
@@ -638,8 +638,8 @@ window.NSO_QUESTIONS = [
     topic: "Air, Water & Weather",
     difficulty: "Easy",
     question: "What is the primary natural source of freshwater on Earth?",
-    options: ["Ocean", "Rain", "Swimming pool", "Puddle"],
-    answer: 1,
+    options: ["Swimming pool", "Puddle", "Ocean", "Rain"],
+    answer: 3,
     explanation: "Rain is the primary natural freshwater source that replenishes lakes, rivers, and groundwater."
   },
   {
@@ -649,8 +649,8 @@ window.NSO_QUESTIONS = [
     topic: "Air, Water & Weather",
     difficulty: "Medium",
     question: "Why is ocean seawater NOT suitable for direct drinking by humans?",
-    options: ["It is too sweet", "It is very salty", "It is pink in color", "It has no water"],
-    answer: 1,
+    options: ["It has no water", "It is too sweet", "It is very salty", "It is pink in color"],
+    answer: 2,
     explanation: "Ocean water contains high levels of dissolved salts that make it undrinkable."
   },
   {
@@ -660,8 +660,8 @@ window.NSO_QUESTIONS = [
     topic: "Air, Water & Weather",
     difficulty: "Hard",
     question: "What instrument tells us the direction in which the wind is blowing?",
-    options: ["Rain gauge", "Wind vane (Weather cock)", "Barometer", "Thermometer"],
-    answer: 1,
+    options: ["Barometer", "Thermometer", "Rain gauge", "Wind vane (Weather cock)"],
+    answer: 3,
     explanation: "A wind vane rotates on a spindle to point into the direction the wind is blowing."
   },
   {
@@ -671,8 +671,8 @@ window.NSO_QUESTIONS = [
     topic: "Air, Water & Weather",
     difficulty: "Medium",
     question: "Dark, heavy clouds in the sky accompanied by thunder and lightning indicate a:",
-    options: ["Sunny day", "Thunderstorm", "Foggy morning", "Drought"],
-    answer: 1,
+    options: ["Thunderstorm", "Foggy morning", "Drought", "Sunny day"],
+    answer: 0,
     explanation: "Cumulonimbus storm clouds generate lightning flashes and rumbling thunder."
   },
   {
@@ -682,8 +682,8 @@ window.NSO_QUESTIONS = [
     topic: "Air, Water & Weather",
     difficulty: "Medium",
     question: "Which of the following activities pollutes the air we breathe?",
-    options: ["Planting trees", "Riding a bicycle", "Smoke from factories and vehicles", "Walking in a garden"],
-    answer: 2,
+    options: ["Riding a bicycle", "Smoke from factories and vehicles", "Walking in a garden", "Planting trees"],
+    answer: 1,
     explanation: "Exhaust fumes from cars and chimney smoke emit pollutants into the atmosphere."
   },
 
@@ -697,8 +697,8 @@ window.NSO_QUESTIONS = [
     topic: "Safety & Habits",
     difficulty: "Easy",
     question: "Where should you always cross a busy city street?",
-    options: ["Anywhere you like", "At the Zebra crossing with an elder", "Between two moving cars", "Behind a bus"],
-    answer: 1,
+    options: ["Between two moving cars", "Behind a bus", "Anywhere you like", "At the Zebra crossing with an elder"],
+    answer: 3,
     explanation: "Always use the designated pedestrian zebra crossing and hold an adult's hand."
   },
   {
@@ -708,8 +708,8 @@ window.NSO_QUESTIONS = [
     topic: "Safety & Habits",
     difficulty: "Easy",
     question: "Which of the following items should young children NEVER play with?",
-    options: ["Soft stuffed teddy", "Sharp knives, blades, and matchsticks", "Building blocks", "Coloring books"],
-    answer: 1,
+    options: ["Sharp knives, blades, and matchsticks", "Building blocks", "Coloring books", "Soft stuffed teddy"],
+    answer: 0,
     explanation: "Sharp blades, knives, and matches can cause deep cuts or accidental fires."
   },
   {
@@ -730,8 +730,8 @@ window.NSO_QUESTIONS = [
     topic: "Safety & Habits",
     difficulty: "Easy",
     question: "How many times a day should you brush your teeth to keep them clean and healthy?",
-    options: ["Once a week", "Twice a day (morning and night)", "Once a month", "Never"],
-    answer: 1,
+    options: ["Never", "Once a week", "Twice a day (morning and night)", "Once a month"],
+    answer: 2,
     explanation: "Brushing twice daily prevents plaque, tooth decay, and bad breath."
   },
   {
@@ -741,8 +741,8 @@ window.NSO_QUESTIONS = [
     topic: "Safety & Habits",
     difficulty: "Medium",
     question: "While traveling in a moving school bus, you should NEVER:",
-    options: ["Sit quietly on your seat", "Put your head or arms out of the window", "Wear your seatbelt", "Talk softly to your friend"],
-    answer: 1,
+    options: ["Wear your seatbelt", "Talk softly to your friend", "Sit quietly on your seat", "Put your head or arms out of the window"],
+    answer: 3,
     explanation: "Sticking body parts out of a bus window is extremely dangerous due to passing vehicles."
   },
   {
@@ -752,8 +752,8 @@ window.NSO_QUESTIONS = [
     topic: "Safety & Habits",
     difficulty: "Medium",
     question: "What is the emergency medical kit containing bandages, cotton, antiseptic, and ointment called?",
-    options: ["Tool box", "First Aid Box", "Pencil box", "Jewelry box"],
-    answer: 1,
+    options: ["First Aid Box", "Pencil box", "Jewelry box", "Tool box"],
+    answer: 0,
     explanation: "A First Aid Box contains essential supplies to treat minor injuries immediately."
   },
   {
@@ -774,8 +774,8 @@ window.NSO_QUESTIONS = [
     topic: "Safety & Habits",
     difficulty: "Medium",
     question: "If a small cut occurs and bleeds, the first thing you should do is:",
-    options: ["Rub dirt on it", "Wash it with clean water and tell an adult", "Cover it with plastic tape", "Ignore it"],
-    answer: 1,
+    options: ["Wash it with clean water and tell an adult", "Cover it with plastic tape", "Ignore it", "Rub dirt on it"],
+    answer: 0,
     explanation: "Gently rinsing with clean water washes away dirt, and an adult can apply antiseptic and a band-aid."
   },
   {
@@ -796,8 +796,8 @@ window.NSO_QUESTIONS = [
     topic: "Safety & Habits",
     difficulty: "Medium",
     question: "Covering your mouth and nose with a handkerchief when you cough or sneeze helps to:",
-    options: ["Stop germs from spreading to others", "Keep your face warm", "Make a funny sound", "Hide your teeth"],
-    answer: 0,
+    options: ["Make a funny sound", "Hide your teeth", "Stop germs from spreading to others", "Keep your face warm"],
+    answer: 2,
     explanation: "Covering your cough stops tiny infected droplets from spreading illness to friends."
   },
 
@@ -833,8 +833,8 @@ window.NSO_QUESTIONS = [
     topic: "Sun, Moon & Earth",
     difficulty: "Medium",
     question: "When is your shadow the SHORTEST during a sunny day?",
-    options: ["Early in the morning at sunrise", "At noon (12:00 PM) when the Sun is directly overhead", "In late afternoon at sunset", "At midnight"],
-    answer: 1,
+    options: ["At midnight", "Early in the morning at sunrise", "At noon (12:00 PM) when the Sun is directly overhead", "In late afternoon at sunset"],
+    answer: 2,
     explanation: "At noon, the sun shines from almost directly overhead, casting the shortest shadows."
   },
   {
@@ -844,8 +844,8 @@ window.NSO_QUESTIONS = [
     topic: "Sun, Moon & Earth",
     difficulty: "Easy",
     question: "In which direction does the Sun rise every morning?",
-    options: ["West", "North", "East", "South"],
-    answer: 2,
+    options: ["South", "West", "North", "East"],
+    answer: 3,
     explanation: "The Sun appears to rise in the East and set in the West."
   },
   {
@@ -855,8 +855,8 @@ window.NSO_QUESTIONS = [
     topic: "Sun, Moon & Earth",
     difficulty: "Medium",
     question: "What is formed on the ground when an opaque object blocks the path of light?",
-    options: ["A rainbow", "A shadow", "A mirror", "A puddle"],
-    answer: 1,
+    options: ["A shadow", "A mirror", "A puddle", "A rainbow"],
+    answer: 0,
     explanation: "Light travels in straight lines; when an object blocks it, a dark area called a shadow forms behind it."
   },
   {
@@ -877,8 +877,8 @@ window.NSO_QUESTIONS = [
     topic: "Sun, Moon & Earth",
     difficulty: "Hard",
     question: "The Sun is actually a huge glowing ball of hot gases known as a:",
-    options: ["Planet", "Star", "Comet", "Asteroid"],
-    answer: 1,
+    options: ["Asteroid", "Planet", "Star", "Comet"],
+    answer: 2,
     explanation: "The Sun is the closest star to our planet Earth."
   },
   {
@@ -888,8 +888,8 @@ window.NSO_QUESTIONS = [
     topic: "Sun, Moon & Earth",
     difficulty: "Medium",
     question: "What is a group of stars that forms an imaginary picture or pattern in the night sky called?",
-    options: ["Galaxy", "Constellation", "Solar system", "Meteor"],
-    answer: 1,
+    options: ["Solar system", "Meteor", "Galaxy", "Constellation"],
+    answer: 3,
     explanation: "Constellations (like Ursa Major / The Great Bear) are recognizable star patterns."
   },
   {
@@ -899,8 +899,8 @@ window.NSO_QUESTIONS = [
     topic: "Sun, Moon & Earth",
     difficulty: "Hard",
     question: "Why is there no liquid water or life on the Moon?",
-    options: ["It is made of cheese", "It has no atmosphere (air) or water", "It is too close to the Sun", "It moves too fast"],
-    answer: 1,
+    options: ["It moves too fast", "It is made of cheese", "It has no atmosphere (air) or water", "It is too close to the Sun"],
+    answer: 2,
     explanation: "The Moon has virtually no air, atmosphere, or liquid water to support living things."
   },
   {
@@ -910,8 +910,8 @@ window.NSO_QUESTIONS = [
     topic: "Sun, Moon & Earth",
     difficulty: "Medium",
     question: "If you walk with the morning sun directly in front of you (facing East), where will your shadow fall?",
-    options: ["Behind you (to the West)", "In front of you", "To your left", "To your right"],
-    answer: 0,
+    options: ["In front of you", "To your left", "To your right", "Behind you (to the West)"],
+    answer: 3,
     explanation: "Shadows always form on the opposite side of the light source, so it falls behind you."
   },
 
@@ -925,8 +925,8 @@ window.NSO_QUESTIONS = [
     topic: "Living & Non-Living",
     difficulty: "Easy",
     question: "Which of the following is a characteristic of LIVING things?",
-    options: ["They can grow, breathe, and reproduce", "They never need food or water", "They are made of plastic", "They never move or change"],
-    answer: 0,
+    options: ["They never move or change", "They can grow, breathe, and reproduce", "They never need food or water", "They are made of plastic"],
+    answer: 1,
     explanation: "Living things breathe, feed, grow, react to surroundings, and give birth to young ones."
   },
   {
@@ -936,8 +936,8 @@ window.NSO_QUESTIONS = [
     topic: "Living & Non-Living",
     difficulty: "Easy",
     question: "Which of the following is a LIVING thing?",
-    options: ["Toy robot", "Rose plant", "Wooden chair", "Smartphone"],
-    answer: 1,
+    options: ["Smartphone", "Toy robot", "Rose plant", "Wooden chair"],
+    answer: 2,
     explanation: "A rose plant grows, prepares food, and reproduces seeds, making it alive."
   },
   {
@@ -947,8 +947,8 @@ window.NSO_QUESTIONS = [
     topic: "Living & Non-Living",
     difficulty: "Easy",
     question: "Which of the following is a MAN-MADE non-living thing?",
-    options: ["Mountain", "River", "Motorcar", "Sun"],
-    answer: 2,
+    options: ["Sun", "Mountain", "River", "Motorcar"],
+    answer: 3,
     explanation: "Cars, books, and houses are manufactured by humans."
   },
   {
@@ -980,8 +980,8 @@ window.NSO_QUESTIONS = [
     topic: "Living & Non-Living",
     difficulty: "Medium",
     question: "What do green plants breathe in through tiny pores in their leaves to make food?",
-    options: ["Smoke", "Carbon dioxide", "Oxygen only", "Nitrogen"],
-    answer: 1,
+    options: ["Nitrogen", "Smoke", "Carbon dioxide", "Oxygen only"],
+    answer: 2,
     explanation: "Leaves absorb carbon dioxide from air through stomata during photosynthesis."
   },
   {
@@ -991,8 +991,8 @@ window.NSO_QUESTIONS = [
     topic: "Living & Non-Living",
     difficulty: "Medium",
     question: "A kitten grows into a cat, and a seedling grows into a tree. Does a wooden table grow in size over time?",
-    options: ["Yes, if you water it", "No, because non-living things cannot grow", "Only in summer", "Yes, every year"],
-    answer: 1,
+    options: ["Only in summer", "Yes, every year", "Yes, if you water it", "No, because non-living things cannot grow"],
+    answer: 3,
     explanation: "Non-living objects do not have cells and cannot grow."
   },
   {
@@ -1002,8 +1002,8 @@ window.NSO_QUESTIONS = [
     topic: "Living & Non-Living",
     difficulty: "Hard",
     question: "Birds lay eggs that hatch into chicks. What is this process of producing babies of one's own kind called?",
-    options: ["Digestion", "Respiration", "Reproduction", "Germination"],
-    answer: 2,
+    options: ["Reproduction", "Germination", "Digestion", "Respiration"],
+    answer: 0,
     explanation: "Reproduction is the biological process by which organisms produce offspring."
   },
   {
@@ -1013,8 +1013,8 @@ window.NSO_QUESTIONS = [
     topic: "Living & Non-Living",
     difficulty: "Medium",
     question: "Which of the following needs food and water to survive?",
-    options: ["A pet hamster", "A television set", "A soccer ball", "A bicycle"],
-    answer: 0,
+    options: ["A bicycle", "A pet hamster", "A television set", "A soccer ball"],
+    answer: 1,
     explanation: "Animals need nutritious food and water to generate energy and stay healthy."
   },
   {
@@ -1025,12 +1025,12 @@ window.NSO_QUESTIONS = [
     difficulty: "Hard",
     question: "Clouds can move in the sky and get bigger, yet they are NON-LIVING because:",
     options: [
-      "They do not breathe, reproduce, or feel on their own",
-      "They are made of water vapor moved by wind",
       "Both A and B are correct reasons",
-      "Clouds are actually alive"
+      "Clouds are actually alive",
+      "They do not breathe, reproduce, or feel on their own",
+      "They are made of water vapor moved by wind"
     ],
-    answer: 2,
+    answer: 0,
     explanation: "Clouds move solely due to wind and grow by water droplet accumulation; they lack living characteristics."
   },
 
@@ -1044,8 +1044,8 @@ window.NSO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Look at the simple food chain: Grass -> Grasshopper -> Frog -> [ ? ]. Which predator completes this chain?",
-    options: ["Cow", "Snake", "Rabbit", "Deer"],
-    answer: 1,
+    options: ["Deer", "Cow", "Snake", "Rabbit"],
+    answer: 2,
     explanation: "Snakes eat frogs in the food chain! Grasshopper eats grass, frog eats grasshopper, and snake eats frog."
   },
   {
@@ -1056,12 +1056,12 @@ window.NSO_QUESTIONS = [
     difficulty: "Hard",
     question: "Rohan placed two potted bean plants on his balcony. He watered Plant A daily. He put Plant B inside a dark cardboard box with no light, but watered it. After 10 days, what will happen to Plant B?",
     options: [
-      "Plant B will grow bright pink flowers",
-      "Plant B will turn pale yellow and wither because plants need sunlight to make food",
       "Plant B will grow faster than Plant A",
-      "Plant B will turn into a cactus"
+      "Plant B will turn into a cactus",
+      "Plant B will grow bright pink flowers",
+      "Plant B will turn pale yellow and wither because plants need sunlight to make food"
     ],
-    answer: 1,
+    answer: 3,
     explanation: "Without sunlight, plants cannot perform photosynthesis to produce food, turning pale and weak."
   },
   {
@@ -1071,8 +1071,8 @@ window.NSO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Which of the following animals sheds its entire outer scaly skin in one piece (molting)?",
-    options: ["Dog", "Snake", "Cat", "Parrot"],
-    answer: 1,
+    options: ["Snake", "Cat", "Parrot", "Dog"],
+    answer: 0,
     explanation: "Snakes periodically shed their outer skin layer (called ecdysis) as they grow."
   },
   {
@@ -1105,12 +1105,12 @@ window.NSO_QUESTIONS = [
     difficulty: "Hard",
     question: "Why do desert animals like camels have long eyelashes and nostrils that can close tightly?",
     options: [
-      "To keep out blowing desert sand during sandstorms",
       "To help them swim in rivers",
       "To look pretty",
-      "To stay awake at night"
+      "To stay awake at night",
+      "To keep out blowing desert sand during sandstorms"
     ],
-    answer: 0,
+    answer: 3,
     explanation: "Camels have double rows of long eyelashes and sealable nostrils to block desert sand."
   },
   {
@@ -1121,12 +1121,12 @@ window.NSO_QUESTIONS = [
     difficulty: "Hard",
     question: "Identify the INCORRECT statement about water:",
     options: [
-      "Water has no fixed shape of its own and takes the shape of its container",
       "Boiling water turns it into ice",
       "Water is necessary for plants to make food",
-      "Freezing liquid water creates solid ice cubes"
+      "Freezing liquid water creates solid ice cubes",
+      "Water has no fixed shape of its own and takes the shape of its container"
     ],
-    answer: 1,
+    answer: 0,
     explanation: "Boiling water turns it into steam/vapor, NOT ice! Freezing creates ice."
   },
   {
@@ -1137,12 +1137,12 @@ window.NSO_QUESTIONS = [
     difficulty: "Hard",
     question: "Three glasses of the same size contain ice, hot tea, and cold juice. Near which glass will you observe tiny droplets of water condensing on the OUTSIDE surface?",
     options: [
+      "None of them",
       "The glass with cold ice water",
       "The glass with hot boiling tea",
-      "An empty clean glass",
-      "None of them"
+      "An empty clean glass"
     ],
-    answer: 0,
+    answer: 1,
     explanation: "Warm water vapor in the surrounding air condenses into liquid droplets upon hitting the cold glass surface."
   },
   {
@@ -1153,12 +1153,12 @@ window.NSO_QUESTIONS = [
     difficulty: "Hard",
     question: "Why do ducks have webbed feet?",
     options: [
+      "To dig deep underground burrows",
       "To run faster on rocky roads",
       "To act like paddles for swimming easily in water",
-      "To climb tall pine trees",
-      "To dig deep underground burrows"
+      "To climb tall pine trees"
     ],
-    answer: 1,
+    answer: 2,
     explanation: "The skin webbing between a duck's toes acts like swimming flippers to push water."
   },
   {
@@ -1169,12 +1169,12 @@ window.NSO_QUESTIONS = [
     difficulty: "Hard",
     question: "A plant's stem always grows upwards towards [ X ], while its roots always grow downwards towards [ Y ]. What are X and Y?",
     options: [
-      "X = Darkness, Y = Sunlight",
-      "X = Sunlight, Y = Soil and Gravity",
       "X = Clouds, Y = Moon",
-      "X = Wind, Y = Leaves"
+      "X = Wind, Y = Leaves",
+      "X = Darkness, Y = Sunlight",
+      "X = Sunlight, Y = Soil and Gravity"
     ],
-    answer: 1,
+    answer: 3,
     explanation: "Stems exhibit positive phototropism (grow towards light), while roots exhibit positive geotropism (grow down towards water and soil gravity)."
   }
 ];

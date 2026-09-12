@@ -30,7 +30,7 @@ The code repository is hosted here:
 ### The Architectural & UX Solution:
 1. **Zero-Build, Offline-First Architecture**:
    - 100% client-side HTML5, CSS3, vanilla ES6 modules. No Node.js runtime, no npm dependencies, no build steps, no backend servers, and no user tracking/cookies.
-   - All persistence is maintained through browser `localStorage` under key `sof_olympiad_class2_data`.
+   - All persistence is maintained through browser `localStorage` under key `SOF_OLYMPIAD_V1`.
 2. **Dual-Mode Hybrid Engine**:
    - **Mode A: Adventure Quest (Daily Practice - 10 mins)**: Minecraft-themed Overworld adventure with Steve, Alex, Doggo, and Axolotl. Uses emerald rewards, heart health (5 hearts), daily streaks, Web Audio synth sounds, and browser Web Speech API ("🔊 Read" aloud button). Sets are strictly 10 questions per subject without category mixing.
    - **Mode B: SOF TCS iON Simulator (Weekend Mocks)**: Faithful 1:1 replication of the official SOF TCS iON exam layout, including question palette (Green = Answered, Purple = Marked for Review, Grey = Not Visited), section jumps, and official marking schemes (1 mark core, 2 marks Achievers HOTS).

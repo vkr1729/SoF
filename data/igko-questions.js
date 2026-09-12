@@ -13,8 +13,8 @@ window.IGKO_QUESTIONS = [
     topic: "Plants & Animals",
     difficulty: "Easy",
     question: "Which of the following animals is known as the 'Ship of the Desert'?",
-    options: ["Horse", "Elephant", "Camel", "Zebra"],
-    answer: 2,
+    options: ["Elephant", "Camel", "Zebra", "Horse"],
+    answer: 1,
     explanation: "Camels can travel long distances in the desert without water and have padded feet to walk on hot sand."
   },
   {
@@ -57,8 +57,8 @@ window.IGKO_QUESTIONS = [
     topic: "Plants & Animals",
     difficulty: "Medium",
     question: "Which of these is an animal that lives both on land and in water?",
-    options: ["Frog", "Monkey", "Giraffe", "Tiger"],
-    answer: 0,
+    options: ["Monkey", "Giraffe", "Tiger", "Frog"],
+    answer: 3,
     explanation: "Frogs are amphibians; they can breathe and live both on land and in water."
   },
   {
@@ -68,8 +68,8 @@ window.IGKO_QUESTIONS = [
     topic: "Plants & Animals",
     difficulty: "Easy",
     question: "Which of the following trees gives us sweet coconut water?",
-    options: ["Banyan tree", "Coconut palm", "Pine tree", "Mango tree"],
-    answer: 1,
+    options: ["Coconut palm", "Pine tree", "Mango tree", "Banyan tree"],
+    answer: 0,
     explanation: "Coconut palm trees grow coconuts which contain delicious and refreshing coconut water."
   },
   {
@@ -90,8 +90,8 @@ window.IGKO_QUESTIONS = [
     topic: "Plants & Animals",
     difficulty: "Medium",
     question: "What do we call the home built by honeybees?",
-    options: ["Den", "Beehive", "Burrow", "Nest"],
-    answer: 1,
+    options: ["Nest", "Den", "Beehive", "Burrow"],
+    answer: 2,
     explanation: "Honeybees live and make sweet honey inside a beehive."
   },
   {
@@ -101,8 +101,8 @@ window.IGKO_QUESTIONS = [
     topic: "Plants & Animals",
     difficulty: "Medium",
     question: "Which of the following is the tallest living land animal?",
-    options: ["African Elephant", "Giraffe", "Hippopotamus", "Rhinoceros"],
-    answer: 1,
+    options: ["Hippopotamus", "Rhinoceros", "African Elephant", "Giraffe"],
+    answer: 3,
     explanation: "The giraffe is the tallest living animal, with its long neck allowing it to eat high leaves."
   },
   {
@@ -112,8 +112,8 @@ window.IGKO_QUESTIONS = [
     topic: "Plants & Animals",
     difficulty: "Hard",
     question: "Which vegetable is actually the stem part of a plant that we eat?",
-    options: ["Carrot", "Potato", "Tomato", "Spinach"],
-    answer: 1,
+    options: ["Potato", "Tomato", "Spinach", "Carrot"],
+    answer: 0,
     explanation: "Potato and onion are underground stems that store food for the plant!"
   },
 
@@ -127,8 +127,8 @@ window.IGKO_QUESTIONS = [
     topic: "India & The World",
     difficulty: "Easy",
     question: "What is the capital city of India?",
-    options: ["Mumbai", "New Delhi", "Kolkata", "Chennai"],
-    answer: 1,
+    options: ["Chennai", "Mumbai", "New Delhi", "Kolkata"],
+    answer: 2,
     explanation: "New Delhi is the official capital city of India."
   },
   {
@@ -149,8 +149,8 @@ window.IGKO_QUESTIONS = [
     topic: "India & The World",
     difficulty: "Easy",
     question: "Which animal is the National Animal of India?",
-    options: ["Asiatic Lion", "Royal Bengal Tiger", "Elephant", "Leopard"],
-    answer: 1,
+    options: ["Leopard", "Asiatic Lion", "Royal Bengal Tiger", "Elephant"],
+    answer: 2,
     explanation: "The Royal Bengal Tiger is the National Animal of India for its grace and power."
   },
   {
@@ -160,8 +160,8 @@ window.IGKO_QUESTIONS = [
     topic: "India & The World",
     difficulty: "Easy",
     question: "Which flower is the National Flower of India?",
-    options: ["Rose", "Lotus", "Sunflower", "Marigold"],
-    answer: 1,
+    options: ["Sunflower", "Marigold", "Rose", "Lotus"],
+    answer: 3,
     explanation: "The Lotus is the sacred National Flower of India representing purity and beauty."
   },
   {
@@ -171,8 +171,8 @@ window.IGKO_QUESTIONS = [
     topic: "India & The World",
     difficulty: "Medium",
     question: "How many spokes are there in the Ashoka Chakra on the Indian National Flag?",
-    options: ["20", "22", "24", "26"],
-    answer: 2,
+    options: ["24", "26", "20", "22"],
+    answer: 0,
     explanation: "The navy blue Ashoka Chakra in the center of the Indian flag has 24 spokes representing 24 hours of righteousness."
   },
   {
@@ -193,8 +193,8 @@ window.IGKO_QUESTIONS = [
     topic: "India & The World",
     difficulty: "Easy",
     question: "Which is the National Bird of India?",
-    options: ["Parrot", "Peacock", "Pigeon", "Crow"],
-    answer: 1,
+    options: ["Crow", "Parrot", "Peacock", "Pigeon"],
+    answer: 2,
     explanation: "The Indian Peacock, famous for its colorful fan-shaped feathers and dance, is the National Bird."
   },
   {
@@ -204,8 +204,8 @@ window.IGKO_QUESTIONS = [
     topic: "India & The World",
     difficulty: "Hard",
     question: "Which famous white marble monument was built in Agra by Emperor Shah Jahan?",
-    options: ["Qutub Minar", "Red Fort", "Taj Mahal", "Hawa Mahal"],
-    answer: 2,
+    options: ["Hawa Mahal", "Qutub Minar", "Red Fort", "Taj Mahal"],
+    answer: 3,
     explanation: "The Taj Mahal in Agra is one of the Seven Wonders of the World, built of pristine white marble."
   },
   {
@@ -215,8 +215,8 @@ window.IGKO_QUESTIONS = [
     topic: "India & The World",
     difficulty: "Medium",
     question: "Which is the largest continent in the world?",
-    options: ["Africa", "Asia", "Europe", "Australia"],
-    answer: 1,
+    options: ["Asia", "Europe", "Australia", "Africa"],
+    answer: 0,
     explanation: "Asia is the largest continent in both area and population."
   },
   {
@@ -241,8 +241,8 @@ window.IGKO_QUESTIONS = [
     topic: "Science & Technology",
     difficulty: "Easy",
     question: "Which of the following devices is NOT typically used in a kitchen?",
-    options: ["Microwave oven", "Gas stove", "Lawn mower", "Toaster"],
-    answer: 2,
+    options: ["Toaster", "Microwave oven", "Gas stove", "Lawn mower"],
+    answer: 3,
     explanation: "A lawn mower is used outdoors in gardens and yards, not in the kitchen."
   },
   {
@@ -252,8 +252,8 @@ window.IGKO_QUESTIONS = [
     topic: "Science & Technology",
     difficulty: "Easy",
     question: "Which computer part is known as the 'brain' of the computer?",
-    options: ["Monitor", "CPU", "Keyboard", "Mouse"],
-    answer: 1,
+    options: ["CPU", "Keyboard", "Mouse", "Monitor"],
+    answer: 0,
     explanation: "CPU (Central Processing Unit) processes all information and controls the computer."
   },
   {
@@ -263,8 +263,8 @@ window.IGKO_QUESTIONS = [
     topic: "Science & Technology",
     difficulty: "Medium",
     question: "How many teeth does a normal adult human being have?",
-    options: ["20", "28", "32", "36"],
-    answer: 2,
+    options: ["28", "32", "36", "20"],
+    answer: 1,
     explanation: "Adult humans typically have 32 permanent teeth, while young children have 20 milk teeth."
   },
   {
@@ -274,8 +274,8 @@ window.IGKO_QUESTIONS = [
     topic: "Science & Technology",
     difficulty: "Easy",
     question: "Which instrument is used to measure human body temperature when you have a fever?",
-    options: ["Barometer", "Thermometer", "Speedometer", "Telescope"],
-    answer: 1,
+    options: ["Thermometer", "Speedometer", "Telescope", "Barometer"],
+    answer: 0,
     explanation: "A thermometer measures temperature in degrees Celsius or Fahrenheit."
   },
   {
@@ -296,8 +296,8 @@ window.IGKO_QUESTIONS = [
     topic: "Science & Technology",
     difficulty: "Medium",
     question: "What is the name of the handheld device used to click and move items on a computer screen?",
-    options: ["Mouse", "Printer", "Speaker", "Scanner"],
-    answer: 0,
+    options: ["Speaker", "Scanner", "Mouse", "Printer"],
+    answer: 2,
     explanation: "A computer mouse is an input pointing device that moves the pointer cursor."
   },
   {
@@ -307,8 +307,8 @@ window.IGKO_QUESTIONS = [
     topic: "Science & Technology",
     difficulty: "Hard",
     question: "Who is credited with inventing the electric light bulb?",
-    options: ["Thomas Edison", "Alexander Graham Bell", "Isaac Newton", "Albert Einstein"],
-    answer: 0,
+    options: ["Alexander Graham Bell", "Isaac Newton", "Albert Einstein", "Thomas Edison"],
+    answer: 3,
     explanation: "Thomas Edison developed the first commercially practical incandescent light bulb."
   },
   {
@@ -318,8 +318,8 @@ window.IGKO_QUESTIONS = [
     topic: "Science & Technology",
     difficulty: "Medium",
     question: "Which appliance keeps our food fresh and cold?",
-    options: ["Washing machine", "Refrigerator", "Vacuum cleaner", "Heater"],
-    answer: 1,
+    options: ["Refrigerator", "Vacuum cleaner", "Heater", "Washing machine"],
+    answer: 0,
     explanation: "A refrigerator cools food and drinks to prevent spoiling."
   },
   {
@@ -355,8 +355,8 @@ window.IGKO_QUESTIONS = [
     topic: "Earth & Environment",
     difficulty: "Easy",
     question: "What shape is planet Earth most similar to?",
-    options: ["A flat disc", "A sphere (round like a ball)", "A cube", "A pyramid"],
-    answer: 1,
+    options: ["A sphere (round like a ball)", "A cube", "A pyramid", "A flat disc"],
+    answer: 0,
     explanation: "Earth is shaped like a sphere (slightly flattened at the poles)."
   },
   {
@@ -388,8 +388,8 @@ window.IGKO_QUESTIONS = [
     topic: "Earth & Environment",
     difficulty: "Easy",
     question: "How many colors are there in a natural rainbow?",
-    options: ["5", "6", "7", "8"],
-    answer: 2,
+    options: ["8", "5", "6", "7"],
+    answer: 3,
     explanation: "A rainbow has 7 colors: Violet, Indigo, Blue, Green, Yellow, Orange, and Red (VIBGYOR)."
   },
   {
@@ -399,8 +399,8 @@ window.IGKO_QUESTIONS = [
     topic: "Earth & Environment",
     difficulty: "Medium",
     question: "Which dry landform is covered with sand and receives very little rain?",
-    options: ["Forest", "Desert", "Glacier", "Island"],
-    answer: 1,
+    options: ["Island", "Forest", "Desert", "Glacier"],
+    answer: 2,
     explanation: "Deserts are arid regions characterized by sand dunes and extreme scarcity of rainfall."
   },
   {
@@ -410,8 +410,8 @@ window.IGKO_QUESTIONS = [
     topic: "Earth & Environment",
     difficulty: "Easy",
     question: "Which season is the coldest season of the year when people wear woolen sweaters?",
-    options: ["Summer", "Monsoon", "Winter", "Spring"],
-    answer: 2,
+    options: ["Spring", "Summer", "Monsoon", "Winter"],
+    answer: 3,
     explanation: "Winter brings cold temperatures, chilly breezes, and sometimes snow."
   },
   {
@@ -421,8 +421,8 @@ window.IGKO_QUESTIONS = [
     topic: "Earth & Environment",
     difficulty: "Medium",
     question: "A piece of land completely surrounded by water on all four sides is called an ______.",
-    options: ["Peninsula", "Island", "Plateau", "Hill"],
-    answer: 1,
+    options: ["Island", "Plateau", "Hill", "Peninsula"],
+    answer: 0,
     explanation: "An island is a body of land surrounded by water on all sides."
   },
   {
@@ -432,8 +432,8 @@ window.IGKO_QUESTIONS = [
     topic: "Earth & Environment",
     difficulty: "Medium",
     question: "Which of these should we put in recycling bins to protect our planet?",
-    options: ["Plastic bottles & clean paper", "Food scraps", "Broken wet mud", "Used tissues"],
-    answer: 0,
+    options: ["Used tissues", "Plastic bottles & clean paper", "Food scraps", "Broken wet mud"],
+    answer: 1,
     explanation: "Clean paper, cardboard, and plastic bottles can be recycled into new products!"
   },
   {
@@ -443,8 +443,8 @@ window.IGKO_QUESTIONS = [
     topic: "Earth & Environment",
     difficulty: "Medium",
     question: "Moving air that we can feel blowing against our face is called ______.",
-    options: ["Smoke", "Wind", "Cloud", "Fog"],
-    answer: 1,
+    options: ["Fog", "Smoke", "Wind", "Cloud"],
+    answer: 2,
     explanation: "Wind is moving air caused by differences in atmospheric pressure."
   },
   {
@@ -454,9 +454,9 @@ window.IGKO_QUESTIONS = [
     topic: "Earth & Environment",
     difficulty: "Hard",
     question: "What is the name of the coastal water body where freshwater from rivers mixes with saltwater from oceans?",
-    options: ["Estuary", "Glacier", "Desert oasis", "Waterfall"],
-    answer: 0,
-    explanation: "An estuary is a coastal area where river freshwater meets ocean saltwater."
+    options: ["Glacier", "Desert oasis", "Waterfall", "Estuary"],
+    answer: 3,
+    explanation: "An estuary is a coastal area where river freshwater meets ocean saltwater. Fish love estuaries because the mixed water is full of food!"
   },
 
   // ==========================================
@@ -480,8 +480,8 @@ window.IGKO_QUESTIONS = [
     topic: "Language & Literature",
     difficulty: "Easy",
     question: "What is the opposite (antonym) of the word 'ANCIENT'?",
-    options: ["Old", "Modern", "Historic", "Dusty"],
-    answer: 1,
+    options: ["Dusty", "Old", "Modern", "Historic"],
+    answer: 2,
     explanation: "Ancient means very old, while Modern means new or present-day."
   },
   {
@@ -491,8 +491,8 @@ window.IGKO_QUESTIONS = [
     topic: "Language & Literature",
     difficulty: "Easy",
     question: "Select the word that rhymes with 'BRIGHT':",
-    options: ["Brave", "Night", "Breeze", "Brown"],
-    answer: 1,
+    options: ["Breeze", "Brown", "Brave", "Night"],
+    answer: 3,
     explanation: "'Bright' and 'Night' end with the same sound /aɪt/."
   },
   {
@@ -502,8 +502,8 @@ window.IGKO_QUESTIONS = [
     topic: "Language & Literature",
     difficulty: "Medium",
     question: "Select the word with the CORRECT spelling:",
-    options: ["Dinasaur", "Dinosaur", "Dinosor", "Dynaasor"],
-    answer: 1,
+    options: ["Dinosaur", "Dinosor", "Dynaasor", "Dinasaur"],
+    answer: 0,
     explanation: "The correct spelling is 'Dinosaur'."
   },
   {
@@ -546,8 +546,8 @@ window.IGKO_QUESTIONS = [
     topic: "Language & Literature",
     difficulty: "Medium",
     question: "Select the word with the CORRECT spelling:",
-    options: ["Beutiful", "Beautiful", "Beautifull", "Beutyfull"],
-    answer: 1,
+    options: ["Beutyfull", "Beutiful", "Beautiful", "Beautifull"],
+    answer: 2,
     explanation: "The correct spelling is 'Beautiful'."
   },
   {
@@ -557,8 +557,8 @@ window.IGKO_QUESTIONS = [
     topic: "Language & Literature",
     difficulty: "Easy",
     question: "What is the female form of 'KING'?",
-    options: ["Princess", "Queen", "Duchess", "Empress"],
-    answer: 1,
+    options: ["Duchess", "Empress", "Princess", "Queen"],
+    answer: 3,
     explanation: "The female equivalent of a king is a queen."
   },
   {
@@ -568,8 +568,8 @@ window.IGKO_QUESTIONS = [
     topic: "Language & Literature",
     difficulty: "Hard",
     question: "Choose the correct collective noun: A ______ of wolves.",
-    options: ["Flock", "Herd", "Pack", "School"],
-    answer: 2,
+    options: ["Pack", "School", "Flock", "Herd"],
+    answer: 0,
     explanation: "A group of wolves hunting together is called a pack."
   },
 
@@ -583,8 +583,8 @@ window.IGKO_QUESTIONS = [
     topic: "Transport & Communication",
     difficulty: "Easy",
     question: "Which of the following is the fastest means of long-distance transport?",
-    options: ["Aeroplane", "Bicycle", "Bullock cart", "Rowboat"],
-    answer: 0,
+    options: ["Bullock cart", "Rowboat", "Aeroplane", "Bicycle"],
+    answer: 2,
     explanation: "Aeroplanes fly through the air at high speeds, making them the fastest mode of travel."
   },
   {
@@ -594,8 +594,8 @@ window.IGKO_QUESTIONS = [
     topic: "Transport & Communication",
     difficulty: "Easy",
     question: "What color at a traffic light indicates 'STOP'?",
-    options: ["Green", "Yellow", "Red", "Blue"],
-    answer: 2,
+    options: ["Blue", "Green", "Yellow", "Red"],
+    answer: 3,
     explanation: "Red means Stop, Yellow means Get Ready / Slow down, and Green means Go."
   },
   {
@@ -605,8 +605,8 @@ window.IGKO_QUESTIONS = [
     topic: "Transport & Communication",
     difficulty: "Medium",
     question: "Where do trains stop to pick up and drop passengers?",
-    options: ["Bus depot", "Railway station", "Harbor", "Airport"],
-    answer: 1,
+    options: ["Railway station", "Harbor", "Airport", "Bus depot"],
+    answer: 0,
     explanation: "Railway stations have tracks and platforms for trains to board passengers."
   },
   {
@@ -627,8 +627,8 @@ window.IGKO_QUESTIONS = [
     topic: "Transport & Communication",
     difficulty: "Medium",
     question: "Which special emergency vehicle carries sick or injured people to the hospital?",
-    options: ["Police cruiser", "Ambulance", "Fire truck", "Garbage truck"],
-    answer: 1,
+    options: ["Garbage truck", "Police cruiser", "Ambulance", "Fire truck"],
+    answer: 2,
     explanation: "An ambulance is equipped with medical gear and sirens to rush patients to the hospital."
   },
   {
@@ -638,8 +638,8 @@ window.IGKO_QUESTIONS = [
     topic: "Transport & Communication",
     difficulty: "Easy",
     question: "Where does an airplane take off and land?",
-    options: ["Harbor", "Airport", "Bus stop", "Subway"],
-    answer: 1,
+    options: ["Bus stop", "Subway", "Harbor", "Airport"],
+    answer: 3,
     explanation: "Airplanes use airport runways for taking off and landing."
   },
   {
@@ -649,8 +649,8 @@ window.IGKO_QUESTIONS = [
     topic: "Transport & Communication",
     difficulty: "Medium",
     question: "Which of these is a modern device used to send text messages and make video calls?",
-    options: ["Smartphone", "Gramophone", "Typewriter", "Postcard"],
-    answer: 0,
+    options: ["Typewriter", "Postcard", "Smartphone", "Gramophone"],
+    answer: 2,
     explanation: "Smartphones allow instant internet messaging, phone calls, and video chats worldwide."
   },
   {
@@ -660,8 +660,8 @@ window.IGKO_QUESTIONS = [
     topic: "Transport & Communication",
     difficulty: "Medium",
     question: "What is the painted black and white striped area on a road for pedestrians to cross safely?",
-    options: ["Railway track", "Zebra crossing", "Speed breaker", "Flyover"],
-    answer: 1,
+    options: ["Speed breaker", "Flyover", "Railway track", "Zebra crossing"],
+    answer: 3,
     explanation: "Zebra crossings are painted stripes where vehicles must yield to crossing pedestrians."
   },
   {
@@ -671,8 +671,8 @@ window.IGKO_QUESTIONS = [
     topic: "Transport & Communication",
     difficulty: "Medium",
     question: "Which water vessel can travel deep under the ocean surface?",
-    options: ["Speedboat", "Submarine", "Cruise ship", "Canoe"],
-    answer: 1,
+    options: ["Submarine", "Cruise ship", "Canoe", "Speedboat"],
+    answer: 0,
     explanation: "Submarines can submerge and navigate deep underwater for research and defense."
   },
   {
@@ -682,8 +682,8 @@ window.IGKO_QUESTIONS = [
     topic: "Transport & Communication",
     difficulty: "Hard",
     question: "What does 'WWW' stand for when typing a website address?",
-    options: ["World Wide Web", "Wide World Weather", "World Wide Windows", "Whole World Wireless"],
-    answer: 0,
+    options: ["Whole World Wireless", "World Wide Web", "Wide World Weather", "World Wide Windows"],
+    answer: 1,
     explanation: "WWW stands for World Wide Web, the global system of linked internet pages."
   },
 
@@ -697,8 +697,8 @@ window.IGKO_QUESTIONS = [
     topic: "Sports & Games",
     difficulty: "Medium",
     question: "Which of the following games is played using a 'club' to hit a small white ball into holes?",
-    options: ["Tennis", "Golf", "Ice skating", "Soccer"],
-    answer: 1,
+    options: ["Ice skating", "Soccer", "Tennis", "Golf"],
+    answer: 3,
     explanation: "Golf is played on a grassy course where players use clubs to hit a ball into a series of holes."
   },
   {
@@ -708,8 +708,8 @@ window.IGKO_QUESTIONS = [
     topic: "Sports & Games",
     difficulty: "Easy",
     question: "How many players are there in a cricket team on the field?",
-    options: ["9", "10", "11", "12"],
-    answer: 2,
+    options: ["11", "12", "9", "10"],
+    answer: 0,
     explanation: "Each cricket team consists of 11 players."
   },
   {
@@ -719,8 +719,8 @@ window.IGKO_QUESTIONS = [
     topic: "Sports & Games",
     difficulty: "Easy",
     question: "Which sport is played with a shuttlecock and light rackets?",
-    options: ["Badminton", "Table Tennis", "Basketball", "Hockey"],
-    answer: 0,
+    options: ["Hockey", "Badminton", "Table Tennis", "Basketball"],
+    answer: 1,
     explanation: "Badminton players hit a feathered or plastic shuttlecock back and forth over a net."
   },
   {
@@ -730,8 +730,8 @@ window.IGKO_QUESTIONS = [
     topic: "Sports & Games",
     difficulty: "Easy",
     question: "Which of these is an INDOOR board game played on 64 black and white squares?",
-    options: ["Cricket", "Chess", "Football", "Volleyball"],
-    answer: 1,
+    options: ["Volleyball", "Cricket", "Chess", "Football"],
+    answer: 2,
     explanation: "Chess is a classic strategy game played on an 8x8 chequered board with 64 squares."
   },
   {
@@ -741,8 +741,8 @@ window.IGKO_QUESTIONS = [
     topic: "Sports & Games",
     difficulty: "Medium",
     question: "In basketball, what do players throw the ball through to score points?",
-    options: ["A net on a high hoop", "A goalpost on grass", "A bowling pin", "A hole in ice"],
-    answer: 0,
+    options: ["A goalpost on grass", "A bowling pin", "A hole in ice", "A net on a high hoop"],
+    answer: 3,
     explanation: "Basketball players score by shooting the ball through an elevated hoop with a net."
   },
   {
@@ -752,8 +752,8 @@ window.IGKO_QUESTIONS = [
     topic: "Sports & Games",
     difficulty: "Medium",
     question: "Which famous Indian cricketer is fondly known as the 'Master Blaster'?",
-    options: ["Virat Kohli", "Sachin Tendulkar", "MS Dhoni", "Kapil Dev"],
-    answer: 1,
+    options: ["Sachin Tendulkar", "MS Dhoni", "Kapil Dev", "Virat Kohli"],
+    answer: 0,
     explanation: "Sachin Tendulkar holds the record for 100 international centuries and is called 'Master Blaster'."
   },
   {
@@ -774,8 +774,8 @@ window.IGKO_QUESTIONS = [
     topic: "Sports & Games",
     difficulty: "Hard",
     question: "How many colored rings make up the official Olympic symbol?",
-    options: ["3", "4", "5", "6"],
-    answer: 2,
+    options: ["5", "6", "3", "4"],
+    answer: 0,
     explanation: "The Olympic symbol has 5 interlocking rings (blue, yellow, black, green, and red) representing five world continents."
   },
   {
@@ -796,8 +796,8 @@ window.IGKO_QUESTIONS = [
     topic: "Sports & Games",
     difficulty: "Medium",
     question: "What color belt indicates the highest master level in martial arts like Taekwondo or Karate?",
-    options: ["White", "Yellow", "Green", "Black"],
-    answer: 3,
+    options: ["Yellow", "Green", "Black", "White"],
+    answer: 2,
     explanation: "In martial arts, a Black Belt signifies mastery and high proficiency."
   },
 
@@ -810,9 +810,9 @@ window.IGKO_QUESTIONS = [
     set: 8,
     topic: "Life Skills",
     difficulty: "Easy",
-    question: "You should NOT talk to your classmates about personal secrets or gossip _________.",
-    options: ["During recess", "During class when the teacher is teaching", "After school hours", "During sports time"],
-    answer: 1,
+    question: "When should you NOT chat with your classmates?",
+    options: ["During class when the teacher is teaching", "After school hours", "During sports time", "During recess"],
+    answer: 0,
     explanation: "Talking during class disrupts teaching and prevents everyone from learning."
   },
   {
@@ -833,8 +833,8 @@ window.IGKO_QUESTIONS = [
     topic: "Life Skills",
     difficulty: "Easy",
     question: "If you accidentally bump into someone or step on their foot, what should you say?",
-    options: ["Go away!", "I am sorry.", "You did it!", "Nothing"],
-    answer: 1,
+    options: ["Nothing", "Go away!", "I am sorry.", "You did it!"],
+    answer: 2,
     explanation: "Polite children say 'I am sorry' when they make an accidental mistake."
   },
   {
@@ -844,8 +844,8 @@ window.IGKO_QUESTIONS = [
     topic: "Life Skills",
     difficulty: "Medium",
     question: "What should you do before eating your meal?",
-    options: ["Watch television", "Wash your hands thoroughly with soap", "Run around the garden", "Play video games"],
-    answer: 1,
+    options: ["Run around the garden", "Play video games", "Watch television", "Wash your hands thoroughly with soap"],
+    answer: 3,
     explanation: "Washing hands with soap removes harmful germs and keeps you healthy."
   },
   {
@@ -855,8 +855,8 @@ window.IGKO_QUESTIONS = [
     topic: "Life Skills",
     difficulty: "Easy",
     question: "Where should you throw candy wrappers and fruit peels?",
-    options: ["On the floor", "Out of the car window", "Inside the dustbin", "Under the desk"],
-    answer: 2,
+    options: ["Inside the dustbin", "Under the desk", "On the floor", "Out of the car window"],
+    answer: 0,
     explanation: "All trash should be properly disposed of in a dustbin to keep our surroundings clean."
   },
   {
@@ -877,8 +877,8 @@ window.IGKO_QUESTIONS = [
     topic: "Life Skills",
     difficulty: "Medium",
     question: "When you want to ask a question in the classroom, you should:",
-    options: ["Shout loudly", "Raise your hand and wait for teacher's permission", "Throw a pencil", "Interrupt the teacher"],
-    answer: 1,
+    options: ["Interrupt the teacher", "Shout loudly", "Raise your hand and wait for teacher's permission", "Throw a pencil"],
+    answer: 2,
     explanation: "Raising your hand shows patience and good classroom discipline."
   },
   {
@@ -888,8 +888,8 @@ window.IGKO_QUESTIONS = [
     topic: "Life Skills",
     difficulty: "Medium",
     question: "What should you do when leaving a room to save electricity?",
-    options: ["Turn off lights and fans", "Keep the door wide open", "Turn up the volume", "Leave everything running"],
-    answer: 0,
+    options: ["Keep the door wide open", "Turn up the volume", "Leave everything running", "Turn off lights and fans"],
+    answer: 3,
     explanation: "Turning off electrical switches when not in use saves valuable energy and reduces waste."
   },
   {
@@ -899,8 +899,8 @@ window.IGKO_QUESTIONS = [
     topic: "Life Skills",
     difficulty: "Easy",
     question: "Sharing toys and coloring pencils with your friends is an example of:",
-    options: ["Selfishness", "Good friendship and teamwork", "Anger", "Wasting time"],
-    answer: 1,
+    options: ["Wasting time", "Selfishness", "Good friendship and teamwork", "Anger"],
+    answer: 2,
     explanation: "Sharing promotes kindness, teamwork, and strong friendships."
   },
   {
@@ -910,8 +910,8 @@ window.IGKO_QUESTIONS = [
     topic: "Life Skills",
     difficulty: "Medium",
     question: "If you find a lost pencil box or water bottle on the playground, what should you do?",
-    options: ["Keep it secretly in your bag", "Hand it over to your teacher or lost & found", "Throw it in the bushes", "Break it"],
-    answer: 1,
+    options: ["Throw it in the bushes", "Break it", "Keep it secretly in your bag", "Hand it over to your teacher or lost & found"],
+    answer: 3,
     explanation: "Honesty means returning lost items to the teacher so the rightful owner can find them."
   },
 
@@ -925,8 +925,8 @@ window.IGKO_QUESTIONS = [
     topic: "Current Affairs",
     difficulty: "Hard",
     question: "Who is the Director-General of the World Health Organization (WHO)?",
-    options: ["Tedros Adhanom Ghebreyesus", "Raghuram Rajan", "António Guterres", "Narendra Modi"],
-    answer: 0,
+    options: ["Narendra Modi", "Tedros Adhanom Ghebreyesus", "Raghuram Rajan", "António Guterres"],
+    answer: 1,
     explanation: "Dr. Tedros Adhanom Ghebreyesus leads the World Health Organization."
   },
   {
@@ -936,8 +936,8 @@ window.IGKO_QUESTIONS = [
     topic: "Current Affairs",
     difficulty: "Medium",
     question: "Who is the Prime Minister of India?",
-    options: ["Rahul Gandhi", "Narendra Modi", "Amit Shah", "Arvind Kejriwal"],
-    answer: 1,
+    options: ["Arvind Kejriwal", "Rahul Gandhi", "Narendra Modi", "Amit Shah"],
+    answer: 2,
     explanation: "Shri Narendra Modi has served as the Prime Minister of India since 2014."
   },
   {
@@ -947,8 +947,8 @@ window.IGKO_QUESTIONS = [
     topic: "Current Affairs",
     difficulty: "Medium",
     question: "Who is the President of India (elected as the 15th President)?",
-    options: ["Droupadi Murmu", "Pratibha Patil", "Ram Nath Kovind", "Smriti Irani"],
-    answer: 0,
+    options: ["Pratibha Patil", "Ram Nath Kovind", "Smriti Irani", "Droupadi Murmu"],
+    answer: 3,
     explanation: "Smt. Droupadi Murmu is the honorable 15th President of India."
   },
   {
@@ -969,8 +969,8 @@ window.IGKO_QUESTIONS = [
     topic: "Current Affairs",
     difficulty: "Hard",
     question: "What is India's first solar space observatory mission dedicated to studying the Sun?",
-    options: ["Aditya-L1", "Gaganyaan", "Surya-2", "Solaris"],
-    answer: 0,
+    options: ["Solaris", "Aditya-L1", "Gaganyaan", "Surya-2"],
+    answer: 1,
     explanation: "Aditya-L1 was launched by ISRO to observe the Sun's outermost layers."
   },
   {
@@ -980,8 +980,8 @@ window.IGKO_QUESTIONS = [
     topic: "Current Affairs",
     difficulty: "Medium",
     question: "What is the official space research organization of India called?",
-    options: ["NASA", "ISRO", "ESA", "JAXA"],
-    answer: 1,
+    options: ["JAXA", "NASA", "ISRO", "ESA"],
+    answer: 2,
     explanation: "ISRO stands for Indian Space Research Organisation."
   },
   {
@@ -991,8 +991,8 @@ window.IGKO_QUESTIONS = [
     topic: "Current Affairs",
     difficulty: "Hard",
     question: "Which city hosted the Summer Olympic Games in 2024?",
-    options: ["Tokyo", "Paris", "London", "Los Angeles"],
-    answer: 1,
+    options: ["London", "Los Angeles", "Tokyo", "Paris"],
+    answer: 3,
     explanation: "The 2024 Summer Olympics took place in Paris, France."
   },
   {
@@ -1024,8 +1024,8 @@ window.IGKO_QUESTIONS = [
     topic: "Current Affairs",
     difficulty: "Easy",
     question: "Whose birthday is celebrated as Children's Day in India on November 14?",
-    options: ["Mahatma Gandhi", "Pandit Jawaharlal Nehru", "Dr. APJ Abdul Kalam", "Subhash Chandra Bose"],
-    answer: 1,
+    options: ["Pandit Jawaharlal Nehru", "Dr. APJ Abdul Kalam", "Subhash Chandra Bose", "Mahatma Gandhi"],
+    answer: 0,
     explanation: "Pandit Jawaharlal Nehru ('Chacha Nehru') loved children, so his birthday is celebrated as Children's Day."
   },
 
@@ -1039,9 +1039,9 @@ window.IGKO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Unscramble the letters to find the name of a natural body of water where fresh water from rivers mixes with salt ocean water: 'ATYUESR'",
-    options: ["ESTUARY", "STREAM", "LAGOON", "BAY"],
-    answer: 0,
-    explanation: "The letters A-T-Y-U-E-S-R unscramble to spell ESTUARY."
+    options: ["LAGOON", "BAY", "ESTUARY", "STREAM"],
+    answer: 2,
+    explanation: "The letters A-T-Y-U-E-S-R unscramble to spell ESTUARY — the place where a river's fresh water mixes with the sea's salty water."
   },
   {
     id: "igko-10-2",
@@ -1051,13 +1051,13 @@ window.IGKO_QUESTIONS = [
     difficulty: "Hard",
     question: "Which of the following pairs is INCORRECTLY matched?",
     options: [
+      "Papaya – Large Lobed Leaf",
       "Onion – Underground Stem",
-      "Palm – Simple single leaf",
-      "Carrot – Underground Fruit",
-      "Papaya – Large Lobed Leaf"
+      "Mango – Simple Green Leaf",
+      "Carrot – Underground Fruit"
     ],
-    answer: 2,
-    explanation: "Carrot is an edible modified ROOT of a plant, NOT a fruit!"
+    answer: 3,
+    explanation: "Onion is an underground stem, mango leaf is a simple leaf, and papaya has large lobed leaves — all correctly matched. But carrot is an edible modified ROOT of a plant, NOT a fruit!"
   },
   {
     id: "igko-10-3",
@@ -1066,8 +1066,8 @@ window.IGKO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "I have no legs, I slither on the ground, I smell with my tongue, and I shed my skin. Who am I?",
-    options: ["Earthworm", "Snake", "Lizard", "Snail"],
-    answer: 1,
+    options: ["Snake", "Lizard", "Snail", "Earthworm"],
+    answer: 0,
     explanation: "Snakes flick their forked tongue to smell scents in the air and shed their outer skin."
   },
   {
@@ -1077,8 +1077,8 @@ window.IGKO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Look at the pattern: 2, 4, 8, 16, ___. What number comes next?",
-    options: ["20", "24", "32", "64"],
-    answer: 2,
+    options: ["24", "32", "64", "20"],
+    answer: 1,
     explanation: "Each number is multiplied by 2 (doubled): 2x2=4, 4x2=8, 8x2=16, and 16x2=32!"
   },
   {
@@ -1088,8 +1088,8 @@ window.IGKO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Which of the following does NOT belong to the same group?",
-    options: ["Rose", "Lotus", "Jasmine", "Cauliflower"],
-    answer: 3,
+    options: ["Lotus", "Jasmine", "Cauliflower", "Rose"],
+    answer: 2,
     explanation: "Rose, Lotus, and Jasmine are ornamental flowers, while Cauliflower is a vegetable we eat."
   },
   {
@@ -1099,9 +1099,9 @@ window.IGKO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Unscramble the letters to name the world's highest mountain peak: 'SVEEETR'",
-    options: ["K2", "EVEREST", "ALPS", "ANDES"],
-    answer: 1,
-    explanation: "The letters unscramble to spell Mount EVEREST, the highest peak on Earth."
+    options: ["KANCHENJUNGA", "MAKALU", "K2", "EVEREST"],
+    answer: 3,
+    explanation: "The letters unscramble to spell Mount EVEREST, the highest peak on Earth. K2, Kanchenjunga, and Makalu are also giant Himalayan peaks, but none is taller than Everest!"
   },
   {
     id: "igko-10-7",
@@ -1110,8 +1110,8 @@ window.IGKO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Match the following animal sounds:\n1. Horse -> Neigh\n2. Lion -> Roar\n3. Elephant -> Trumpet\nWhich of these are correct?",
-    options: ["1 and 2 only", "2 and 3 only", "1 and 3 only", "1, 2, and 3 are all correct"],
-    answer: 3,
+    options: ["1, 2, and 3 are all correct", "1 and 2 only", "2 and 3 only", "1 and 3 only"],
+    answer: 0,
     explanation: "All three pairs are correct! Horses neigh, lions roar, and elephants trumpet."
   },
   {
@@ -1132,8 +1132,8 @@ window.IGKO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Which of the following birds can rotate its head almost 270 degrees and hunts at night?",
-    options: ["Eagle", "Owl", "Penguin", "Hummingbird"],
-    answer: 1,
+    options: ["Hummingbird", "Eagle", "Owl", "Penguin"],
+    answer: 2,
     explanation: "Owls are nocturnal birds of prey with incredible neck flexibility to turn their head 270 degrees."
   },
   {
@@ -1144,12 +1144,12 @@ window.IGKO_QUESTIONS = [
     difficulty: "Hard",
     question: "Which of the following statements is TRUE about our planet?",
     options: [
-      "The Moon has its own light like a lamp",
-      "Earth takes 365 days to complete one revolution around the Sun",
       "Plants breathe in oxygen and give out poisonous gas during daytime",
-      "The Sun revolves around the Earth"
+      "The Sun revolves around the Earth",
+      "The Moon has its own light like a lamp",
+      "Earth takes 365 days to complete one revolution around the Sun"
     ],
-    answer: 1,
+    answer: 3,
     explanation: "Earth takes approximately 365 and 1/4 days (one year) to orbit completely around the Sun."
   }
 ];

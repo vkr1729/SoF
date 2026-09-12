@@ -6,6 +6,7 @@ class AppController {
   }
 
   init() {
+    this.registerServiceWorker();
     this.updateHUD();
     this.renderMissions();
     this.renderTrophyRoom();
@@ -157,6 +158,36 @@ class AppController {
     this.renderTrophyRoom();
   }
 
+  // Offline-first PWA: cache the app shell so practice works without internet.
+  // Registration is silent; an update applies on the next launch.
+  registerServiceWorker() {
+    if (!('serviceWorker' in navigator)) return;
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').then((reg) => {
+        if (reg.waiting) reg.waiting.postMessage('SKIP_WAITING');
+        reg.addEventListener('updatefound', () => {
+          const worker = reg.installing;
+          if (worker) {
+            worker.addEventListener('statechange', () => {
+              if (worker.state === 'installed' && navigator.serviceWorker.controller) {
+                reg.waiting ? reg.waiting.postMessage('SKIP_WAITING') : null;
+              }
+            });
+          }
+        });
+      }).catch((e) => console.warn('Service worker unavailable:', e));
+    });
+    let reloaded = false;
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!reloaded) {
+          reloaded = true;
+          window.location.reload();
+        }
+      });
+    }
+  }
+
   openParentModal() {
     const modal = document.getElementById('parent-guide-modal');
     if (modal) modal.style.display = 'flex';
@@ -180,5 +211,17 @@ class AppController {
 window.app = new AppController();
 
 window.addEventListener('DOMContentLoaded', () => {
+  // First-gesture unlock for Web Audio autoplay policy + speech synthesis.
+  const unlockOnce = () => {
+    window.audioManager.unlock();
+    window.removeEventListener('pointerdown', unlockOnce);
+    window.removeEventListener('keydown', unlockOnce);
+  };
+  window.addEventListener('pointerdown', unlockOnce);
+  window.addEventListener('keydown', unlockOnce);
   window.app.init();
+  // Honest offline signal: if persistence is unavailable, say so once.
+  if (window.SOF_STORAGE_OK === false) {
+    console.warn('SOF Quest: localStorage unavailable — progress lasts this session only.');
+  }
 });

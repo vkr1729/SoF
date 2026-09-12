@@ -64,6 +64,17 @@ About 2–3 weeks before the real Olympiad, switch to the **"⏱️ SOF Exam Sim
 
 ---
 
+## 📲 Installing as an iPad App (PWA)
+Once, with internet on:
+1. Open the site in **Safari** on the iPad.
+2. Tap **Share → Add to Home Screen → Add**. An emerald "SOF Quest" icon appears.
+3. Open it from the Home Screen — it launches full-screen, like a real app.
+4. Open every subject tab once (Adventure, Exam, Mistake Bank) so the offline cache fills. After that, daily practice works with **no internet**.
+
+Notes: read-aloud needs one tap first (iPad rule — any button tap counts). If a new version ever looks stuck, remove the Home Screen icon and re-add it.
+
+---
+
 ## 🔄 Resetting for a Fresh Start
 If you ever want your child to practice all 300 questions again from scratch:
 1. Tap the **"👨‍👩‍👦 Guide"** button in the top right.

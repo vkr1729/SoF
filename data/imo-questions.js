@@ -13,8 +13,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Easy",
     question: "What is the place value of the digit 7 in the number 745?",
-    options: ["7", "70", "700", "740"],
-    answer: 2,
+    options: ["70", "700", "740", "7"],
+    answer: 1,
     explanation: "In 745, 7 is in the hundreds place, so its place value is 7 x 100 = 700."
   },
   {
@@ -24,8 +24,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Easy",
     question: "Which of the following numbers is the GREATEST?",
-    options: ["489", "849", "894", "498"],
-    answer: 2,
+    options: ["894", "498", "489", "849"],
+    answer: 0,
     explanation: "Comparing the hundreds and tens digits: 894 is greater than 849, 498, and 489."
   },
   {
@@ -35,8 +35,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Medium",
     question: "What is the expanded form of 608?",
-    options: ["60 + 8", "600 + 80", "600 + 8", "600 + 80 + 0"],
-    answer: 2,
+    options: ["600 + 80", "600 + 8", "600 + 80 + 0", "60 + 8"],
+    answer: 1,
     explanation: "608 has 6 hundreds, 0 tens, and 8 ones: 600 + 0 + 8 = 600 + 8."
   },
   {
@@ -46,8 +46,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Easy",
     question: "What number comes immediately BEFORE 500?",
-    options: ["490", "499", "501", "409"],
-    answer: 1,
+    options: ["409", "490", "499", "501"],
+    answer: 2,
     explanation: "The predecessor of 500 is 500 - 1 = 499."
   },
   {
@@ -57,8 +57,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Medium",
     question: "Using the digits 3, 9, and 1 only once each, what is the SMALLEST 3-digit number you can form?",
-    options: ["319", "931", "139", "193"],
-    answer: 2,
+    options: ["193", "319", "931", "139"],
+    answer: 3,
     explanation: "To form the smallest number, arrange digits in ascending order: 1, 3, 9 -> 139."
   },
   {
@@ -68,8 +68,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Easy",
     question: "Which of the following is an EVEN number?",
-    options: ["215", "377", "462", "589"],
-    answer: 2,
+    options: ["462", "589", "215", "377"],
+    answer: 0,
     explanation: "Even numbers end in 0, 2, 4, 6, or 8. 462 ends in 2, so it is even."
   },
   {
@@ -79,8 +79,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Medium",
     question: "How many tens are there in the number 340?",
-    options: ["4", "30", "34", "340"],
-    answer: 2,
+    options: ["30", "34", "340", "4"],
+    answer: 1,
     explanation: "340 / 10 = 34 tens."
   },
   {
@@ -90,8 +90,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Medium",
     question: "Which symbol correctly completes the statement: 586 [ ? ] 568",
-    options: ["<", ">", "=", "+"],
-    answer: 1,
+    options: ["+", "<", ">", "="],
+    answer: 2,
     explanation: "Both have 5 in the hundreds place, but 586 has 8 tens while 568 has 6 tens. So 586 > 568."
   },
   {
@@ -101,8 +101,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Hard",
     question: "I am a 3-digit number. My ones digit is 4. My tens digit is double of my ones digit. My hundreds digit is 1 less than my tens digit. What number am I?",
-    options: ["784", "847", "684", "748"],
-    answer: 0,
+    options: ["847", "684", "748", "784"],
+    answer: 3,
     explanation: "Ones digit = 4. Tens digit = 4 x 2 = 8. Hundreds digit = 8 - 1 = 7. The number is 784."
   },
   {
@@ -112,8 +112,8 @@ window.IMO_QUESTIONS = [
     topic: "Number Sense",
     difficulty: "Medium",
     question: "What is the number name of 909?",
-    options: ["Nine hundred ninety", "Nine hundred nine", "Ninety nine", "Nine thousand nine"],
-    answer: 1,
+    options: ["Nine hundred nine", "Ninety nine", "Nine thousand nine", "Nine hundred ninety"],
+    answer: 0,
     explanation: "909 is written as 'Nine hundred nine'."
   },
 
@@ -127,8 +127,8 @@ window.IMO_QUESTIONS = [
     topic: "Addition",
     difficulty: "Easy",
     question: "What is the sum of 45 and 32?",
-    options: ["75", "77", "87", "67"],
-    answer: 1,
+    options: ["67", "75", "77", "87"],
+    answer: 2,
     explanation: "45 + 32 = (40 + 30) + (5 + 2) = 70 + 7 = 77."
   },
   {
@@ -138,8 +138,8 @@ window.IMO_QUESTIONS = [
     topic: "Addition",
     difficulty: "Easy",
     question: "Find the value of: 150 + 230",
-    options: ["360", "380", "390", "480"],
-    answer: 1,
+    options: ["390", "480", "360", "380"],
+    answer: 3,
     explanation: "150 + 230 = 380."
   },
   {
@@ -160,8 +160,8 @@ window.IMO_QUESTIONS = [
     topic: "Addition",
     difficulty: "Medium",
     question: "What number should be added to 64 to get 100?",
-    options: ["34", "36", "46", "44"],
-    answer: 1,
+    options: ["46", "44", "34", "36"],
+    answer: 3,
     explanation: "100 - 64 = 36."
   },
   {
@@ -171,8 +171,8 @@ window.IMO_QUESTIONS = [
     topic: "Addition",
     difficulty: "Medium",
     question: "Calculate: 246 + 185",
-    options: ["421", "431", "441", "411"],
-    answer: 1,
+    options: ["431", "441", "411", "421"],
+    answer: 0,
     explanation: "246 + 185: 6+5=11 (1 carry 1), 4+8+1=13 (3 carry 1), 2+1+1=4 -> 431."
   },
   {
@@ -204,8 +204,8 @@ window.IMO_QUESTIONS = [
     topic: "Addition",
     difficulty: "Medium",
     question: "What is 100 more than 489?",
-    options: ["499", "589", "689", "599"],
-    answer: 1,
+    options: ["689", "599", "499", "589"],
+    answer: 3,
     explanation: "489 + 100 = 589."
   },
   {
@@ -215,8 +215,8 @@ window.IMO_QUESTIONS = [
     topic: "Addition",
     difficulty: "Hard",
     question: "Find the missing digit P:  4 P 6 + 1 3 2 = 6 1 8",
-    options: ["7", "8", "9", "6"],
-    answer: 1,
+    options: ["8", "9", "6", "7"],
+    answer: 0,
     explanation: "Check: 6 + 2 = 8. In tens place: P + 3 = 11 (1 written, 1 carried to hundreds). So P = 11 - 3 = 8! Check hundreds: 4 + 1 + 1 = 6."
   },
   {
@@ -226,8 +226,8 @@ window.IMO_QUESTIONS = [
     topic: "Addition",
     difficulty: "Medium",
     question: "Adding 0 to any number gives:",
-    options: ["0", "1", "The same number", "10"],
-    answer: 2,
+    options: ["1", "The same number", "10", "0"],
+    answer: 1,
     explanation: "Adding 0 to any number leaves the value unchanged (Additive Identity)."
   },
 
@@ -241,8 +241,8 @@ window.IMO_QUESTIONS = [
     topic: "Subtraction",
     difficulty: "Easy",
     question: "What is 85 - 42?",
-    options: ["43", "45", "33", "53"],
-    answer: 0,
+    options: ["45", "33", "53", "43"],
+    answer: 3,
     explanation: "85 - 42 = 43."
   },
   {
@@ -274,8 +274,8 @@ window.IMO_QUESTIONS = [
     topic: "Subtraction",
     difficulty: "Medium",
     question: "What is the difference between the greatest 2-digit number and the smallest 2-digit number?",
-    options: ["88", "89", "90", "99"],
-    answer: 1,
+    options: ["89", "90", "99", "88"],
+    answer: 0,
     explanation: "Greatest 2-digit number = 99. Smallest 2-digit number = 10. Difference = 99 - 10 = 89."
   },
   {
@@ -296,8 +296,8 @@ window.IMO_QUESTIONS = [
     topic: "Subtraction",
     difficulty: "Easy",
     question: "What is 10 less than 730?",
-    options: ["710", "720", "740", "630"],
-    answer: 1,
+    options: ["630", "710", "720", "740"],
+    answer: 2,
     explanation: "730 - 10 = 720."
   },
   {
@@ -307,8 +307,8 @@ window.IMO_QUESTIONS = [
     topic: "Subtraction",
     difficulty: "Hard",
     question: "A toy shop had 350 teddy bears. It sold 125 bears on Monday and 85 bears on Tuesday. How many bears are left?",
-    options: ["140", "150", "160", "210"],
-    answer: 0,
+    options: ["150", "160", "210", "140"],
+    answer: 3,
     explanation: "Total sold = 125 + 85 = 210. Remaining = 350 - 210 = 140 teddy bears."
   },
   {
@@ -318,8 +318,8 @@ window.IMO_QUESTIONS = [
     topic: "Subtraction",
     difficulty: "Medium",
     question: "Find the missing number: [ ? ] - 45 = 55",
-    options: ["10", "90", "100", "110"],
-    answer: 2,
+    options: ["100", "110", "10", "90"],
+    answer: 0,
     explanation: "55 + 45 = 100. So 100 - 45 = 55."
   },
   {
@@ -340,8 +340,8 @@ window.IMO_QUESTIONS = [
     topic: "Subtraction",
     difficulty: "Easy",
     question: "Subtracting a number from itself (e.g. 74 - 74) always gives:",
-    options: ["0", "1", "74", "10"],
-    answer: 0,
+    options: ["74", "10", "0", "1"],
+    answer: 2,
     explanation: "Any number subtracted from itself always leaves 0."
   },
 
@@ -355,8 +355,8 @@ window.IMO_QUESTIONS = [
     topic: "Length & Measurement",
     difficulty: "Easy",
     question: "Which unit would you use to measure the length of a small pencil?",
-    options: ["Kilometer (km)", "Centimeter (cm)", "Liter (L)", "Kilogram (kg)"],
-    answer: 1,
+    options: ["Centimeter (cm)", "Liter (L)", "Kilogram (kg)", "Kilometer (km)"],
+    answer: 0,
     explanation: "Small everyday objects like pencils and erasers are measured in centimeters (cm)."
   },
   {
@@ -366,8 +366,8 @@ window.IMO_QUESTIONS = [
     topic: "Length & Measurement",
     difficulty: "Easy",
     question: "How many centimeters (cm) are there in 1 meter (m)?",
-    options: ["10 cm", "50 cm", "100 cm", "1000 cm"],
-    answer: 2,
+    options: ["50 cm", "100 cm", "1000 cm", "10 cm"],
+    answer: 1,
     explanation: "1 meter = 100 centimeters."
   },
   {
@@ -377,8 +377,8 @@ window.IMO_QUESTIONS = [
     topic: "Length & Measurement",
     difficulty: "Medium",
     question: "A green ribbon is 45 cm long. A blue ribbon is 32 cm long. How much longer is the green ribbon?",
-    options: ["11 cm", "13 cm", "15 cm", "77 cm"],
-    answer: 1,
+    options: ["77 cm", "11 cm", "13 cm", "15 cm"],
+    answer: 2,
     explanation: "45 cm - 32 cm = 13 cm."
   },
   {
@@ -388,8 +388,8 @@ window.IMO_QUESTIONS = [
     topic: "Length & Measurement",
     difficulty: "Medium",
     question: "A crayon is placed next to a ruler. It starts at mark 3 cm and ends at mark 11 cm. What is the length of the crayon?",
-    options: ["11 cm", "14 cm", "8 cm", "7 cm"],
-    answer: 2,
+    options: ["7 cm", "11 cm", "14 cm", "8 cm"],
+    answer: 3,
     explanation: "Length = End mark - Start mark = 11 cm - 3 cm = 8 cm."
   },
   {
@@ -410,8 +410,8 @@ window.IMO_QUESTIONS = [
     topic: "Length & Measurement",
     difficulty: "Medium",
     question: "A tailor has 5 meters of cloth. He uses 2 meters to stitch a shirt. How many meters of cloth are left?",
-    options: ["2 m", "3 m", "4 m", "7 m"],
-    answer: 1,
+    options: ["4 m", "7 m", "2 m", "3 m"],
+    answer: 3,
     explanation: "5 m - 2 m = 3 m of cloth remaining."
   },
   {
@@ -421,8 +421,8 @@ window.IMO_QUESTIONS = [
     topic: "Length & Measurement",
     difficulty: "Hard",
     question: "Rope A is 3 m 40 cm long. Rope B is 2 m 20 cm long. If they are tied together, what is their total length?",
-    options: ["5 m 20 cm", "5 m 40 cm", "5 m 60 cm", "6 m 00 cm"],
-    answer: 2,
+    options: ["5 m 60 cm", "6 m 00 cm", "5 m 20 cm", "5 m 40 cm"],
+    answer: 0,
     explanation: "Add meters: 3 + 2 = 5 m. Add centimeters: 40 + 20 = 60 cm. Total = 5 m 60 cm."
   },
   {
@@ -432,8 +432,8 @@ window.IMO_QUESTIONS = [
     topic: "Length & Measurement",
     difficulty: "Medium",
     question: "Which of the following is LONGEST?",
-    options: ["1 meter", "85 centimeters", "99 centimeters", "50 centimeters"],
-    answer: 0,
+    options: ["50 centimeters", "1 meter", "85 centimeters", "99 centimeters"],
+    answer: 1,
     explanation: "1 meter = 100 cm, which is longer than 99 cm, 85 cm, and 50 cm."
   },
   {
@@ -443,8 +443,8 @@ window.IMO_QUESTIONS = [
     topic: "Length & Measurement",
     difficulty: "Hard",
     question: "An ant climbs 15 cm up a plant stem in the morning, but slips down 4 cm in the evening. How high is the ant now?",
-    options: ["11 cm", "12 cm", "19 cm", "9 cm"],
-    answer: 0,
+    options: ["19 cm", "9 cm", "11 cm", "12 cm"],
+    answer: 2,
     explanation: "15 cm - 4 cm = 11 cm."
   },
   {
@@ -454,8 +454,8 @@ window.IMO_QUESTIONS = [
     topic: "Length & Measurement",
     difficulty: "Medium",
     question: "Which tool is commonly used by students in school to draw straight lines and measure small lengths?",
-    options: ["Thermometer", "Ruler (Scale)", "Clock", "Weighing balance"],
-    answer: 1,
+    options: ["Clock", "Weighing balance", "Thermometer", "Ruler (Scale)"],
+    answer: 3,
     explanation: "A ruler (scale) has centimeter markings used to measure and draw lines."
   },
 
@@ -480,8 +480,8 @@ window.IMO_QUESTIONS = [
     topic: "Weight & Capacity",
     difficulty: "Easy",
     question: "How many grams (g) are there in 1 kilogram (kg)?",
-    options: ["10 g", "100 g", "500 g", "1000 g"],
-    answer: 3,
+    options: ["100 g", "500 g", "1000 g", "10 g"],
+    answer: 2,
     explanation: "1 kilogram = 1000 grams."
   },
   {
@@ -491,8 +491,8 @@ window.IMO_QUESTIONS = [
     topic: "Weight & Capacity",
     difficulty: "Easy",
     question: "Which of these liquid quantities is measured in Liters (L) rather than milliliters (mL)?",
-    options: ["A spoonful of cough syrup", "Water in a large bathtub", "Eye drops", "A small cup of tea"],
-    answer: 1,
+    options: ["Eye drops", "A small cup of tea", "A spoonful of cough syrup", "Water in a large bathtub"],
+    answer: 3,
     explanation: "Large volumes of liquids like bathtubs and swimming pools are measured in liters (L)."
   },
   {
@@ -502,8 +502,8 @@ window.IMO_QUESTIONS = [
     topic: "Weight & Capacity",
     difficulty: "Medium",
     question: "A watermelon weighs 4 kg. A papaya weighs 2 kg. What is their combined total weight?",
-    options: ["2 kg", "6 kg", "8 kg", "10 kg"],
-    answer: 1,
+    options: ["6 kg", "8 kg", "10 kg", "2 kg"],
+    answer: 0,
     explanation: "4 kg + 2 kg = 6 kg."
   },
   {
@@ -513,8 +513,8 @@ window.IMO_QUESTIONS = [
     topic: "Weight & Capacity",
     difficulty: "Medium",
     question: "How many milliliters (mL) are in 1 Liter (L)?",
-    options: ["10 mL", "100 mL", "1000 mL", "500 mL"],
-    answer: 2,
+    options: ["100 mL", "1000 mL", "500 mL", "10 mL"],
+    answer: 1,
     explanation: "1 Liter = 1000 milliliters."
   },
   {
@@ -524,8 +524,8 @@ window.IMO_QUESTIONS = [
     topic: "Weight & Capacity",
     difficulty: "Medium",
     question: "A jug holds 2 Liters of juice. How many glasses of 500 mL each can be filled from this jug?",
-    options: ["2 glasses", "3 glasses", "4 glasses", "5 glasses"],
-    answer: 2,
+    options: ["4 glasses", "5 glasses", "2 glasses", "3 glasses"],
+    answer: 0,
     explanation: "2 Liters = 2000 mL. 2000 mL / 500 mL = 4 glasses."
   },
   {
@@ -535,8 +535,8 @@ window.IMO_QUESTIONS = [
     topic: "Weight & Capacity",
     difficulty: "Hard",
     question: "On a balance scale, 1 pineapple balances with 3 apples. If 1 apple weighs 150 grams, how much does the pineapple weigh?",
-    options: ["300 g", "400 g", "450 g", "500 g"],
-    answer: 2,
+    options: ["400 g", "450 g", "500 g", "300 g"],
+    answer: 1,
     explanation: "Weight of pineapple = 3 x 150 g = 450 grams."
   },
   {
@@ -557,8 +557,8 @@ window.IMO_QUESTIONS = [
     topic: "Weight & Capacity",
     difficulty: "Hard",
     question: "A bucket contains 15 liters of water. Dad uses 7 liters for washing the car and Mom uses 4 liters for watering plants. How much water is left in the bucket?",
-    options: ["4 liters", "5 liters", "6 liters", "11 liters"],
-    answer: 0,
+    options: ["5 liters", "6 liters", "11 liters", "4 liters"],
+    answer: 3,
     explanation: "Used water = 7 + 4 = 11 liters. Leftover = 15 - 11 = 4 liters."
   },
   {
@@ -568,8 +568,8 @@ window.IMO_QUESTIONS = [
     topic: "Weight & Capacity",
     difficulty: "Easy",
     question: "Which device is used by a vegetable vendor to weigh potatoes and onions?",
-    options: ["Measuring tape", "Weighing scale", "Stopwatch", "Thermometer"],
-    answer: 1,
+    options: ["Weighing scale", "Stopwatch", "Thermometer", "Measuring tape"],
+    answer: 0,
     explanation: "A weighing scale or balance measures the mass/weight of items."
   },
 
@@ -594,8 +594,8 @@ window.IMO_QUESTIONS = [
     topic: "Time & Calendar",
     difficulty: "Easy",
     question: "How many minutes are there in ONE hour?",
-    options: ["30 minutes", "60 minutes", "100 minutes", "12 minutes"],
-    answer: 1,
+    options: ["100 minutes", "12 minutes", "30 minutes", "60 minutes"],
+    answer: 3,
     explanation: "1 hour = 60 minutes."
   },
   {
@@ -605,8 +605,8 @@ window.IMO_QUESTIONS = [
     topic: "Time & Calendar",
     difficulty: "Medium",
     question: "If the short hand (hour hand) points at 4 and the long hand (minute hand) points at 12, what time is it?",
-    options: ["12:04", "4:00 (4 o'clock)", "4:12", "4:30"],
-    answer: 1,
+    options: ["4:00 (4 o'clock)", "4:12", "4:30", "12:04"],
+    answer: 0,
     explanation: "When the minute hand is at 12, the hour hand shows the exact hour: 4:00."
   },
   {
@@ -627,8 +627,8 @@ window.IMO_QUESTIONS = [
     topic: "Time & Calendar",
     difficulty: "Easy",
     question: "Which day comes immediately AFTER Wednesday?",
-    options: ["Tuesday", "Thursday", "Friday", "Monday"],
-    answer: 1,
+    options: ["Monday", "Tuesday", "Thursday", "Friday"],
+    answer: 2,
     explanation: "The order of days is: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday."
   },
   {
@@ -638,8 +638,8 @@ window.IMO_QUESTIONS = [
     topic: "Time & Calendar",
     difficulty: "Medium",
     question: "How many months in a year have exactly 30 days?",
-    options: ["3", "4", "5", "7"],
-    answer: 1,
+    options: ["5", "7", "3", "4"],
+    answer: 3,
     explanation: "4 months have 30 days: April, June, September, and November."
   },
   {
@@ -649,8 +649,8 @@ window.IMO_QUESTIONS = [
     topic: "Time & Calendar",
     difficulty: "Hard",
     question: "A cartoon movie starts at 5:00 PM and ends at 6:30 PM. How long was the movie?",
-    options: ["1 hour", "1 hour 30 minutes", "2 hours", "45 minutes"],
-    answer: 1,
+    options: ["45 minutes", "1 hour", "1 hour 30 minutes", "2 hours"],
+    answer: 2,
     explanation: "From 5:00 to 6:00 is 1 hour, plus 30 minutes to 6:30 = 1 hour 30 minutes."
   },
   {
@@ -660,8 +660,8 @@ window.IMO_QUESTIONS = [
     topic: "Time & Calendar",
     difficulty: "Medium",
     question: "If today is Saturday, what day was YESTERDAY?",
-    options: ["Thursday", "Friday", "Sunday", "Monday"],
-    answer: 1,
+    options: ["Sunday", "Monday", "Thursday", "Friday"],
+    answer: 3,
     explanation: "Yesterday means the day before today. Before Saturday comes Friday."
   },
   {
@@ -671,8 +671,8 @@ window.IMO_QUESTIONS = [
     topic: "Time & Calendar",
     difficulty: "Hard",
     question: "In a leap year, how many days does the month of February have?",
-    options: ["28 days", "29 days", "30 days", "31 days"],
-    answer: 1,
+    options: ["29 days", "30 days", "31 days", "28 days"],
+    answer: 0,
     explanation: "In a normal year February has 28 days, but in a leap year it has 29 days."
   },
   {
@@ -697,8 +697,8 @@ window.IMO_QUESTIONS = [
     topic: "Money",
     difficulty: "Easy",
     question: "How many 50-paise coins make 1 Rupee (₹1)?",
-    options: ["1", "2", "4", "5"],
-    answer: 1,
+    options: ["4", "5", "1", "2"],
+    answer: 3,
     explanation: "50 paise + 50 paise = 100 paise = 1 Rupee (2 coins)."
   },
   {
@@ -708,8 +708,8 @@ window.IMO_QUESTIONS = [
     topic: "Money",
     difficulty: "Easy",
     question: "What is the official currency symbol of the Indian Rupee?",
-    options: ["$", "€", "₹", "¥"],
-    answer: 2,
+    options: ["₹", "¥", "$", "€"],
+    answer: 0,
     explanation: "₹ is the official symbol for the Indian Rupee."
   },
   {
@@ -730,8 +730,8 @@ window.IMO_QUESTIONS = [
     topic: "Money",
     difficulty: "Medium",
     question: "A notebook costs ₹35. You give a ₹50 note to the shopkeeper. How much change will you get back?",
-    options: ["₹10", "₹15", "₹20", "₹25"],
-    answer: 1,
+    options: ["₹25", "₹10", "₹15", "₹20"],
+    answer: 2,
     explanation: "₹50 - ₹35 = ₹15 change."
   },
   {
@@ -741,8 +741,8 @@ window.IMO_QUESTIONS = [
     topic: "Money",
     difficulty: "Medium",
     question: "If one pen costs ₹8, what will be the cost of 5 such pens?",
-    options: ["₹35", "₹40", "₹45", "₹48"],
-    answer: 1,
+    options: ["₹45", "₹48", "₹35", "₹40"],
+    answer: 3,
     explanation: "5 x ₹8 = ₹40."
   },
   {
@@ -752,8 +752,8 @@ window.IMO_QUESTIONS = [
     topic: "Money",
     difficulty: "Hard",
     question: "Pooja wants to buy a toy car for ₹85. She currently has ₹60. How much more money does she need?",
-    options: ["₹15", "₹20", "₹25", "₹35"],
-    answer: 2,
+    options: ["₹25", "₹35", "₹15", "₹20"],
+    answer: 0,
     explanation: "₹85 - ₹60 = ₹25 more needed."
   },
   {
@@ -763,8 +763,8 @@ window.IMO_QUESTIONS = [
     topic: "Money",
     difficulty: "Easy",
     question: "Which of the following is the SMALLEST amount of money?",
-    options: ["₹10", "₹5", "50 paise", "₹2"],
-    answer: 2,
+    options: ["₹5", "50 paise", "₹2", "₹10"],
+    answer: 1,
     explanation: "50 paise is half of 1 rupee, which is smaller than ₹2, ₹5, and ₹10."
   },
   {
@@ -774,8 +774,8 @@ window.IMO_QUESTIONS = [
     topic: "Money",
     difficulty: "Hard",
     question: "Sanya bought an ice cream for ₹25 and a packet of chips for ₹15. She gave a ₹100 note. How much balance did she receive?",
-    options: ["₹40", "₹50", "₹60", "₹70"],
-    answer: 2,
+    options: ["₹60", "₹70", "₹40", "₹50"],
+    answer: 0,
     explanation: "Total spent = ₹25 + ₹15 = ₹40. Balance returned = ₹100 - ₹40 = ₹60."
   },
   {
@@ -796,8 +796,8 @@ window.IMO_QUESTIONS = [
     topic: "Money",
     difficulty: "Medium",
     question: "Which combination of notes makes exactly ₹75?",
-    options: ["One ₹50 note and one ₹20 note", "One ₹50 note, one ₹20 note, and one ₹5 coin", "Two ₹20 notes and one ₹10 note", "Three ₹20 notes"],
-    answer: 1,
+    options: ["Three ₹20 notes", "One ₹50 note and one ₹20 note", "One ₹50 note, one ₹20 note, and one ₹5 coin", "Two ₹20 notes and one ₹10 note"],
+    answer: 2,
     explanation: "₹50 + ₹20 + ₹5 = ₹75."
   },
 
@@ -811,8 +811,8 @@ window.IMO_QUESTIONS = [
     topic: "Shapes & Geometry",
     difficulty: "Easy",
     question: "Which 2D shape has 3 sides and 3 corners (vertices)?",
-    options: ["Square", "Triangle", "Rectangle", "Circle"],
-    answer: 1,
+    options: ["Triangle", "Rectangle", "Circle", "Square"],
+    answer: 0,
     explanation: "A triangle has exactly 3 sides and 3 corners."
   },
   {
@@ -822,8 +822,8 @@ window.IMO_QUESTIONS = [
     topic: "Shapes & Geometry",
     difficulty: "Easy",
     question: "A shape that has NO straight sides and NO corners is a:",
-    options: ["Circle", "Square", "Diamond", "Rectangle"],
-    answer: 0,
+    options: ["Rectangle", "Circle", "Square", "Diamond"],
+    answer: 1,
     explanation: "A circle is a round curved shape with zero corners and zero straight sides."
   },
   {
@@ -833,8 +833,8 @@ window.IMO_QUESTIONS = [
     topic: "Shapes & Geometry",
     difficulty: "Medium",
     question: "In a SQUARE, which of the following is TRUE?",
-    options: ["Opposite sides are different lengths", "All 4 sides are equal in length", "It has only 3 corners", "It has curved sides"],
-    answer: 1,
+    options: ["It has curved sides", "Opposite sides are different lengths", "All 4 sides are equal in length", "It has only 3 corners"],
+    answer: 2,
     explanation: "In a square, all four sides are straight and exactly equal in length."
   },
   {
@@ -844,8 +844,8 @@ window.IMO_QUESTIONS = [
     topic: "Shapes & Geometry",
     difficulty: "Medium",
     question: "What 3D solid shape does a standard playing dice resemble?",
-    options: ["Sphere", "Cube", "Cylinder", "Cone"],
-    answer: 1,
+    options: ["Cylinder", "Cone", "Sphere", "Cube"],
+    answer: 3,
     explanation: "A dice is shaped like a cube with 6 square faces."
   },
   {
@@ -855,8 +855,8 @@ window.IMO_QUESTIONS = [
     topic: "Shapes & Geometry",
     difficulty: "Medium",
     question: "What 3D shape is an unsharpened round pencil or a soda can?",
-    options: ["Cone", "Sphere", "Cylinder", "Cube"],
-    answer: 2,
+    options: ["Cylinder", "Cube", "Cone", "Sphere"],
+    answer: 0,
     explanation: "A cylinder has two circular flat ends and one curved surface."
   },
   {
@@ -877,8 +877,8 @@ window.IMO_QUESTIONS = [
     topic: "Shapes & Geometry",
     difficulty: "Hard",
     question: "How many flat faces does a CUBE have?",
-    options: ["4", "6", "8", "12"],
-    answer: 1,
+    options: ["12", "4", "6", "8"],
+    answer: 2,
     explanation: "A cube has 6 square flat faces (top, bottom, front, back, left, right)."
   },
   {
@@ -888,8 +888,8 @@ window.IMO_QUESTIONS = [
     topic: "Shapes & Geometry",
     difficulty: "Medium",
     question: "A birthday party hat is an example of which 3D shape?",
-    options: ["Cylinder", "Cone", "Sphere", "Cuboid"],
-    answer: 1,
+    options: ["Sphere", "Cuboid", "Cylinder", "Cone"],
+    answer: 3,
     explanation: "A party hat has a circular base and tapers to a pointed top, which is a cone."
   },
   {
@@ -910,8 +910,8 @@ window.IMO_QUESTIONS = [
     topic: "Shapes & Geometry",
     difficulty: "Medium",
     question: "A matchbox or a brick is an example of a:",
-    options: ["Cube", "Cuboid", "Sphere", "Cone"],
-    answer: 1,
+    options: ["Sphere", "Cone", "Cube", "Cuboid"],
+    answer: 3,
     explanation: "A matchbox has rectangular faces, making it a cuboid."
   },
 
@@ -947,8 +947,8 @@ window.IMO_QUESTIONS = [
     topic: "Patterns & Logic",
     difficulty: "Medium",
     question: "Which of the following is the ODD ONE OUT?",
-    options: ["Car", "Bus", "Aeroplane", "Truck"],
-    answer: 2,
+    options: ["Truck", "Car", "Bus", "Aeroplane"],
+    answer: 3,
     explanation: "Car, Bus, and Truck travel on land roads, while an Aeroplane flies in the air."
   },
   {
@@ -958,8 +958,8 @@ window.IMO_QUESTIONS = [
     topic: "Patterns & Logic",
     difficulty: "Medium",
     question: "Identify the pattern rule and find the next number: 80, 70, 60, 50, [ ? ]",
-    options: ["30", "40", "45", "10"],
-    answer: 1,
+    options: ["40", "45", "10", "30"],
+    answer: 0,
     explanation: "The numbers are decreasing by 10 each time: 50 - 10 = 40."
   },
   {
@@ -969,8 +969,8 @@ window.IMO_QUESTIONS = [
     topic: "Patterns & Logic",
     difficulty: "Medium",
     question: "Complete the letter series: AB, BC, CD, DE, [ ? ]",
-    options: ["EF", "FG", "EE", "FA"],
-    answer: 0,
+    options: ["FA", "EF", "FG", "EE"],
+    answer: 1,
     explanation: "Each pair starts with the second letter of the previous pair: D-E is followed by E-F."
   },
   {
@@ -980,8 +980,8 @@ window.IMO_QUESTIONS = [
     topic: "Patterns & Logic",
     difficulty: "Hard",
     question: "In a running race of 5 friends, Ananya finished behind Priya but ahead of Tanvi. If Priya came 1st, what position did Ananya finish?",
-    options: ["1st", "2nd", "3rd", "4th"],
-    answer: 1,
+    options: ["4th", "1st", "2nd", "3rd"],
+    answer: 2,
     explanation: "Priya is 1st. Ananya is right behind Priya and ahead of Tanvi, so Ananya is 2nd!"
   },
   {
@@ -991,8 +991,8 @@ window.IMO_QUESTIONS = [
     topic: "Patterns & Logic",
     difficulty: "Medium",
     question: "If CAT is coded as 3-1-20 (based on letter positions A=1, B=2, C=3...), how is DOG coded?",
-    options: ["4-15-7", "4-14-7", "5-15-7", "4-15-8"],
-    answer: 0,
+    options: ["4-14-7", "5-15-7", "4-15-8", "4-15-7"],
+    answer: 3,
     explanation: "D is 4th letter, O is 15th letter, and G is 7th letter -> 4-15-7."
   },
   {
@@ -1002,8 +1002,8 @@ window.IMO_QUESTIONS = [
     topic: "Patterns & Logic",
     difficulty: "Hard",
     question: "Look at the numbers: 2, 6, 10, 14, 18. What is the rule of this pattern?",
-    options: ["Add 2 each time", "Add 4 each time", "Multiply by 3", "Subtract 4"],
-    answer: 1,
+    options: ["Add 4 each time", "Multiply by 3", "Subtract 4", "Add 2 each time"],
+    answer: 0,
     explanation: "2 + 4 = 6; 6 + 4 = 10; 10 + 4 = 14; 14 + 4 = 18. The rule is 'Add 4'."
   },
   {
@@ -1024,8 +1024,8 @@ window.IMO_QUESTIONS = [
     topic: "Patterns & Logic",
     difficulty: "Hard",
     question: "There are 4 children standing in a row: Rahul, Amit, Dev, and Samar. Rahul is at the left end. Samar is at the right end. Amit is between Rahul and Dev. Who is standing 3rd from the left?",
-    options: ["Rahul", "Amit", "Dev", "Samar"],
-    answer: 2,
+    options: ["Dev", "Samar", "Rahul", "Amit"],
+    answer: 0,
     explanation: "From left to right: 1st Rahul, 2nd Amit, 3rd Dev, 4th Samar. So Dev is 3rd from the left!"
   },
 
@@ -1039,8 +1039,8 @@ window.IMO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "If 1 Apple + 1 Apple = 10, and 1 Apple + 1 Banana = 9, what is the value of 1 Banana?",
-    options: ["3", "4", "5", "6"],
-    answer: 1,
+    options: ["6", "3", "4", "5"],
+    answer: 2,
     explanation: "Two apples = 10, so 1 Apple = 5. Since 5 + Banana = 9, Banana = 9 - 5 = 4!"
   },
   {
@@ -1049,10 +1049,10 @@ window.IMO_QUESTIONS = [
     set: 10,
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
-    question: "A clock shows 3:15. What angle or position does the minute hand point to?",
-    options: ["Points at 12", "Points at 3", "Points at 6", "Points at 9"],
-    answer: 1,
-    explanation: "At 15 minutes past the hour, the long minute hand points directly at the number 3."
+    question: "A clock shows 3:15. Where does the minute hand point, and how many minutes past the hour is it?",
+    options: ["Points at 6, 30 minutes past", "Points at 9, 45 minutes past", "Points at 12, 60 minutes past", "Points at 3, 15 minutes past"],
+    answer: 3,
+    explanation: "Each number on a clock is 5 minutes. The minute hand on 3 means 3 x 5 = 15 minutes past the hour."
   },
   {
     id: "imo-10-3",
@@ -1060,10 +1060,10 @@ window.IMO_QUESTIONS = [
     set: 10,
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
-    question: "Look at the addition puzzle:  2 ⭐ + ⭐ 3 = 6 5. What digit does ⭐ represent?",
-    options: ["3", "4", "5", "2"],
-    answer: 1,
-    explanation: "Look at the ones place: ⭐ + 3 = 5, which means ⭐ must be 2? Wait: if ⭐ = 2, then 22 + 23 = 45 != 65. If ⭐ + 3 = 5, but with carry? Try ⭐ = 4: 24 + 43 = 67. Let's check 2⭐ + ⭐3 = 65: if ⭐ = 3, 23 + 33 = 56. What if ⭐ = 4? Wait, 2⭐ + ⭐3 = 65 -> 20 + ⭐ + 10⭐ + 3 = 65 -> 11⭐ + 23 = 65 -> 11⭐ = 42? No. What if ⭐ is 2? Let's check: (20 + ⭐) + (10⭐ + 3) = 65. Wait, in 24 + 41? If the puzzle is 2⭐ + 3⭐ = 65, then 20 + 30 + 2⭐ = 50 + 2⭐ = 65 -> 15. If the problem is 2⭐ + 43 = 65 -> ⭐ = 2! Option has 2!"
+    question: "Look at the addition puzzle:  4 ⭐ + ⭐ 2 = 7 5. What digit does ⭐ represent?",
+    options: ["3", "2", "5", "4"],
+    answer: 0,
+    explanation: "Check the ones place first: ⭐ + 2 ends in 5, so ⭐ must be 3 (because 3 + 2 = 5). Now check the tens place: 4 + 3 = 7. Verify: 43 + 32 = 75. So ⭐ = 3!"
   },
   {
     id: "imo-10-4",
@@ -1084,12 +1084,12 @@ window.IMO_QUESTIONS = [
     difficulty: "Hard",
     question: "Varun has ₹100. He wants to buy 3 packs of crayons costing ₹30 each. Does he have enough money?",
     options: [
-      "Yes, and he will have ₹10 left",
-      "Yes, and he will have ₹20 left",
       "No, he needs ₹10 more",
-      "No, he needs ₹20 more"
+      "No, he needs ₹20 more",
+      "Yes, and he will have ₹10 left",
+      "Yes, and he will have ₹20 left"
     ],
-    answer: 0,
+    answer: 2,
     explanation: "Cost of 3 crayon packs = 3 x ₹30 = ₹90. Since he has ₹100, ₹100 - ₹90 = ₹10 left!"
   },
   {
@@ -1099,8 +1099,8 @@ window.IMO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "How many TRIANGLES are there in the given figure where a square is divided by both diagonals into 4 parts?",
-    options: ["4", "6", "8", "10"],
-    answer: 2,
+    options: ["10", "4", "6", "8"],
+    answer: 3,
     explanation: "There are 4 small single triangles + 4 composite triangles formed by joining two adjacent halves = 8 triangles in total!"
   },
   {
@@ -1110,9 +1110,9 @@ window.IMO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "A caterpillar climbs up a 10-meter wall. Every day it climbs up 3 meters, but during the night it slips down 1 meter. On which day will it reach the top?",
-    options: ["4th day", "5th day", "6th day", "7th day"],
-    answer: 1,
-    explanation: "Net gain per day = 3 - 1 = 2 m. End of Day 1: 2m. Day 2: 4m. Day 3: 6m. Day 4: 8m. On Day 5 it climbs 2m + 3m = reaches 10m before slipping!"
+    options: ["5th day", "6th day", "7th day", "4th day"],
+    answer: 0,
+    explanation: "Net gain per day = 3 - 1 = 2 m. End of Day 1: 2m. Day 2: 4m. Day 3: 6m. Day 4: 8m. On Day 5 it climbs from 8m up 3m and reaches the 10m top before night, so it never slips back!"
   },
   {
     id: "imo-10-8",
@@ -1121,8 +1121,8 @@ window.IMO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Which of the following calculations gives the SMALLEST result?",
-    options: ["25 + 25", "100 - 45", "6 x 8", "120 - 75"],
-    answer: 3,
+    options: ["6 x 8", "120 - 75", "25 + 25", "100 - 45"],
+    answer: 1,
     explanation: "25+25 = 50; 100-45 = 55; 6x8 = 48; 120-75 = 45. 45 is the smallest!"
   },
   {
@@ -1132,8 +1132,8 @@ window.IMO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "A box of chocolates has 4 rows with 6 chocolates in each row. If Tina and her 2 friends share all chocolates equally, how many chocolates does each child get?",
-    options: ["6", "8", "9", "12"],
-    answer: 1,
+    options: ["12", "6", "8", "9"],
+    answer: 2,
     explanation: "Total chocolates = 4 x 6 = 24. There are 3 children (Tina + 2 friends). 24 / 3 = 8 chocolates each!"
   },
   {
@@ -1143,8 +1143,8 @@ window.IMO_QUESTIONS = [
     topic: "Achievers Section (HOTS)",
     difficulty: "Hard",
     question: "Find the 3-digit number: The digit in hundreds place is 5. The digit in tens place is 1 more than hundreds place. The digit in ones place is half of tens place.",
-    options: ["562", "563", "564", "573"],
-    answer: 1,
+    options: ["564", "573", "562", "563"],
+    answer: 3,
     explanation: "Hundreds place = 5. Tens place = 5 + 1 = 6. Ones place = half of 6 = 3. So the number is 563!"
   }
 ];

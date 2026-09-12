@@ -43,6 +43,9 @@
   border-color: #bae6fd;
   color: #0369a1;
   cursor: pointer;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
 }
 
 /* XP Bar Widget */
