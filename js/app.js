@@ -68,6 +68,37 @@ class AppController {
     if (levelTitleEl) levelTitleEl.textContent = `LEVEL ${level}: DIAMOND SCHOLAR`;
     if (xpRatioEl) xpRatioEl.textContent = `${xpCurrent} / 100 XP`;
     if (xpFillEl) xpFillEl.style.width = `${xpCurrent}%`;
+
+    this.updateRetainedScoreBanner();
+  }
+
+  // Dynamically update the banner to reflect the child's exact saved live score
+  updateRetainedScoreBanner() {
+    const badgeEl = document.getElementById('retained-score-badge');
+    const subtextEl = document.getElementById('retained-score-subtext');
+    const setsPill = document.getElementById('retained-sets-pill');
+    if (!badgeEl) return;
+
+    const profile = window.storageManager.data.profile;
+    const legacySets = window.storageManager.data.legacyCompletedSets || [];
+    const level = window.storageManager.getLevel();
+    const xp = Number(profile.xp) || 0;
+    const emeralds = Number(profile.emeralds) || 0;
+    const legacyCount = legacySets.length;
+
+    badgeEl.textContent = `${xp.toLocaleString()} XP • ${emeralds.toLocaleString()} 💎`;
+
+    if (subtextEl) {
+      if (legacyCount > 0) {
+        subtextEl.textContent = `All ${legacyCount} old tests archived! Your kid's exact score (${xp.toLocaleString()} XP, ${emeralds.toLocaleString()} 💎, Level ${level}) is safely stored in the browser and will never reset on refresh.`;
+      } else {
+        subtextEl.textContent = `Your kid's exact score (${xp.toLocaleString()} XP, ${emeralds.toLocaleString()} 💎, Level ${level}) is safely preserved in local storage and will never reset on refresh.`;
+      }
+    }
+
+    if (setsPill) {
+      setsPill.textContent = legacyCount > 0 ? `✅ ${legacyCount} Old Tests Saved` : `✅ Live Score Active`;
+    }
   }
 
   switchTab(tabId) {

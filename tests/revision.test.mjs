@@ -216,20 +216,10 @@ test('all 5 Minecraft mascots have valid image files on disk', () => {
   }
 });
 
-test('storage retains score from old tests when refreshed / initialized', () => {
-  const { sm } = loadStorage();
-  // Verifies that fresh/default storage starts with the earned score from the 30 old tests
-  assert.ok(sm.data.profile.xp >= 10500, `Expected XP >= 10500, got ${sm.data.profile.xp}`);
-  assert.ok(sm.data.profile.emeralds >= 4550, `Expected emeralds >= 4550, got ${sm.data.profile.emeralds}`);
-  assert.equal(sm.getLevel(), 106, 'Expected Level 106 Diamond Scholar');
-  assert.equal(sm.data.legacyCompletedSets.length, 30, 'All 30 old tests recorded as legacy completed');
-  assert.equal(sm.data.completedSets.length, 0, 'New Edition 2 sets start clean so Set 1 is ready to play');
-});
-
-test('storage migration seamlessly archives old completed sets and retains score', () => {
+test('storage preserves child exact score and archives old sets upon migration', () => {
   const store = {
     SOF_OLYMPIAD_V1: JSON.stringify({
-      profile: { xp: 8000, emeralds: 3000, hearts: 5, streak: 3 },
+      profile: { xp: 8450, emeralds: 3200, hearts: 5, streak: 7 },
       completedSets: ['IMO-1', 'IMO-2', 'IMO-3', 'NSO-1', 'IGKO-1'],
       edition: 1
     })
@@ -245,10 +235,37 @@ test('storage migration seamlessly archives old completed sets and retains score
   new Function('window', 'localStorage', 'console', src)(window, localStorageStub, console);
 
   const sm = window.storageManager;
-  // Score is elevated/retained to at least the old tests baseline
-  assert.ok(sm.data.profile.xp >= 10500, 'XP retained from completed old tests');
-  assert.ok(sm.data.profile.emeralds >= 4550, 'Emeralds retained from completed old tests');
+  // Exact score is 100% preserved without mutation or overwrite!
+  assert.equal(sm.data.profile.xp, 8450, 'Exact child XP preserved');
+  assert.equal(sm.data.profile.emeralds, 3200, 'Exact child emeralds preserved');
+  assert.equal(sm.data.profile.streak, 7, 'Exact child streak preserved');
   assert.ok(sm.data.legacyCompletedSets.includes('IMO-1'), 'IMO-1 archived in legacy sets');
   assert.equal(sm.data.completedSets.length, 0, 'Completed sets reset for fresh Edition 2 play');
   assert.equal(sm.data.edition, 2, 'Migrated to edition 2');
+});
+
+test('storage survives multiple reloads without wiping or resetting score', () => {
+  const store = {
+    SOF_OLYMPIAD_V1: JSON.stringify({
+      profile: { xp: 5200, emeralds: 1800, hearts: 4, streak: 5 },
+      completedSets: ['IMO-1'],
+      legacyCompletedSets: ['IMO-old-1'],
+      edition: 2
+    })
+  };
+  const localStorageStub = {
+    getItem: (k) => (k in store ? store[k] : null),
+    setItem: (k, v) => { store[k] = String(v); },
+    removeItem: (k) => { delete store[k]; },
+    clear: () => { Object.keys(store).forEach(k => delete store[k]); }
+  };
+  const window = { SOFUtils: { localDay: () => '2026-09-19' } };
+  const src = fs.readFileSync(path.join(root, 'js/storage.js'), 'utf8');
+  new Function('window', 'localStorage', 'console', src)(window, localStorageStub, console);
+
+  const sm = window.storageManager;
+  assert.equal(sm.data.profile.xp, 5200, 'XP persists across reloads');
+  assert.equal(sm.data.profile.emeralds, 1800, 'Emeralds persist across reloads');
+  assert.equal(sm.data.profile.streak, 5, 'Streak persists across reloads');
+  assert.equal(sm.data.completedSets.length, 1, 'Completed sets persist');
 });
