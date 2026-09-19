@@ -1,6 +1,6 @@
 // SOF Quest service worker: offline-first app shell for the iPad PWA.
 // Cache-first for local assets; navigation falls back to cached index.html.
-const CACHE = 'sof-quest-v4';
+const CACHE = 'sof-quest-v5';
 
 const ASSETS = [
   './',

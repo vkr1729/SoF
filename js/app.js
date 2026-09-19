@@ -134,15 +134,16 @@ class AppController {
     if (!container) return;
 
     if (titleEl) {
-      titleEl.textContent = `${this.currentSubject} Olympiad Missions (20 Sets x 10 Questions)`;
+      titleEl.textContent = `${this.currentSubject} Olympiad Missions (10 Sets x 10 Questions)`;
     }
 
-    let totalSets = 20;
+    let totalSets = 10;
     let cardsHtml = '';
 
     for (let setNum = 1; setNum <= totalSets; setNum++) {
       const isDone = window.storageManager.isSetCompleted(this.currentSubject, setNum);
       const isNext = !isDone && (setNum === 1 || window.storageManager.isSetCompleted(this.currentSubject, setNum - 1));
+      const isAchievers = (setNum === 10);
 
       // Spec conformance: completed sets must expose a distinct Revise button,
       // and locked sets must not fire clicks or claim to be unlocked.
@@ -151,7 +152,7 @@ class AppController {
            <button class="btn-tactile btn-blue touch-44 set-node-revise-btn" style="margin-top: 6px; padding: 4px 10px; font-size: 11px; width: 100%;" onclick="event.stopPropagation(); window.app.startMissionSet('${this.currentSubject}', ${setNum})" aria-label="Revise set ${setNum}">
              🛡️ Revise Set
            </button>`
-        : `<div class="set-node-status">${isNext ? 'Ready to Play' : 'Locked'}</div>`;
+        : `<div class="set-node-status">${isNext ? (isAchievers ? 'HOTS Ready! 🏆' : 'Ready to Play') : 'Locked'}</div>`;
 
       const clickAttr = (isDone || isNext)
         ? `onclick="window.app.startMissionSet('${this.currentSubject}', ${setNum})"`
@@ -159,10 +160,13 @@ class AppController {
       const tabIndex = (isDone || isNext) ? '0' : '-1';
       const roleAttr = (isDone || isNext) ? 'role="button"' : '';
 
+      const icon = isDone ? '⭐' : (isNext ? (isAchievers ? '👑' : '⚔️') : '🔒');
+      const titleLabel = isAchievers ? `Set 10 (HOTS 🏆)` : `Set ${setNum}`;
+
       cardsHtml += `
-        <div class="set-node-card ${isDone ? 'completed' : (isNext ? 'current' : 'locked')}" ${clickAttr} ${roleAttr} tabindex="${tabIndex}" aria-label="Set ${setNum} ${isDone ? 'completed, click to revise' : (isNext ? 'ready to play' : 'locked')}">
-          <div class="set-node-icon">${isDone ? '⭐' : (isNext ? '⚔️' : '🔒')}</div>
-          <div class="set-node-title">Set ${setNum}</div>
+        <div class="set-node-card ${isDone ? 'completed' : (isNext ? 'current' : 'locked')} ${isAchievers ? 'achievers-card' : ''}" ${clickAttr} ${roleAttr} tabindex="${tabIndex}" aria-label="${titleLabel} ${isDone ? 'completed, click to revise' : (isNext ? 'ready to play' : 'locked')}">
+          <div class="set-node-icon">${icon}</div>
+          <div class="set-node-title">${titleLabel}</div>
           ${statusHtml}
         </div>
       `;

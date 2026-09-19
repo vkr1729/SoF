@@ -220,6 +220,16 @@
   box-shadow: 0 3px 0 var(--primary);
 }
 
+.set-node-card.achievers-card {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+.set-node-card.achievers-card.current {
+  border-color: #f59e0b;
+  box-shadow: 0 4px 0 #d97706, 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
 .set-node-icon {
   font-size: 28px;
   margin-bottom: 6px;

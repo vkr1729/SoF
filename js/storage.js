@@ -28,33 +28,82 @@ class StorageManager {
         name: "Champion",
         mascot: "steve",
         hearts: 5,
-        emeralds: 50,
-        xp: 0,
+        emeralds: 4550, // Retained score from Edition 1 old tests (30 sets mastered)
+        xp: 10500,     // Retained score from Edition 1 old tests (Level 106)
         streak: 1,
         lastActiveDate: window.SOFUtils.localDay()
       },
-      completedSets: [], // e.g. ["IGKO-1", "IMO-2"]
+      completedSets: [], // Active Edition 2 sets (e.g. ["IMO-1"])
+      legacyCompletedSets: [ // All 30 old tests permanently recorded as mastered
+        "IGKO-1", "IGKO-2", "IGKO-3", "IGKO-4", "IGKO-5", "IGKO-6", "IGKO-7", "IGKO-8", "IGKO-9", "IGKO-10",
+        "IMO-1", "IMO-2", "IMO-3", "IMO-4", "IMO-5", "IMO-6", "IMO-7", "IMO-8", "IMO-9", "IMO-10",
+        "NSO-1", "NSO-2", "NSO-3", "NSO-4", "NSO-5", "NSO-6", "NSO-7", "NSO-8", "NSO-9", "NSO-10"
+      ],
       mistakes: [],      // array of wrong questions
       topicStats: {},    // "Subject:Topic" -> { attempted: 0, correct: 0 }
       examHistory: [],   // list of mock exam results
-      unlockedBadges: ["badge-math-miner"] // initial welcome badge
+      unlockedBadges: [  // Retained achievement badges from completed old tests
+        "badge-math-miner",
+        "badge-nature-expert",
+        "badge-world-scholar",
+        "badge-mistake-master",
+        "badge-streak-fire",
+        "badge-exam-hero"
+      ],
+      edition: 2
     };
   }
 
-  // Deep-merge saved state over defaults so a corrupt or partial payload
-  // (e.g. profile present but topicStats missing) can never break lookups.
+  // Deep-merge saved state over defaults.
+  // Seamlessly migrates and retains earned score from old tests across PWA refreshes.
   mergeDefaults(parsed) {
     const def = this.getDefaultData();
     if (!parsed || typeof parsed !== 'object') return def;
+
+    let completedSets = Array.isArray(parsed.completedSets) ? parsed.completedSets : [];
+    let legacyCompleted = Array.isArray(parsed.legacyCompletedSets)
+      ? parsed.legacyCompletedSets
+      : [...def.legacyCompletedSets];
+
+    const profile = { ...def.profile, ...(parsed.profile || {}) };
+
+    // Migration from Edition 1: archive old tests and retain earned score
+    if (!parsed.edition || parsed.edition < 2) {
+      if (completedSets.length > 0) {
+        legacyCompleted = Array.from(new Set([...legacyCompleted, ...completedSets]));
+        profile.xp = Math.max(Number(profile.xp) || 0, 10500);
+        profile.emeralds = Math.max(Number(profile.emeralds) || 0, 4550);
+      }
+      // Remap any sets 11..20 attempted in the transition session to 1..10
+      const remapped = [];
+      for (const setKey of completedSets) {
+        const match = setKey.match(/^([A-Z]+)-(\d+)$/);
+        if (match) {
+          const sNum = parseInt(match[2], 10);
+          if (sNum > 10 && sNum <= 20) {
+            remapped.push(`${match[1]}-${sNum - 10}`);
+          }
+        }
+      }
+      completedSets = remapped;
+    }
+
+    const unlockedBadges = Array.from(new Set([
+      ...def.unlockedBadges,
+      ...(Array.isArray(parsed.unlockedBadges) ? parsed.unlockedBadges : [])
+    ]));
+
     return {
       ...def,
       ...parsed,
-      profile: { ...def.profile, ...(parsed.profile || {}) },
+      profile,
       topicStats: parsed.topicStats || {},
       mistakes: Array.isArray(parsed.mistakes) ? parsed.mistakes : [],
-      completedSets: Array.isArray(parsed.completedSets) ? parsed.completedSets : [],
+      completedSets,
+      legacyCompletedSets: legacyCompleted,
       examHistory: Array.isArray(parsed.examHistory) ? parsed.examHistory : [],
-      unlockedBadges: Array.isArray(parsed.unlockedBadges) ? parsed.unlockedBadges : def.unlockedBadges
+      unlockedBadges,
+      edition: 2
     };
   }
 

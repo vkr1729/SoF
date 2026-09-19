@@ -136,9 +136,27 @@
         </div>
       </div>
 
+      <!-- Edition 1 Retained Score & Active Edition 2 Status Banner -->
+      <div class="card-box" style="margin-bottom: 20px; background: #f0fdf4; border: 2px solid #86efac; padding: 16px 20px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <div style="font-size: 36px;">🏆</div>
+        <div style="flex: 1; min-width: 240px;">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span style="font-size: 16px; font-weight: 900; color: #166534;">Previous Tests Mastered • All Scores Retained!</span>
+            <span class="brand-badge" style="background: #15803d; color: #fff; font-size: 11px;">10,500 XP &bull; 4,550 💎 Retained</span>
+          </div>
+          <div style="font-size: 13px; color: #15803d; margin-top: 3px;">
+            All 30 old tests completed! Your XP, Emeralds, and Level 106 are safely preserved. Old tests are archived and the new Olympiad sets are ready to play!
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <span class="mc-stat-pill" style="background: #dcfce7; border-color: #86efac; color: #14532d; font-size: 12px;">✅ 30/30 Old Tests Saved</span>
+          <span class="mc-stat-pill" style="background: #eff6ff; border-color: #bfdbfe; color: #1e40af; font-size: 12px;">✨ New Sets Ready</span>
+        </div>
+      </div>
+
       <div style="text-align: center; margin-bottom: 24px;">
         <h1 style="font-size: 26px; font-weight: 900; color: #1e293b;">Choose Your Olympiad Biome</h1>
-        <p style="color: var(--text-muted); font-size: 15px;">Each subject has 20 unmixed sets of 10 questions (200 questions per subject). Master them all to unlock trophies!</p>
+        <p style="color: var(--text-muted); font-size: 15px;">Each subject has 10 unmixed sets of 10 questions (100 questions per subject). Set 10 is the Achievers Section (HOTS, 2 marks). Master them all to unlock trophies!</p>
       </div>
 
       <!-- Subject Biome Selector -->
@@ -146,21 +164,21 @@
         <div class="biome-card active-subject" id="biome-imo" onclick="window.app.selectSubject('IMO')">
           <div class="biome-icon">📐</div>
           <div class="biome-title" style="color: #0284c7;">IMO Mathematics</div>
-          <div class="biome-subtitle">200 Questions • 20 Sets</div>
+          <div class="biome-subtitle">100 Questions • 10 Sets</div>
           <button class="btn-tactile btn-blue" style="width: 100%; font-size: 13px; padding: 8px;">Explore Math</button>
         </div>
 
         <div class="biome-card" id="biome-nso" onclick="window.app.selectSubject('NSO')">
           <div class="biome-icon">🔬</div>
           <div class="biome-title" style="color: #16a34a;">NSO Science</div>
-          <div class="biome-subtitle">200 Questions • 20 Sets</div>
+          <div class="biome-subtitle">100 Questions • 10 Sets</div>
           <button class="btn-tactile btn-green" style="width: 100%; font-size: 13px; padding: 8px;">Explore Science</button>
         </div>
 
         <div class="biome-card" id="biome-igko" onclick="window.app.selectSubject('IGKO')">
           <div class="biome-icon">🌍</div>
           <div class="biome-title" style="color: #d97706;">IGKO General Knowledge</div>
-          <div class="biome-subtitle">200 Questions • 20 Sets</div>
+          <div class="biome-subtitle">100 Questions • 10 Sets</div>
           <button class="btn-tactile btn-yellow" style="width: 100%; font-size: 13px; padding: 8px;">Explore GK</button>
         </div>
       </div>
@@ -168,9 +186,9 @@
       <!-- Mission Sets Grid -->
       <div class="card-box">
         <h2 id="active-subject-title" style="font-size: 20px; font-weight: 900; margin-bottom: 6px; color: #1e293b;">
-          IMO Mathematics Missions (20 Sets x 10 Questions)
+          IMO Mathematics Missions (10 Sets x 10 Questions)
         </h2>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">Click on any set to start playing in Practice Quest Mode:</p>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">Click on any set to start playing in Practice Quest Mode (Set 10 is the HOTS Achievers Challenge):</p>
         <div class="set-nodes-grid" id="sets-node-container"></div>
       </div>
     </section>

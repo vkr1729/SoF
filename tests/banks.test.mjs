@@ -22,10 +22,10 @@ const banks = {
 };
 
 for (const [subj, bank] of Object.entries(banks)) {
-  test(`${subj}: 200 questions, 10 per set, unique ids`, () => {
-    assert.equal(bank.length, 200);
-    assert.equal(new Set(bank.map((q) => q.id)).size, 200);
-    for (let s = 1; s <= 20; s++) {
+  test(`${subj}: 100 questions, 10 per set, unique ids`, () => {
+    assert.equal(bank.length, 100);
+    assert.equal(new Set(bank.map((q) => q.id)).size, 100);
+    for (let s = 1; s <= 10; s++) {
       assert.equal(bank.filter((q) => q.set === s).length, 10, `${subj} set ${s}`);
     }
   });
@@ -40,10 +40,10 @@ for (const [subj, bank] of Object.entries(banks)) {
     }
   });
 
-  test(`${subj}: answer keys balanced 40-60 per position`, () => {
+  test(`${subj}: answer keys balanced 20-30 per position`, () => {
     const dist = [0, 0, 0, 0];
     for (const q of bank) dist[q.answer]++;
-    for (const c of dist) assert.ok(c >= 40 && c <= 60, `${subj} dist ${dist}`);
+    for (const c of dist) assert.ok(c >= 20 && c <= 30, `${subj} dist ${dist}`);
   });
 
   test(`${subj}: no draft-thinking explanations`, () => {
@@ -53,7 +53,7 @@ for (const [subj, bank] of Object.entries(banks)) {
   });
 
   test(`${subj}: Achievers set explanations teach (40+ chars)`, () => {
-    for (const q of bank.filter((q) => q.set === 10 || q.set === 20)) {
+    for (const q of bank.filter((q) => q.set === 10)) {
       assert.ok(q.explanation.length >= 40, q.id);
     }
   });
@@ -61,9 +61,12 @@ for (const [subj, bank] of Object.entries(banks)) {
 
 // Spot-verified correct answers (human-audited against syllabus content).
 const SPOT = [
-  ['igko-1-1', 'Camel'], ['igko-10-6', 'EVEREST'], ['igko-10-2', 'Carrot – Underground Fruit'],
-  ['imo-1-1', '700'], ['imo-2-9', '8'], ['imo-10-4', '9 marbles'],
-  ['nso-10-1', 'Snake'], ['nso-10-7', 'Boiling water turns it into ice'],
+  ['igko-1-1', 'Chameleon'],
+  ['igko-10-10', 'Ostrich'],
+  ['imo-1-1', '600 + 80 + 4'],
+  ['imo-10-10', '784'],
+  ['nso-1-1', 'Pumpkin'],
+  ['nso-10-10', 'Walking or riding a bicycle for short distances instead of using a petrol car'],
 ];
 test('spot-checked keyed answers match audited content', () => {
   const all = [...banks.IGKO, ...banks.IMO, ...banks.NSO];
@@ -74,12 +77,11 @@ test('spot-checked keyed answers match audited content', () => {
   }
 });
 
-test('imo-10-3 cryptarithm has unique digit solution ⭐=3', () => {
-  const q = [...banks.IMO].find((q) => q.id === 'imo-10-3');
-  const sols = [];
-  for (let s = 0; s <= 9; s++) {
-    if ((40 + s) + (10 * s + 2) === 75) sols.push(s);
-  }
-  assert.deepEqual(sols, [3]);
-  assert.equal(q.options[q.answer], '3');
+test('legacy questions archive retains all 300 original questions', () => {
+  const archiveSrc = fs.readFileSync(path.join(root, 'data/legacy-questions-archive.js'), 'utf8');
+  const sandbox = { window: {} };
+  new Function('window', archiveSrc)(sandbox.window);
+  assert.equal(sandbox.window.LEGACY_IGKO_QUESTIONS.length, 100);
+  assert.equal(sandbox.window.LEGACY_IMO_QUESTIONS.length, 100);
+  assert.equal(sandbox.window.LEGACY_NSO_QUESTIONS.length, 100);
 });
