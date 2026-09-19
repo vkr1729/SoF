@@ -7,6 +7,7 @@ class AppController {
 
   init() {
     this.registerServiceWorker();
+    this.bindMascotImageFallbacks();
     this.updateHUD();
     this.renderMissions();
     this.renderTrophyRoom();
@@ -16,6 +17,24 @@ class AppController {
 
     // Auto-update HUD every 3 seconds if state changes
     setInterval(() => this.updateHUD(), 2000);
+  }
+
+  // One delegated error listener swaps any broken mascot <img> for its
+  // emoji fallback — bank/asset text never lands inside an onerror string.
+  bindMascotImageFallbacks() {
+    if (window.__sofMascotFallbackBound) return;
+    window.__sofMascotFallbackBound = true;
+    document.addEventListener('error', (ev) => {
+      const img = ev.target;
+      if (!img || img.tagName !== 'IMG' || !img.isConnected) return;
+      const fbId = img.dataset ? img.dataset.mascotFallback : null;
+      if (!fbId) return;
+      const mascot = (window.MINECRAFT_MASCOTS || []).find(m => m.id === fbId);
+      const fallback = document.createElement('div');
+      fallback.style.cssText = 'font-size: 38px; margin-bottom: 6px;';
+      fallback.textContent = (mascot && mascot.icon) || '⛏️';
+      img.replaceWith(fallback);
+    }, true);
   }
 
   updateHUD() {
@@ -33,7 +52,15 @@ class AppController {
     if (heartsEl) heartsEl.textContent = `${profile.hearts} / 5 ❤️`;
 
     const mascotObj = (window.MINECRAFT_MASCOTS || []).find(m => m.id === profile.mascot) || { name: "Steve", icon: "⛏️" };
-    if (companionEl) companionEl.textContent = `${mascotObj.icon} ${mascotObj.name}`;
+    if (companionEl) {
+      if (mascotObj.avatarImg && mascotObj.id) {
+        companionEl.innerHTML = `<img src="${mascotObj.avatarImg}" alt="${mascotObj.name}" class="hud-companion-img" data-mascot-fallback="${mascotObj.id}" /> <span>${mascotObj.name}</span>`;
+      } else if (mascotObj.avatarImg) {
+        companionEl.innerHTML = `<img src="${mascotObj.avatarImg}" alt="${mascotObj.name}" class="hud-companion-img" onerror="this.remove()" /> <span>${mascotObj.name}</span>`;
+      } else {
+        companionEl.textContent = `${mascotObj.icon} ${mascotObj.name}`;
+      }
+    }
 
     const level = window.storageManager.getLevel();
     const xpCurrent = window.storageManager.getXpInCurrentLevel();
@@ -82,21 +109,24 @@ class AppController {
     if (!container) return;
 
     if (titleEl) {
-      titleEl.textContent = `${this.currentSubject} Olympiad Missions (10 Sets x 10 Questions)`;
+      titleEl.textContent = `${this.currentSubject} Olympiad Missions (20 Sets x 10 Questions)`;
     }
 
-    let totalSets = 10;
+    let totalSets = 20;
     let cardsHtml = '';
 
     for (let setNum = 1; setNum <= totalSets; setNum++) {
       const isDone = window.storageManager.isSetCompleted(this.currentSubject, setNum);
       const isNext = !isDone && (setNum === 1 || window.storageManager.isSetCompleted(this.currentSubject, setNum - 1));
+      const statusLabel = isDone ? 'Completed 💎' : (isNext ? 'Ready to Play' : 'Locked');
+      const showRevise = isDone && typeof window.quizEngine !== 'undefined' && typeof window.quizEngine.startPracticeSet === 'function';
 
       cardsHtml += `
-        <div class="set-node-card ${isDone ? 'completed' : (isNext ? 'current' : '')}" onclick="window.app.startMissionSet('${this.currentSubject}', ${setNum})">
+        <div class="set-node-card ${isDone ? 'completed' : (isNext ? 'current' : '')}"${isDone || isNext ? ` onclick="window.app.startMissionSet('${this.currentSubject}', ${setNum})" role="button" tabindex="0" aria-label="${isDone ? `Revise ${this.currentSubject} Set ${setNum}` : `Start ${this.currentSubject} Set ${setNum}`}"` : ` aria-disabled="true" title="Complete Set ${setNum - 1} to unlock"`}>
           <div class="set-node-icon">${isDone ? '⭐' : (isNext ? '⚔️' : '🔒')}</div>
           <div class="set-node-title">Set ${setNum}</div>
-          <div class="set-node-status">${isDone ? 'Completed 💎' : (isNext ? 'Ready to Play' : 'Unlocked')}</div>
+          <div class="set-node-status">${statusLabel}</div>
+          ${showRevise ? `<button class="btn-tactile btn-blue revise-set-btn" style="width: 100%; font-size: 12px; padding: 6px 8px; margin-top: 8px;" onclick="event.stopPropagation(); window.app.startMissionSet('${this.currentSubject}', ${setNum})" aria-label="Revise ${this.currentSubject} Set ${setNum}">🛡️ Revise Set</button>` : ''}
         </div>
       `;
     }
@@ -118,9 +148,12 @@ class AppController {
       const currentMascot = window.storageManager.getMascot();
       mascotContainer.innerHTML = window.MINECRAFT_MASCOTS.map(m => {
         const isActive = m.id === currentMascot;
+        const visualHtml = m.avatarImg
+          ? `<img src="${m.avatarImg}" alt="${m.name}" class="mascot-select-img" data-mascot-fallback="${m.id}" />`
+          : `<div style="font-size: 38px; margin-bottom: 6px;">${m.icon}</div>`;
         return `
-          <div class="card-box" style="flex: 1; min-width: 140px; text-align: center; cursor: pointer; border-color: ${isActive ? 'var(--primary)' : 'var(--border)'}; background: ${isActive ? '#f0fdf4' : '#fff'};" onclick="window.app.changeMascot('${m.id}')">
-            <div style="font-size: 38px; margin-bottom: 6px;">${m.icon}</div>
+          <div class="card-box mascot-pick-card ${isActive ? 'active-mascot' : ''}" style="flex: 1; min-width: 140px; text-align: center; cursor: pointer; border-color: ${isActive ? 'var(--primary)' : 'var(--border)'}; background: ${isActive ? '#f0fdf4' : '#fff'};" onclick="window.app.changeMascot('${m.id}')">
+            ${visualHtml}
             <div style="font-weight: 900; font-size: 15px;">${m.name}</div>
             <div style="font-size: 12px; color: ${isActive ? 'var(--primary-dark)' : '#64748b'}; font-weight: 800; margin-top: 4px;">
               ${isActive ? 'Active Buddy ✅' : 'Choose'}

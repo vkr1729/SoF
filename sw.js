@@ -1,6 +1,6 @@
 // SOF Quest service worker: offline-first app shell for the iPad PWA.
 // Cache-first for local assets; navigation falls back to cached index.html.
-const CACHE = 'sof-quest-v1';
+const CACHE = 'sof-quest-v3';
 
 const ASSETS = [
   './',
@@ -10,6 +10,11 @@ const ASSETS = [
   'icons/icon-192.png',
   'icons/icon-512.png',
   'icons/icon-maskable-512.png',
+  'assets/minecraft/steve.jpg',
+  'assets/minecraft/alex.jpg',
+  'assets/minecraft/creeper.jpg',
+  'assets/minecraft/wolf.jpg',
+  'assets/minecraft/axolotl.jpg',
   'css/main.css',
   'css/minecraft-theme.css',
   'css/exam-simulator.css',

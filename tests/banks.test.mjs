@@ -22,10 +22,10 @@ const banks = {
 };
 
 for (const [subj, bank] of Object.entries(banks)) {
-  test(`${subj}: 100 questions, 10 per set, unique ids`, () => {
-    assert.equal(bank.length, 100);
-    assert.equal(new Set(bank.map((q) => q.id)).size, 100);
-    for (let s = 1; s <= 10; s++) {
+  test(`${subj}: 200 questions, 10 per set, unique ids`, () => {
+    assert.equal(bank.length, 200);
+    assert.equal(new Set(bank.map((q) => q.id)).size, 200);
+    for (let s = 1; s <= 20; s++) {
       assert.equal(bank.filter((q) => q.set === s).length, 10, `${subj} set ${s}`);
     }
   });
@@ -40,10 +40,10 @@ for (const [subj, bank] of Object.entries(banks)) {
     }
   });
 
-  test(`${subj}: answer keys balanced 20-30 per position`, () => {
+  test(`${subj}: answer keys balanced 40-60 per position`, () => {
     const dist = [0, 0, 0, 0];
     for (const q of bank) dist[q.answer]++;
-    for (const c of dist) assert.ok(c >= 20 && c <= 30, `${subj} dist ${dist}`);
+    for (const c of dist) assert.ok(c >= 40 && c <= 60, `${subj} dist ${dist}`);
   });
 
   test(`${subj}: no draft-thinking explanations`, () => {
@@ -53,7 +53,7 @@ for (const [subj, bank] of Object.entries(banks)) {
   });
 
   test(`${subj}: Achievers set explanations teach (40+ chars)`, () => {
-    for (const q of bank.filter((q) => q.set === 10)) {
+    for (const q of bank.filter((q) => q.set === 10 || q.set === 20)) {
       assert.ok(q.explanation.length >= 40, q.id);
     }
   });

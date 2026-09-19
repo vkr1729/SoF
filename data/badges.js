@@ -6,6 +6,7 @@ window.MINECRAFT_MASCOTS = [
     id: "steve",
     name: "Steve the Miner",
     icon: "⛏️",
+    avatarImg: "assets/minecraft/steve.jpg",
     avatarSvg: `<svg viewBox="0 0 40 40" width="40" height="40">
       <rect x="8" y="4" width="24" height="24" fill="#d79b76" rx="2"/>
       <rect x="8" y="4" width="24" height="8" fill="#4d3324"/>
@@ -24,6 +25,7 @@ window.MINECRAFT_MASCOTS = [
     id: "alex",
     name: "Alex the Explorer",
     icon: "🏹",
+    avatarImg: "assets/minecraft/alex.jpg",
     avatarSvg: `<svg viewBox="0 0 40 40" width="40" height="40">
       <rect x="8" y="4" width="24" height="24" fill="#e8b090" rx="2"/>
       <rect x="8" y="4" width="24" height="9" fill="#c46428"/>
@@ -42,6 +44,7 @@ window.MINECRAFT_MASCOTS = [
     id: "creeper",
     name: "Creeper Sparky",
     icon: "💚",
+    avatarImg: "assets/minecraft/creeper.jpg",
     avatarSvg: `<svg viewBox="0 0 40 40" width="40" height="40">
       <rect x="8" y="4" width="24" height="24" fill="#4caf50" rx="2"/>
       <rect x="12" y="10" width="4" height="4" fill="#1b5e20"/>
@@ -59,6 +62,7 @@ window.MINECRAFT_MASCOTS = [
     id: "axolotl",
     name: "Bubbles the Axolotl",
     icon: "🌸",
+    avatarImg: "assets/minecraft/axolotl.jpg",
     avatarSvg: `<svg viewBox="0 0 40 40" width="40" height="40">
       <rect x="8" y="8" width="24" height="20" fill="#f8bbd0" rx="3"/>
       <rect x="4" y="10" width="4" height="12" fill="#ec407a"/>
@@ -75,6 +79,7 @@ window.MINECRAFT_MASCOTS = [
     id: "wolf",
     name: "Shadow the Loyal Wolf",
     icon: "🐺",
+    avatarImg: "assets/minecraft/wolf.jpg",
     avatarSvg: `<svg viewBox="0 0 40 40" width="40" height="40">
       <rect x="10" y="8" width="20" height="20" fill="#bdbdbd" rx="2"/>
       <polygon points="10,8 14,2 16,8" fill="#757575"/>

@@ -113,7 +113,9 @@ class StorageManager {
   }
 
   // Record question attempt
-  recordAttempt(question, chosenAnswer, isCorrect) {
+  recordAttempt(question, chosenAnswer, isCorrect, isRevision = false) {
+    if (isRevision) return;
+    if (!question || typeof question !== 'object') return;
     const topicKey = `${question.subject}:${question.topic}`;
     if (!this.data.topicStats[topicKey]) {
       this.data.topicStats[topicKey] = { attempted: 0, correct: 0 };
@@ -152,6 +154,10 @@ class StorageManager {
       this.data.mistakes[existingIndex] = record;
     } else {
       this.data.mistakes.unshift(record);
+      // Quota protection: keep mistake bank bounded at 200 items
+      if (this.data.mistakes.length > 200) {
+        this.data.mistakes = this.data.mistakes.slice(0, 200);
+      }
     }
     this.save();
   }
@@ -242,7 +248,8 @@ class StorageManager {
   }
 
   // Completed Set Tracking
-  markSetCompleted(subject, setNum) {
+  markSetCompleted(subject, setNum, isRevision = false) {
+    if (isRevision) return;
     const setKey = `${subject}-${setNum}`;
     if (!this.data.completedSets.includes(setKey)) {
       this.data.completedSets.push(setKey);
@@ -258,6 +265,9 @@ class StorageManager {
 
   // Save Exam Simulation Result
   saveExamResult(result) {
+    const score = Number(result && result.score);
+    const total = Number(result && result.total);
+    if (!Number.isFinite(score) || !Number.isFinite(total) || total <= 0) return;
     this.data.examHistory.unshift({
       date: new Date().toLocaleDateString(),
       subject: result.subject,
@@ -266,6 +276,10 @@ class StorageManager {
       timeTakenSecs: result.timeTakenSecs,
       percentage: Math.round((result.score / result.total) * 100)
     });
+    // Quota protection: keep exam history bounded at 20 records
+    if (this.data.examHistory.length > 20) {
+      this.data.examHistory = this.data.examHistory.slice(0, 20);
+    }
     this.addXP(150);
     this.addEmeralds(100);
     this.save();

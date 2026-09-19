@@ -10,10 +10,10 @@ A complete, offline-first, gamified web application and official exam simulator 
 
 ## 🌟 Highlights & Features
 
-1. **Massive Question Archive (300 Questions Across 30 Sets)**:
-   - 🌍 **IGKO (General Knowledge)**: 10 sets × 10 Qs = 100 Questions
-   - 📐 **IMO (Mathematics)**: 10 sets × 10 Qs = 100 Questions
-   - 🔬 **NSO (National Science)**: 10 sets × 10 Qs = 100 Questions
+1. **Massive Question Archive (600 Questions Across 60 Sets)**:
+   - 🌍 **IGKO (General Knowledge)**: 20 sets × 10 Qs = 200 Questions
+   - 📐 **IMO (Mathematics)**: 20 sets × 10 Qs = 200 Questions
+   - 🔬 **NSO (National Science)**: 20 sets × 10 Qs = 200 Questions
    - *Strictly isolated by subject* (no category mixing in sets) to maintain structured learning.
    - Includes **Achievers Section (HOTS)** questions for advanced Olympiad medal preparation.
 
@@ -53,9 +53,9 @@ A complete, offline-first, gamified web application and official exam simulator 
 │   ├── quiz-engine.js           # Dual-mode engine (Quest vs TCS iON Exam)
 │   └── app.js                   # Master controller & navigation coordinator
 ├── data/
-│   ├── igko-questions.js        # 100 IGKO Questions (Sets 1 to 10)
-│   ├── imo-questions.js         # 100 IMO Questions (Sets 1 to 10)
-│   ├── nso-questions.js         # 100 NSO Questions (Sets 1 to 10)
+│   ├── igko-questions.js        # 200 IGKO Questions (Sets 1 to 20)
+│   ├── imo-questions.js         # 200 IMO Questions (Sets 1 to 20)
+│   ├── nso-questions.js         # 200 NSO Questions (Sets 1 to 20)
 │   └── badges.js                # Mascot companions, XP levels & trophy badges
 ├── mocks/                       # 5 Full Interactive Archetype Mockups
 │   ├── mock1_duolingo_quest.html

@@ -268,3 +268,81 @@
   justify-content: center;
   flex-shrink: 0;
 }
+
+/* Real Minecraft Character Avatars (Archetype 2: Modern Overworld Clean) */
+.hud-companion-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #38bdf8;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-right: 4px;
+}
+
+.mascot-speech-img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2.5px solid #38bdf8;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.mascot-select-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #e2e8f0;
+  object-fit: cover;
+  margin: 0 auto 8px;
+  display: block;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.mascot-pick-card.active-mascot .mascot-select-img {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px #bae6fd;
+}
+
+.mascot-pick-card:hover .mascot-select-img {
+  transform: scale(1.05);
+}
+
+/* Revision Mode Styling (Archetype 2: Modern Overworld Clean) */
+.revision-banner {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid #f59e0b;
+  border-radius: 20px;
+  padding: 10px 16px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-weight: 800;
+  font-size: 14px;
+  color: #f59e0b;
+}
+
+.revision-badge-pill {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid #f59e0b;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.set-node-card.completed .set-node-status {
+  color: #854d0e;
+  font-weight: 800;
+}
+

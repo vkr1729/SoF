@@ -3,6 +3,7 @@
 class QuizEngine {
   constructor() {
     this.mode = 'practice'; // 'practice' | 'exam'
+    this.isRevision = false; // true when re-attempting an already completed set
     this.questions = [];
     this.currentIndex = 0;
     this.selectedAnswers = {}; // qIndex -> optionIndex
@@ -30,11 +31,18 @@ class QuizEngine {
     }
   }
 
-  // Marks weight decoupled from display strings: Achievers live in set 10.
+  // Achievers predicate: explicit marks > 1 wins, or Set 10, 20 (q.set % 10 === 0).
+  isAchievers(q) {
+    if (!q) return false;
+    if (Number.isFinite(q.marks)) return q.marks > 1;
+    return Boolean(q.set && q.set % 10 === 0);
+  }
+
+  // Marks weight decoupled from display strings: Achievers live in sets 10 and 20.
   // Explicit q.marks wins when present.
   getQuestionWeight(q) {
     if (q && Number.isFinite(q.marks)) return q.marks;
-    return q && q.set === 10 ? 2 : 1;
+    return this.isAchievers(q) ? 2 : 1;
   }
 
   // Read the current question aloud without embedding bank text in onclick.
@@ -51,19 +59,22 @@ class QuizEngine {
   startPracticeSet(subject, setNumber) {
     this.mode = 'practice';
     this.stopTimer();
+    const setNumInt = parseInt(setNumber, 10);
+    this.isRevision = Boolean(window.storageManager && typeof window.storageManager.isSetCompleted === 'function' && window.storageManager.isSetCompleted(subject, setNumInt));
+
     let bank = [];
     if (subject === 'IGKO' && window.IGKO_QUESTIONS) bank = window.IGKO_QUESTIONS;
     else if (subject === 'IMO' && window.IMO_QUESTIONS) bank = window.IMO_QUESTIONS;
     else if (subject === 'NSO' && window.NSO_QUESTIONS) bank = window.NSO_QUESTIONS;
 
-    const setQuestions = bank.filter(q => q.set === parseInt(setNumber, 10));
+    const setQuestions = bank.filter(q => q.set === setNumInt);
     const picked = setQuestions.length > 0 ? setQuestions : bank.slice(0, 10);
     // Shuffle option order every run so static key positions are not guessable.
     this.questions = picked.map(q => window.SOFUtils.shuffleOptions(q));
     this.currentIndex = 0;
     this.selectedAnswers = {};
     this.isAnswerChecked = false;
-    this.examConfig = { title: `${subject} • Set ${setNumber}`, subject, setNumber };
+    this.examConfig = { title: `${subject} • Set ${setNumber}`, subject, setNumber: setNumInt };
 
     this.renderPracticeQuestion();
   }
@@ -71,6 +82,7 @@ class QuizEngine {
   startCustomWorkout(title, questionsArray) {
     this.mode = 'practice';
     this.stopTimer();
+    this.isRevision = false;
     this.questions = (questionsArray || []).map(q => window.SOFUtils.shuffleOptions(q));
     this.currentIndex = 0;
     this.selectedAnswers = {};
@@ -117,6 +129,13 @@ class QuizEngine {
 
     card.innerHTML = `
       <div class="card-box" style="max-width: 760px; margin: 0 auto;">
+        ${this.isRevision ? `
+          <div class="revision-banner">
+            <span>🛡️ Revision Mode — Scores & Rewards are Frozen</span>
+            <span class="revision-badge-pill">Score Preserved</span>
+          </div>
+        ` : ''}
+
         <!-- Progress Bar -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-weight: 800; font-size: 13px; color: var(--text-muted);">
           <span>${window.SOFUtils.escapeHtml(this.examConfig.title)}</span>
@@ -128,7 +147,9 @@ class QuizEngine {
 
         <!-- Mascot Guidance Bubble -->
         <div class="mascot-speech-container">
-          <div class="mascot-avatar-box">${mascotObj.icon}</div>
+          <div class="mascot-avatar-box">
+            ${mascotObj.avatarImg && mascotObj.id ? `<img src="${mascotObj.avatarImg}" alt="${window.SOFUtils.escapeHtml(mascotObj.name)}" class="mascot-speech-img" data-mascot-fallback="${mascotObj.id}" />` : window.SOFUtils.escapeHtml(mascotObj.icon || '⛏️')}
+          </div>
           <div class="mascot-text-box">
             <div class="mascot-name-tag">${mascotObj.name}</div>
             <div class="mascot-quote" id="mascot-live-quote">
@@ -195,17 +216,20 @@ class QuizEngine {
     const isCorrect = chosenIdx === q.answer;
     this.selectedAnswers[this.currentIndex] = chosenIdx;
 
-    // Record in storage
-    window.storageManager.recordAttempt(q, chosenIdx, isCorrect);
+    // Caller-side anti-gaming sandbox: only alter state if NOT in Revision Mode
+    if (!this.isRevision) {
+      // Record in storage
+      window.storageManager.recordAttempt(q, chosenIdx, isCorrect, false);
 
-    // Hearts economy: wrong answers cost a heart, correct answers restore one.
-    // Hearts never block practice — at zero the child takes a hug break to refill.
-    if (isCorrect) {
-      window.storageManager.addHearts(1);
-    } else {
-      window.storageManager.addHearts(-1);
+      // Hearts economy: wrong answers cost a heart, correct answers restore one.
+      // Hearts never block practice — at zero the child takes a hug break to refill.
+      if (isCorrect) {
+        window.storageManager.addHearts(1);
+      } else {
+        window.storageManager.addHearts(-1);
+      }
+      window.app.updateHUD();
     }
-    window.app.updateHUD();
 
     // Visual buttons update
     document.querySelectorAll('.practice-opt-btn').forEach((btn, idx) => {
@@ -226,28 +250,54 @@ class QuizEngine {
     fb.style.display = 'block';
     nextBtn.style.display = 'inline-flex';
 
-    if (isCorrect) {
-      fb.style.background = '#dcfce7';
-      fb.style.borderColor = '#86efac';
-      fb.style.color = '#14532d';
-      fb.innerHTML = `
-        <div style="font-weight: 800; font-size: 16px; margin-bottom: 4px;">🎉 AWESOME! That's correct!</div>
-        <p style="font-size: 14px; margin-bottom: 6px;">${window.SOFUtils.escapeHtml(q.explanation)}</p>
-        <span style="font-size: 13px; font-weight: 900; color: #15803d;">+10 Emeralds 💎 | +25 XP</span>
-      `;
-      if (quote) quote.textContent = `"Boom! You mined the right answer on your first try!"`;
-      window.audioManager.playCorrect();
+    if (this.isRevision) {
+      if (isCorrect) {
+        fb.style.background = '#dcfce7';
+        fb.style.borderColor = '#86efac';
+        fb.style.color = '#14532d';
+        fb.innerHTML = `
+          <div style="font-weight: 800; font-size: 16px; margin-bottom: 4px;">🎉 AWESOME! That's correct!</div>
+          <p style="font-size: 14px; margin-bottom: 6px;">${window.SOFUtils.escapeHtml(q.explanation)}</p>
+          <span style="font-size: 12px; font-weight: 800; color: #1d4ed8;">📖 Revision Mode &bull; Solution Reviewed &bull; Original score preserved</span>
+        `;
+        if (quote) quote.textContent = `"Super memory! You nailed this question again!"`;
+        window.audioManager.playCorrect();
+      } else {
+        fb.style.background = '#fee2e2';
+        fb.style.borderColor = '#fca5a5';
+        fb.style.color = '#7f1d1d';
+        fb.innerHTML = `
+          <div style="font-weight: 800; font-size: 16px; margin-bottom: 4px;">💡 Helpful Review! Check the step below:</div>
+          <p style="font-size: 14px; margin-bottom: 6px;">${window.SOFUtils.escapeHtml(q.explanation)}</p>
+          <span style="font-size: 12px; font-weight: 800; color: #1d4ed8;">📖 Revision Mode &bull; Score and hearts protected</span>
+        `;
+        if (quote) quote.textContent = `"Every review strengthens your memory! Keep going!"`;
+        window.audioManager.playIncorrect();
+      }
     } else {
-      fb.style.background = '#fee2e2';
-      fb.style.borderColor = '#fca5a5';
-      fb.style.color = '#7f1d1d';
-      fb.innerHTML = `
-        <div style="font-weight: 800; font-size: 16px; margin-bottom: 4px;">💡 Nice try! Mistakes help our brain grow!</div>
-        <p style="font-size: 14px; margin-bottom: 6px;">${window.SOFUtils.escapeHtml(q.explanation)}</p>
-        <span style="font-size: 12px; font-weight: 800; color: #b91c1c;">Saved to your Mistake Bank to practice later!</span>
-      `;
-      if (quote) quote.textContent = `"No worries at all! Every miner discovers diamonds step-by-step!"`;
-      window.audioManager.playIncorrect();
+      if (isCorrect) {
+        fb.style.background = '#dcfce7';
+        fb.style.borderColor = '#86efac';
+        fb.style.color = '#14532d';
+        fb.innerHTML = `
+          <div style="font-weight: 800; font-size: 16px; margin-bottom: 4px;">🎉 AWESOME! That's correct!</div>
+          <p style="font-size: 14px; margin-bottom: 6px;">${window.SOFUtils.escapeHtml(q.explanation)}</p>
+          <span style="font-size: 13px; font-weight: 900; color: #15803d;">+10 Emeralds 💎 | +25 XP</span>
+        `;
+        if (quote) quote.textContent = `"Boom! You mined the right answer on your first try!"`;
+        window.audioManager.playCorrect();
+      } else {
+        fb.style.background = '#fee2e2';
+        fb.style.borderColor = '#fca5a5';
+        fb.style.color = '#7f1d1d';
+        fb.innerHTML = `
+          <div style="font-weight: 800; font-size: 16px; margin-bottom: 4px;">💡 Nice try! Mistakes help our brain grow!</div>
+          <p style="font-size: 14px; margin-bottom: 6px;">${window.SOFUtils.escapeHtml(q.explanation)}</p>
+          <span style="font-size: 12px; font-weight: 800; color: #b91c1c;">Saved to your Mistake Bank to practice later!</span>
+        `;
+        if (quote) quote.textContent = `"No worries at all! Every miner discovers diamonds step-by-step!"`;
+        window.audioManager.playIncorrect();
+      }
     }
   }
 
@@ -276,25 +326,36 @@ class QuizEngine {
     const total = this.questions.length;
     const pct = Math.round((correctCount / total) * 100);
 
-    if (this.examConfig.setNumber) {
-      window.storageManager.markSetCompleted(this.examConfig.subject, this.examConfig.setNumber);
+    // Only mark set completed if first-time attempt (never in Revision Mode)
+    if (this.examConfig.setNumber && !this.isRevision) {
+      window.storageManager.markSetCompleted(this.examConfig.subject, this.examConfig.setNumber, false);
     }
 
     window.confettiManager.trigger(100);
     window.audioManager.playFanfare();
 
+    const isRev = this.isRevision;
+    const titleText = isRev ? "Revision Complete! 📖" : "Mission Accomplished! 🏆";
+    const subText = isRev
+      ? `You revised ${window.SOFUtils.escapeHtml(this.examConfig.title)}! Your original score and trophies remain safe.`
+      : `You completed ${window.SOFUtils.escapeHtml(this.examConfig.title)}!`;
+    const pillHtml = isRev
+      ? `<span class="mc-stat-pill" style="background: #eff6ff; border-color: #93c5fd; color: #1d4ed8;">📖 Original Score Preserved</span>
+         <span class="mc-stat-pill" style="background: #f0fdf4; border-color: #bbf7d0; color: #15803d;">⭐ Practice Bank Mastered</span>`
+      : `<span class="mc-stat-pill emeralds">💎 +50 Emeralds</span>
+         <span class="mc-stat-pill streak">🔥 Streak Kept!</span>`;
+
     card.innerHTML = `
       <div class="card-box" style="max-width: 650px; margin: 0 auto; text-align: center; padding: 40px 24px;">
-        <div style="font-size: 64px; margin-bottom: 12px;">🏆</div>
-        <h2 style="font-size: 28px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">Mission Accomplished!</h2>
-        <p style="color: #64748b; font-size: 16px; margin-bottom: 24px;">You completed ${this.examConfig.title}!</p>
+        <div style="font-size: 64px; margin-bottom: 12px;">${isRev ? '📖' : '🏆'}</div>
+        <h2 style="font-size: 28px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">${titleText}</h2>
+        <p style="color: #64748b; font-size: 16px; margin-bottom: 24px;">${subText}</p>
 
         <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 20px; padding: 24px; margin-bottom: 28px;">
           <div style="font-size: 48px; font-weight: 900; color: #15803d;">${correctCount} / ${total}</div>
-          <div style="font-weight: 800; color: #475569; font-size: 18px;">${pct}% Accuracy</div>
-          <div style="margin-top: 14px; display: flex; justify-content: center; gap: 14px;">
-            <span class="mc-stat-pill emeralds">💎 +50 Emeralds</span>
-            <span class="mc-stat-pill streak">🔥 Streak Kept!</span>
+          <div style="font-weight: 800; color: #475569; font-size: 18px;">${pct}% Accuracy (This Run)</div>
+          <div style="margin-top: 14px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+            ${pillHtml}
           </div>
         </div>
 
@@ -334,9 +395,9 @@ class QuizEngine {
     else if (subject === 'NSO' && window.NSO_QUESTIONS) bank = window.NSO_QUESTIONS;
 
     // Mirror the SOF pattern: core questions from every topic set plus a
-    // dedicated Achievers (set 10) section — never just slice(0, 35).
-    const corePool = bank.filter(q => q.set !== 10);
-    const hotPool = bank.filter(q => q.set === 10);
+    // dedicated Achievers (sets 10 and 20) section — never just slice(0, 35).
+    const corePool = bank.filter(q => !this.isAchievers(q));
+    const hotPool = bank.filter(q => this.isAchievers(q));
     const coreCount = isQuick ? 8 : 30;
     const hotCount = isQuick ? 2 : 5;
     const picked = QuizEngine.samplePool(corePool, coreCount)
@@ -399,11 +460,11 @@ class QuizEngine {
     return counts;
   }
 
-  // Section jump: Achievers questions are the sampled set-10 items at the tail.
+  // Section jump: Achievers questions are the sampled Achievers items at the tail.
   jumpToSection(toHot) {
     let target = 0;
     if (toHot) {
-      const hotIdx = this.questions.findIndex(q => q.set === 10);
+      const hotIdx = this.questions.findIndex(q => this.isAchievers(q));
       target = hotIdx >= 0 ? hotIdx : 0;
     }
     this.leaveCurrentExam();
@@ -460,8 +521,8 @@ class QuizEngine {
 
         <!-- Section Navigation Bar -->
         <div class="ion-sections-bar">
-          <button class="ion-sec-tab ${this.questions[this.currentIndex].set === 10 ? '' : 'active'}" onclick="window.quizEngine.jumpToSection(false)">${window.SOFUtils.escapeHtml(this.examConfig.subject)} Section</button>
-          <button class="ion-sec-tab ${this.questions[this.currentIndex].set === 10 ? 'active' : ''}" onclick="window.quizEngine.jumpToSection(true)">Achievers Section (HOTS)</button>
+          <button class="ion-sec-tab ${this.isAchievers(this.questions[this.currentIndex]) ? '' : 'active'}" onclick="window.quizEngine.jumpToSection(false)">${window.SOFUtils.escapeHtml(this.examConfig.subject)} Section</button>
+          <button class="ion-sec-tab ${this.isAchievers(this.questions[this.currentIndex]) ? 'active' : ''}" onclick="window.quizEngine.jumpToSection(true)">Achievers Section (HOTS)</button>
         </div>
 
         <!-- Split Stage: Left Question, Right Palette -->

@@ -40,7 +40,7 @@ function loadEngine() {
   const window = {
     SOFUtils: null,
     IMO_QUESTIONS: fakeBank('IMO', ['Number Sense', 'Addition']),
-    storageManager: { recordAttempt() {}, saveExamResult() {} },
+    storageManager: { recordAttempt() {}, saveExamResult() {}, isSetCompleted() { return false; } },
     confettiManager: { trigger() {} },
     audioManager: { playFanfare() {}, speak() {} },
   };
@@ -66,9 +66,10 @@ test('exam sampling covers core + Achievers with distinct ids', () => {
   }
 });
 
-test('marks weight: explicit marks win, else set 10 = 2', () => {
+test('marks weight: explicit marks win, else set 10 and 20 = 2', () => {
   const { engine } = loadEngine();
   assert.equal(engine.getQuestionWeight({ set: 10 }), 2);
+  assert.equal(engine.getQuestionWeight({ set: 20 }), 2);
   assert.equal(engine.getQuestionWeight({ set: 3 }), 1);
   assert.equal(engine.getQuestionWeight({ set: 10, marks: 1 }), 1);
 });
