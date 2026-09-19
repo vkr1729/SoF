@@ -9,6 +9,7 @@ class AppController {
     this.registerServiceWorker();
     this.bindMascotImageFallbacks();
     this.updateHUD();
+    this.updateMascotHero();
     this.renderMissions();
     this.renderTrophyRoom();
 
@@ -88,10 +89,34 @@ class AppController {
     } else if (tabId === 'trophies') {
       this.renderTrophyRoom();
     } else if (tabId === 'quest') {
+      this.updateMascotHero();
       this.renderMissions();
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  updateMascotHero() {
+    const profile = window.storageManager.data.profile;
+    const mascotObj = (window.MINECRAFT_MASCOTS || []).find(m => m.id === profile.mascot) || { name: "Steve the Miner", icon: "⛏️" };
+
+    const heroImg = document.getElementById('mascot-hero-img');
+    const heroBuddyName = document.getElementById('mascot-hero-buddy-name');
+    const heroHeading = document.getElementById('mascot-hero-heading');
+
+    if (heroImg) {
+      if (mascotObj.avatarImg) {
+        heroImg.src = mascotObj.avatarImg;
+      }
+      heroImg.alt = mascotObj.name;
+      heroImg.setAttribute('data-mascot-fallback', mascotObj.id);
+    }
+    if (heroBuddyName) {
+      heroBuddyName.textContent = `${mascotObj.name} ${mascotObj.icon}`;
+    }
+    if (heroHeading && mascotObj.tagline) {
+      heroHeading.textContent = `"${mascotObj.tagline}"`;
+    }
   }
 
   selectSubject(subject) {
@@ -118,15 +143,27 @@ class AppController {
     for (let setNum = 1; setNum <= totalSets; setNum++) {
       const isDone = window.storageManager.isSetCompleted(this.currentSubject, setNum);
       const isNext = !isDone && (setNum === 1 || window.storageManager.isSetCompleted(this.currentSubject, setNum - 1));
-      const statusLabel = isDone ? 'Completed 💎' : (isNext ? 'Ready to Play' : 'Locked');
-      const showRevise = isDone && typeof window.quizEngine !== 'undefined' && typeof window.quizEngine.startPracticeSet === 'function';
+
+      // Spec conformance: completed sets must expose a distinct Revise button,
+      // and locked sets must not fire clicks or claim to be unlocked.
+      const statusHtml = isDone
+        ? `<div class="set-node-status">Completed 💎</div>
+           <button class="btn-tactile btn-blue touch-44 set-node-revise-btn" style="margin-top: 6px; padding: 4px 10px; font-size: 11px; width: 100%;" onclick="event.stopPropagation(); window.app.startMissionSet('${this.currentSubject}', ${setNum})" aria-label="Revise set ${setNum}">
+             🛡️ Revise Set
+           </button>`
+        : `<div class="set-node-status">${isNext ? 'Ready to Play' : 'Locked'}</div>`;
+
+      const clickAttr = (isDone || isNext)
+        ? `onclick="window.app.startMissionSet('${this.currentSubject}', ${setNum})"`
+        : '';
+      const tabIndex = (isDone || isNext) ? '0' : '-1';
+      const roleAttr = (isDone || isNext) ? 'role="button"' : '';
 
       cardsHtml += `
-        <div class="set-node-card ${isDone ? 'completed' : (isNext ? 'current' : '')}"${isDone || isNext ? ` onclick="window.app.startMissionSet('${this.currentSubject}', ${setNum})" role="button" tabindex="0" aria-label="${isDone ? `Revise ${this.currentSubject} Set ${setNum}` : `Start ${this.currentSubject} Set ${setNum}`}"` : ` aria-disabled="true" title="Complete Set ${setNum - 1} to unlock"`}>
+        <div class="set-node-card ${isDone ? 'completed' : (isNext ? 'current' : 'locked')}" ${clickAttr} ${roleAttr} tabindex="${tabIndex}" aria-label="Set ${setNum} ${isDone ? 'completed, click to revise' : (isNext ? 'ready to play' : 'locked')}">
           <div class="set-node-icon">${isDone ? '⭐' : (isNext ? '⚔️' : '🔒')}</div>
           <div class="set-node-title">Set ${setNum}</div>
-          <div class="set-node-status">${statusLabel}</div>
-          ${showRevise ? `<button class="btn-tactile btn-blue revise-set-btn" style="width: 100%; font-size: 12px; padding: 6px 8px; margin-top: 8px;" onclick="event.stopPropagation(); window.app.startMissionSet('${this.currentSubject}', ${setNum})" aria-label="Revise ${this.currentSubject} Set ${setNum}">🛡️ Revise Set</button>` : ''}
+          ${statusHtml}
         </div>
       `;
     }
@@ -150,13 +187,14 @@ class AppController {
         const isActive = m.id === currentMascot;
         const visualHtml = m.avatarImg
           ? `<img src="${m.avatarImg}" alt="${m.name}" class="mascot-select-img" data-mascot-fallback="${m.id}" />`
-          : `<div style="font-size: 38px; margin-bottom: 6px;">${m.icon}</div>`;
+          : `<div style="font-size: 48px; margin-bottom: 8px;">${m.icon}</div>`;
         return `
-          <div class="card-box mascot-pick-card ${isActive ? 'active-mascot' : ''}" style="flex: 1; min-width: 140px; text-align: center; cursor: pointer; border-color: ${isActive ? 'var(--primary)' : 'var(--border)'}; background: ${isActive ? '#f0fdf4' : '#fff'};" onclick="window.app.changeMascot('${m.id}')">
+          <div class="card-box mascot-pick-card ${isActive ? 'active-mascot' : ''}" style="flex: 1; min-width: 170px; text-align: center; cursor: pointer; border-color: ${isActive ? 'var(--primary)' : 'var(--border)'}; background: ${isActive ? '#f0f9ff' : '#fff'};" onclick="window.app.changeMascot('${m.id}')">
             ${visualHtml}
-            <div style="font-weight: 900; font-size: 15px;">${m.name}</div>
-            <div style="font-size: 12px; color: ${isActive ? 'var(--primary-dark)' : '#64748b'}; font-weight: 800; margin-top: 4px;">
-              ${isActive ? 'Active Buddy ✅' : 'Choose'}
+            <div style="font-weight: 900; font-size: 16px; color: #1e293b;">${m.name}</div>
+            <div style="font-size: 12px; color: #64748b; margin-top: 4px; font-style: italic; min-height: 32px; display: flex; align-items: center; justify-content: center;">"${m.tagline || ''}"</div>
+            <div style="font-size: 12px; color: ${isActive ? '#0284c7' : '#64748b'}; font-weight: 800; margin-top: 8px; background: ${isActive ? '#e0f2fe' : '#f1f5f9'}; padding: 4px 12px; border-radius: 99px;">
+              ${isActive ? 'Active Buddy ✅' : 'Choose Buddy ➜'}
             </div>
           </div>
         `;
@@ -188,6 +226,7 @@ class AppController {
     window.storageManager.setMascot(mascotId);
     window.audioManager.playMinecraftDing();
     this.updateHUD();
+    this.updateMascotHero();
     this.renderTrophyRoom();
   }
 

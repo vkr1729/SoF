@@ -112,6 +112,30 @@
     <!-- TAB 1: ADVENTURE MISSIONS (SUBJECT & SETS) -->
     <!-- ========================================== -->
     <section id="pane-quest" class="tab-pane active">
+      <!-- Active Minecraft Companion Hero Banner -->
+      <div class="mascot-hero-card" id="mascot-hero-card">
+        <div class="mascot-hero-visual">
+          <img src="assets/minecraft/steve.jpg" alt="Steve the Miner" id="mascot-hero-img" class="mascot-hero-full-img" data-mascot-fallback="steve" />
+        </div>
+        <div class="mascot-hero-details">
+          <div class="mascot-hero-badge-row">
+            <span class="brand-badge" style="background: #0284c7; color: #fff; font-weight: 900; font-size: 11px;">STUDY COMPANION</span>
+            <span class="mascot-hero-buddy-name" id="mascot-hero-buddy-name">Steve the Miner ⛏️</span>
+          </div>
+          <h2 class="mascot-hero-heading" id="mascot-hero-heading">
+            "Let's craft knowledge together!"
+          </h2>
+          <p class="mascot-hero-subtext" id="mascot-hero-subtext">
+            Pick an Olympiad biome below to embark on 10-question quests, earn emeralds, and level up!
+          </p>
+        </div>
+        <div class="mascot-hero-action">
+          <button class="btn-tactile btn-blue touch-44" onclick="window.app.switchTab('trophies')" aria-label="Change Minecraft Study Companion">
+            Change Buddy 🔄
+          </button>
+        </div>
+      </div>
+
       <div style="text-align: center; margin-bottom: 24px;">
         <h1 style="font-size: 26px; font-weight: 900; color: #1e293b;">Choose Your Olympiad Biome</h1>
         <p style="color: var(--text-muted); font-size: 15px;">Each subject has 20 unmixed sets of 10 questions (200 questions per subject). Master them all to unlock trophies!</p>
